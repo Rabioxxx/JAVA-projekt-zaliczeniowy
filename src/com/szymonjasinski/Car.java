@@ -24,4 +24,16 @@ public class Car {
             System.out.println("ERROR/. This car have a negative value of age and/or mileage.");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", age=" + age +
+                ", mileage=" + mileage +
+                ", value=" + value +
+                ", color=" + color +
+                '}';
+    }
 }
