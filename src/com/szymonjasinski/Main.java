@@ -12,8 +12,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        scanner = new Scanner(System.in);
-
         do {
             System.out.println(
                     """
@@ -39,7 +37,7 @@ public class Main {
             newGameGenerator();
         }
 
-        System.out.println(Player.carsBuyable.get(0));
+        //System.out.println(Player.carsBuyable.get(0));
 
         /*
         printAndWaitForInput(
