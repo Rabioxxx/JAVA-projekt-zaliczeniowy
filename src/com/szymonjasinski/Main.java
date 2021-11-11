@@ -81,6 +81,7 @@ public class Main {
         String[] models = {"500", "Insignia", "Fiesta", "CLA45", "Clio", "Model X"};
 
         if (number <= producers.length) {
+
             Random rng = new Random();
 
             ArrayList<Car> cars = new ArrayList<>();
@@ -91,7 +92,7 @@ public class Main {
                 int randomAge = rng.nextInt(0, 30);
                 Double randomDouble = rng.nextDouble(25000.0, 300000.0);
 
-                Car carRandom = new Car(producers[randomProducerAndModel], models[randomProducerAndModel], randomAge, randomDouble, randomDouble, Color.Black, false);
+                Car carRandom = new Car(producers[randomProducerAndModel], models[randomProducerAndModel], randomAge, randomDouble, randomDouble, Color.BLACK, false);
                 cars.add(carRandom);
             }
 
