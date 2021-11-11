@@ -1,6 +1,5 @@
 package com.szymonjasinski;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -73,7 +72,7 @@ public class Main {
     }
 
     static void newGameGenerator() {
-        Player.carsBuyable = carsBuyableGenerator(2);
+        Player.carsBuyable = carsBuyableGenerator(6);
     }
 
     static ArrayList<Car> carsBuyableGenerator(Integer number) {
@@ -81,21 +80,25 @@ public class Main {
         String[] producers = {"Fiat", "Opel", "Ford", "Mercedes-Benz", "Renault", "Tesla"};
         String[] models = {"500", "Insignia", "Fiesta", "CLA45", "Clio", "Model X"};
 
-        Random rng = new Random();
+        if (number <= producers.length) {
+            Random rng = new Random();
 
-        ArrayList<Car> cars = new ArrayList<>();
+            ArrayList<Car> cars = new ArrayList<>();
 
-        for (int i = 0; i < number; i++) {
+            for (int i = 0; i < number; i++) {
 
-            int randomProducerAndModel = rng.nextInt(0, producers.length);
-            int randomAge = rng.nextInt(0, 30);
-            Double randomDouble = rng.nextDouble(25000.0, 300000.0);
+                int randomProducerAndModel = rng.nextInt(0, producers.length);
+                int randomAge = rng.nextInt(0, 30);
+                Double randomDouble = rng.nextDouble(25000.0, 300000.0);
 
-            Car carRandom = new Car(producers[randomProducerAndModel], models[randomProducerAndModel], randomAge, randomDouble, randomDouble, Color.black, false);
-            cars.add(carRandom);
+                Car carRandom = new Car(producers[randomProducerAndModel], models[randomProducerAndModel], randomAge, randomDouble, randomDouble, Color.Black, false);
+                cars.add(carRandom);
+            }
+
+            return cars;
+        } else {
+            throw new ArrayIndexOutOfBoundsException("Variable number cannot be bigger than producers[]/models[] index.");
         }
-
-        return cars;
 
         /*
         Car fiat = new Car("Fiat", "500", 6, 93521.8, 20000.0, Color.black, false);
