@@ -3,13 +3,13 @@ package com.szymonjasinski;
 import java.util.ArrayList;
 
 public class Market {
-    private ArrayList<Car> carsBuyable;
+    private static ArrayList<Car> cars;
 
-    public ArrayList<Car> getCarsBuyable() {
-        return carsBuyable;
+    public static ArrayList<Car> getCarsBuyable() {
+        return cars;
     }
 
-    public void setCarsBuyable(ArrayList<Car> carsBuyable) {
-        this.carsBuyable = carsBuyable;
+    public static void setCarsBuyable(ArrayList<Car> carsBuyable) {
+        Market.cars = carsBuyable;
     }
 }
