@@ -34,7 +34,7 @@ public class Main {
 
         if (input == 97) {
             newGameGenerator();
-            System.out.println("Cars available to buy ready!");
+            System.out.println("Cars available to buy - ready!");
         }
 
         //System.out.println(Player.carsBuyable.get(0));

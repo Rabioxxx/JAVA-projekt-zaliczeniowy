@@ -1,5 +1,5 @@
 package com.szymonjasinski;
 
-public enum segment {
+public enum Segment {
     budget, standard, premium
 }
