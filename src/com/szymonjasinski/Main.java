@@ -22,10 +22,10 @@ public class Main {
             // Wait for user input and assign value to variable input.
             input = scanner.next().charAt(0);
 
-            // TODO Could change a, b, c ... to interval from 97 (lowercase a) to 122 (lowercase z).
+            // TODO #001 Could change a, b, c ... to interval from 97 (lowercase a) to 122 (lowercase z).
             switch (input) {
                 case 'a' -> System.out.println(input + " clicked.");
-                case 'b' -> System.out.println("Closing."); // TODO find a way to close a program with it.
+                case 'b' -> System.out.println("Closing."); // TODO #002 find a way to close a program with it.
                 default -> System.out.println(">:(");
             }
         } while (input < 97 || input > 122);
@@ -34,6 +34,7 @@ public class Main {
 
         if (input == 97) {
             newGameGenerator();
+            System.out.println("Cars available to buy ready!");
         }
 
         //System.out.println(Player.carsBuyable.get(0));
@@ -63,7 +64,7 @@ public class Main {
             // Wait for user input and assign value to variable input.
             input = scanner.next().charAt(0);
 
-            // TODO Could change a, b, c ... to interval from 97 (lowercase a) to 122 (lowercase z)
+            // TODO #001 Could change a, b, c ... to interval from 97 (lowercase a) to 122 (lowercase z)
             switch (input) {
                 case 'a', 'b', 'c', 'd', 'e' -> System.out.println(input + " clicked.");
                 default -> System.out.println(">:(");
@@ -76,7 +77,7 @@ public class Main {
     }
 
     static ArrayList<Car> carsBuyableGenerator(Integer number) {
-
+        // TODO #003
         String[] producers = {"Fiat", "Opel", "Ford", "Mercedes-Benz", "Renault", "Tesla"};
         String[] models = {"500", "Insignia", "Fiesta", "CLA45", "Clio", "Model X"};
 
