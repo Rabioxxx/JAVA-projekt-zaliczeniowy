@@ -35,7 +35,6 @@ public class Main {
         if (input == 97) {
             newGameGenerator();
             System.out.println("Cars available to buy - ready!");
-            Market market = new Market();
 
             System.out.println(
                     """
@@ -54,7 +53,7 @@ public class Main {
             switch (input) {
                 case 'a':
                     System.out.println(input + " clicked.");
-                    System.out.println(market.getCarsBuyable());
+                    System.out.println(Market.getCarsBuyable().toString());
                     break;
                 default:
                     System.out.println(">:(");
@@ -98,8 +97,7 @@ public class Main {
     }
 
     static void newGameGenerator() {
-        Market market = new Market();
-        market.setCarsBuyable(carsBuyableGenerator(6));
+        Market.setCarsBuyable(carsBuyableGenerator(6));
     }
 
     static ArrayList<Car> carsBuyableGenerator(Integer number) {
