@@ -23,7 +23,7 @@ public class Main {
             // Wait for user input and assign value to variable input.
             input = scanner.next().charAt(0);
 
-            // TODO Could change a, b, c ... to interval from 97 (lowercase a) to 122 (lowercase z)
+            // TODO Could change a, b, c ... to interval from 97 (lowercase a) to 122 (lowercase z).
             switch (input) {
                 case 'a' -> System.out.println(input + " clicked.");
                 case 'b' -> System.out.println("Closing."); // TODO find a way to close a program with it.
