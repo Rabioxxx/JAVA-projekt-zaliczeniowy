@@ -35,6 +35,30 @@ public class Main {
         if (input == 97) {
             newGameGenerator();
             System.out.println("Cars available to buy - ready!");
+
+            System.out.println(
+                    """
+                                                        
+                            What do you want to do now?
+                                                        
+                            a - show cars available to buy at https://www.cars.com/.
+                            b - show cars you own.
+                            c - show clients.
+                            d - check marketing options.
+                            e - check you bank account.""");
+
+            input = scanner.next().charAt(0);
+
+            // TODO #001
+            switch (input) {
+                case 'a':
+                    System.out.println(input + " clicked.");
+                    System.out.println(Player.getCarsBuyable());
+                    break;
+                default:
+                    System.out.println(">:(");
+                    break;
+            }
         }
 
         //System.out.println(Player.carsBuyable.get(0));
@@ -73,7 +97,7 @@ public class Main {
     }
 
     static void newGameGenerator() {
-        Player.carsBuyable = carsBuyableGenerator(6);
+        Player.setCarsBuyable(carsBuyableGenerator(6));
     }
 
     static ArrayList<Car> carsBuyableGenerator(Integer number) {
@@ -91,6 +115,7 @@ public class Main {
 
                 int randomProducerAndModel = rng.nextInt(0, producers.length);
                 int randomAge = rng.nextInt(0, 30);
+                // TODO #004
                 Double randomDouble = rng.nextDouble(25000.0, 300000.0);
 
                 Car carRandom = new Car(producers[randomProducerAndModel], models[randomProducerAndModel], randomAge, randomDouble, randomDouble, Color.BLACK, false);
