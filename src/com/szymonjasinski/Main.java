@@ -27,7 +27,7 @@ public class Main {
                 case 'b' -> System.out.println("Closing."); // TODO #002 find a way to close a program with it.
                 default -> System.out.println(">:(");
             }
-        } while (input < 97 || input > 122);
+        } while (input < 97 || input > 98);
 
         //System.out.println(Player.carsBuyable);
 
@@ -38,7 +38,7 @@ public class Main {
             Market market = new Market();
 
             player.setCash(50000.0);
-            System.out.println("Your cash is set!");
+            System.out.println("Your cash is set! It is now: " + player.getCash());
 
             market.carsGenerator(6);
             System.out.println("Cars available to buy - ready!");
@@ -56,23 +56,36 @@ public class Main {
 
             input = scanner.next().charAt(0);
 
-            // TODO #001
-            switch (input) {
-                case 'a':
-                    System.out.println(input + " clicked.");
-                    // get ArrayList of cars and then printing all cars in this Array to console. What exactly is printed is defined with toString().
-                    ArrayList<Car> cars = market.getCars();
-                    for (Car car : cars) {
-                        System.out.println(car.toString());
+            do {
+                // TODO #001
+                switch (input) {
+                    case 'a' -> {
+                        System.out.println(input + " clicked.");
+                        // get ArrayList of cars and then printing all cars in this Array to console. What exactly is printed is defined with toString().
+                        ArrayList<Car> cars = market.getCars();
+                        for (Car car : cars) {
+                            System.out.println(car.toString());
+                        }
                     }
-                    break;
-                case 'e':
-                    System.out.println(input + " clicked.");
+                    case 'e' -> {
+                        System.out.println(input + " clicked.");
+                        System.out.println("You have $\040" + player.getCash() + ".");
+                        char input;
+                        do {
+                            System.out.println("Do you want to check your last transactions? (y/n)");
 
-                default:
-                    System.out.println(">:(");
-                    break;
-            }
+                            input = scanner.next().charAt(0);
+
+                            if (input == 'y') {
+                                System.out.println("These are your last transactions: ");
+                                // And here these transactions will be.
+                            }
+                        } while (input != 'y' && input != 'n');
+                    }
+                    default -> System.out.println(">:(");
+                }
+                // TODO #005 while input == something
+            } while (true);
         }
     }
 }
