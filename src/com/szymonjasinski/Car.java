@@ -27,13 +27,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "producer='" + producer + '\'' +
-                ", model='" + model + '\'' +
-                ", age=" + age +
-                ", mileage=" + mileage +
-                ", value=" + value +
-                ", color=" + color +
-                '}';
+            return producer + " " + model;
     }
 }
