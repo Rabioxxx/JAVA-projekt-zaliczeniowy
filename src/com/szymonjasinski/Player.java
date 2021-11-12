@@ -7,12 +7,12 @@ public class Player {
     private ArrayList<Car> cars;
     private ArrayList<Client> clients;
 
-    public  Double getCash() {
+    public Double getCash() {
         return cash;
     }
 
     public void setCash(Double cash) {
-        this.cash = cash;
+        this.cash = Helper.roundMoney(cash);
     }
 
     public ArrayList<Car> getCars() {

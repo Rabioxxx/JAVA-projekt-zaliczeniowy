@@ -1,7 +1,5 @@
 package com.szymonjasinski;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -32,8 +30,13 @@ public class Main {
 
         //System.out.println(Player.carsBuyable);
 
-        if (input == 97) {
+        if (input == 97) // That means new game was clicked.
+        {
+            Player player = new Player();
             Market market = new Market();
+
+            player.setCash(50000.0);
+
             market.carsGenerator(6);
 
             System.out.println("Cars available to buy - ready!");
@@ -55,7 +58,7 @@ public class Main {
             switch (input) {
                 case 'a':
                     System.out.println(input + " clicked.");
-                    market.getCarsAllPretty();
+                    market.printCarsAllPretty();
                     break;
                 default:
                     System.out.println(">:(");
