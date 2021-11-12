@@ -43,20 +43,21 @@ public class Main {
             market.carsGenerator(6);
             System.out.println("Cars available to buy - ready!");
 
-            System.out.println(
-                    """
-                                                        
-                            What do you want to do now?
-                                                        
-                            a - show cars available to buy at https://www.cars.com/.
-                            b - show cars you own.
-                            c - show clients.
-                            d - check marketing options.
-                            e - check you bank account.""");
-
-            input = scanner.next().charAt(0);
-
             do {
+
+                System.out.println(
+                        """
+                                                            
+                                What do you want to do now?
+                                                            
+                                a - show cars available to buy at https://www.cars.com/.
+                                b - show cars you own.
+                                c - show clients.
+                                d - check marketing options.
+                                e - check you bank account.""");
+
+                input = scanner.next().charAt(0);
+
                 // TODO #001
                 switch (input) {
                     case 'a' -> {
@@ -66,6 +67,17 @@ public class Main {
                         for (Car car : cars) {
                             System.out.println(car.toString());
                         }
+                    }
+                    case 'b' -> {
+                        System.out.println(input + " clicked.");
+
+                        System.out.println("You have following cars in your parking lot:");
+                        ArrayList<Car> cars = player.getCars();
+
+                        for (Car car : cars) {
+                            System.out.println(car.toString());
+                        }
+
                     }
                     case 'e' -> {
                         System.out.println(input + " clicked.");
