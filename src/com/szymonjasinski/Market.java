@@ -42,10 +42,4 @@ public class Market {
             throw new ArrayIndexOutOfBoundsException("Variable number cannot be bigger than producers[]/models[] index.");
         }
     }
-
-    public void printCarsAll() {
-        for (Car car : this.cars) {
-            System.out.println(car.toString());
-        }
-    }
 }

@@ -1,5 +1,6 @@
 package com.szymonjasinski;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -32,6 +33,7 @@ public class Main {
 
         if (input == 97) // That means new game was clicked.
         {
+            // Here I am going to generate things needed to be generated on the beginning of the new game.
             Player player = new Player();
             Market market = new Market();
 
@@ -58,7 +60,11 @@ public class Main {
             switch (input) {
                 case 'a':
                     System.out.println(input + " clicked.");
-                    market.printCarsAll();
+                    // get ArrayList of cars and then printing all cars in this Array to console. What exactly is printed is defined with toString().
+                    ArrayList<Car> cars = market.getCars();
+                    for (Car car : cars) {
+                        System.out.println(car.toString());
+                    }
                     break;
                 case 'e':
                     System.out.println(input + " clicked.");
