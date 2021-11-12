@@ -43,7 +43,7 @@ public class Market {
         }
     }
 
-    public void printCarsAllPretty() {
+    public void printCarsAll() {
         for (Car car : this.cars) {
             System.out.println(car.toString());
         }
