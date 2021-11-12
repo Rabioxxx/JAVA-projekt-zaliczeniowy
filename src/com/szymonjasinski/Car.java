@@ -1,7 +1,5 @@
 package com.szymonjasinski;
 
-import java.awt.*;
-
 public class Car {
     private String producer;
     private String model;
