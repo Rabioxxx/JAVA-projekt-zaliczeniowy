@@ -3,31 +3,31 @@ package com.szymonjasinski;
 import java.util.ArrayList;
 
 public class Player {
-    private static Double cash;
-    private static ArrayList<Car> cars;
-    private static ArrayList<Client> clients;
+    private Double cash;
+    private ArrayList<Car> cars;
+    private ArrayList<Client> clients;
 
-    public static Double getCash() {
+    public  Double getCash() {
         return cash;
     }
 
-    public static void setCash(Double cash) {
-        Player.cash = cash;
+    public void setCash(Double cash) {
+        this.cash = cash;
     }
 
-    public static ArrayList<Car> getCars() {
+    public ArrayList<Car> getCars() {
         return cars;
     }
 
-    public static void setCars(ArrayList<Car> cars) {
-        Player.cars = cars;
+    public void setCars(ArrayList<Car> cars) {
+        this.cars = cars;
     }
 
-    public static ArrayList<Client> getClients() {
+    public ArrayList<Client> getClients() {
         return clients;
     }
 
-    public static void setClients(ArrayList<Client> clients) {
-        Player.clients = clients;
+    public void setClients(ArrayList<Client> clients) {
+        this.clients = clients;
     }
 }
