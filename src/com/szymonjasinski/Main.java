@@ -36,9 +36,9 @@ public class Main {
             Market market = new Market();
 
             player.setCash(50000.0);
+            System.out.println("Your cash is set!");
 
             market.carsGenerator(6);
-
             System.out.println("Cars available to buy - ready!");
 
             System.out.println(
@@ -58,8 +58,11 @@ public class Main {
             switch (input) {
                 case 'a':
                     System.out.println(input + " clicked.");
-                    market.printCarsAllPretty();
+                    market.printCarsAll();
                     break;
+                case 'e':
+                    System.out.println(input + " clicked.");
+
                 default:
                     System.out.println(">:(");
                     break;
