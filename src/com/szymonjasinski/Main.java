@@ -23,7 +23,7 @@ public class Main {
 
             // TODO #001 Could change a, b, c ... to interval from 97 (lowercase a) to 122 (lowercase z).
             switch (input) {
-                case 'a' -> System.out.println(input + " clicked.");
+                case 'a' -> System.out.println(input + " clicked.\n");
                 case 'b' -> System.out.println("Closing."); // TODO #002 find a way to close a program with it.
                 default -> System.out.println(">:(");
             }
@@ -61,7 +61,7 @@ public class Main {
                 // TODO #001
                 switch (input) {
                     case 'a' -> {
-                        System.out.println(input + " clicked.");
+                        System.out.println(input + " clicked.\n");
                         // get ArrayList of cars and then printing all cars in this Array to console. What exactly is printed is defined with toString().
                         ArrayList<Car> cars = market.getCars();
                         for (Car car : cars) {
@@ -69,18 +69,21 @@ public class Main {
                         }
                     }
                     case 'b' -> {
-                        System.out.println(input + " clicked.");
+                        System.out.println(input + " clicked.\n");
 
-                        System.out.println("You have following cars in your parking lot:");
                         ArrayList<Car> cars = player.getCars();
 
-                        for (Car car : cars) {
-                            System.out.println(car.toString());
+                        if (cars != null) {
+                            System.out.println("You have following cars in your parking lot:");
+                            for (Car car : cars) {
+                                System.out.println(car.toString());
+                            }
+                        } else {
+                            System.out.println("You have no cars in your parking lot.");
                         }
-
                     }
                     case 'e' -> {
-                        System.out.println(input + " clicked.");
+                        System.out.println(input + " clicked.\n");
                         System.out.println("You have $\040" + player.getCash() + ".");
                         char input;
                         do {
