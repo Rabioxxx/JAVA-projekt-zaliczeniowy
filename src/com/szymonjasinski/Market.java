@@ -32,20 +32,20 @@ public class Market {
                 // TODO #004
                 Double randomDouble = rng.nextDouble(25000.0, 300000.0);
 
-                Car carRandom = new Car(producers[randomProducerAndModel], models[randomProducerAndModel], randomAge, randomDouble, randomDouble, Color.BLACK, false);
+                Car carRandom = new Car(producers[randomProducerAndModel], models[randomProducerAndModel], randomAge, randomDouble, randomDouble, Color.BLACK);
                 cars.add(carRandom);
             }
 
-            this.cars = cars;
+            setCars(cars);
 
         } else {
             throw new ArrayIndexOutOfBoundsException("Variable number cannot be bigger than producers[]/models[] index.");
         }
     }
 
-    public void getCarsAllPretty() {
-        for (int i = 0; i < this.cars.size(); i++) {
-            System.out.println(this.cars.get(i));
+    public void printCarsAllPretty() {
+        for (Car car : this.cars) {
+            System.out.println(car.toString());
         }
     }
 }
