@@ -3,6 +3,16 @@ package com.szymonjasinski;
 import java.util.ArrayList;
 import java.util.Random;
 
+enum Brands{
+    ALFAROMEO("Alfa Romeo"), AUDI("Audi"), BMW("BMW"), CHEVROLET("Chevrolet"), CITROEN("Citroen"), DACIA("Dacia"), DAEWOO("Daewoo"), DODGE("Dodge"), FIAT("Fiat"), FORD("Ford"), HONDA("Honda"), HYUNDAI("Hyundai"), JAGUAR("Jaguar"), JEEP("Jeep"), KIA("KIA"), LEXUS("Lexus"), MAZDA("Mazda"), MERCEDES("Mercedes-Benz"), MITSUBISHI("Mitsubishi"), NISSAN("Nissan"), OPEL("Opel"), PEUGEOT("Peugeot"), RENAULT("Renault"), SAAB("Saab"), SEAT("Seat"), SKODA("Skoda"), SUBARU("Subaru"), SUZUKI("Suzuki"), TESLA("Tesla"), TOYOTA("Toyota"), VOLKSWAGEN("Volkswagen"), VOLVO("Volvo");
+
+    String name;
+
+    Brands(String name){
+        this.name = name;
+    }
+}
+
 public class Market {
     private ArrayList<Car> cars;
 
