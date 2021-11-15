@@ -3,23 +3,26 @@ package com.szymonjasinski;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public enum Brands { // Here I can add more car brands + their models! Data taken from https://www.otomoto.pl
 
     /*  These are constants which should be formatted like this:
-    *   AUDI //14767// ("Audi", new String[][]{{"A4"3884}, {"A6"2992}, {"A3"2206}, {"Q5"960}, {"A5"885}, {"A8"518}, {"Q7"478}, {"Q3"451}, {"TT"175}, {"S3"150}}),
-    *
-    *   which means:
-    *   CONSTANT_NAME //COMMENT ON BRAND POPULARITY/COMMONNESS// ("NAME OF BRAND", new String[][] <- This is new 2d array of strings which will contain: {{
-    */
-    BMW/*15009*/("BMW", new String[][]{"Series 3"/*3866*/, "Series 5"/*3272*/, "Series 1"/*1377*/, "X3"/*1224*/, "X5"/*926*/, "Series 7"/*729*/, "X1"/*599*/, "Series 4"/*455*/, "Series 2"/*332*/, "X6"/*267*/, "X4"/*214*/, "Series 6"/*196*/, "3GT"/*183*/, "I3"/*154*/, "X2"/*106*/}), // Sorted from the least popular
-    AUDI/*14767*/("Audi", new String[][]{{"A4"/*3884*/}, {"A6"/*2992*/}, {"A3"/*2206*/}, {"Q5"/*960*/}, {"A5"/*885*/}, {"A8"/*518*/}, {"Q7"/*478*/}, {"Q3"/*451*/}, {"TT"/*175*/}, {"S3"/*150*/}}),
-    TEST("Test", new HashMap<String, Integer>()),
-    OPEL/*14721*/("Opel", new String[][]{"Astra"/*4754*/, "Insignia"/*2324*/, "Corsa"/*2109*/, "Zafira"/*1169*/, "Meriva"/*1131*/, "Mokka"/*982*/, "Vectra"/*582*/, "Vivaro"/*266*/, "Crossland X"/*250*/, "Grandland X"/*193*/, "Combo"/*189*/, "Antara"/*183*/, "Signum"/*126*/, "Agila"/*103*/}),
-    VOLKSWAGEN/*14236*/("Volkswagen", new String[][]{"Gold"/*3380*/, "Passat"/*2826*/, "Polo"/*1328*/, "Tiguan"/*1071*/, "Touran"/*835*/, "Caddy"/*459*/, "Golf Plus"/*449*/, "Sharan"/*338*/, "Arteon"/*301*/, "up!"/*280*/, "Transporter"/*279*/, "Jetta"/*266*/, "Touareg"/*248*/, "Multivan"/*237*/, "T-Cross"/*223*/, "Scirocco"/*170*/, "Caravelle"/*148*/, "CC"/*145*/, "New Beetle"/*129*/, "Fox"/*119*/, "Golf Sportsvan"/*112*/, "Tiguan Allspace"/*102*/}),
-    FORD/*12785*/("Ford", new String[][]{"Focus"/*2712*/, "Mondeo"/*2340*/, "Fiesta"/*1481*/, "Kuga"/*1137*/, "S-MAX"/*941*/, "C-MAX"/*654*/, "Mustang"/*437*/, "Galaxy"/*337*/, "Fusion"/*262*/, "EcoSport"/*227*/, "Grands C-MAX"/*213*/, "Focus C-MAX"/*189*/, "KA"/*188*/, "EDGE"/*188*/, "Escape"/*142*/, "Transit"/*128*/, "Ranger"/*126*/, "Transit Custom"/*123*/, "B-MAX"/*120*/});
+     *   AUDI("Audi", new Models[]{Models.A4, Models.A6, Models.A3, Models.Q5, Models.A5, Models.A8, Models.Q7, Models.Q3, Models.TT, Models.S3}),
+     *
+     *   which means:
+     *   CONSTANT_NAME("NAME OF BRAND", new Models[]{Models.MODEL1, Models.MODEL2 ... Models.MODELN},
+     */
+
+    BMW("BMW", new Models[]{Models.SERIES3, Models.SERIES5, Models.SERIES1, Models.X3, Models.X5, Models.SERIES7, Models.X1, Models.SERIES4, Models.SERIES2, Models.X6, Models.X4, Models.SERIES6, Models.I3, Models.X2}), // Sorted from the least popular
+
+    AUDI("Audi", new Models[]{Models.A4, Models.A6, Models.A3, Models.Q5, Models.A5, Models.A8, Models.Q7, Models.Q3, Models.TT, Models.S3}),
+
+    OPEL("Opel", new Models[]{Models.ASTRA, Models.INSIGNIA, Models.CORSA, Models.ZAFIRA, Models.MERIVA, Models.MOKKA, Models.VECTRA, Models.VIVARO, Models.CROSSLANDX, Models.GRANDLANDX, Models.COMBO, Models.ANTARA, Models.SIGNUM, Models.AGILA}),
+
+    VOLKSWAGEN("Volkswagen", new Models[]{Models.GOLF, Models.PASSAT, Models.POLO, Models.TIGUAN, Models.TOURAN, Models.CADDY, Models.GOLFPLUS, Models.SHARAN, Models.ARTEON, Models.UP, Models.TRANSPORTER, Models.JETTA, Models.TOUAREG, Models.MULTIVAN, Models.TCROSS, Models.SCIROCCO, Models.CARAVELLE, Models.CC, Models.NEWBEETLE, Models.FOX, Models.GOLFSPORTSVAN, Models.TIGUANALLSPACE}),
+
+    FORD/*12785*/("Ford", new Models[]{Models.FOCUS, Models.MONDEO, Models.FIESTA, Models.KUGA, Models.SMAX, Models.CMAX, Models.MUSTANG, Models.GALAXY, Models.FUSION, Models.ECOSPORT, Models.GRANDECMAX, Models.FOCUSCMAX, Models.KA, Models.EDGE, Models.ESCAPE, Models.TRANSIT, Models.RANGER, Models.TRANSITCUSTOM, Models.BMAX});
     //TOYOTA/*7250*/("Toyota", new String[]{"500L", "500L Living", "500X Pulse"}),
     //NISSAN/*4470*/("Nissan", new String[]{"500L", "500L Living", "500X Pulse"}),
     //FIAT/*4450*/("Fiat", new String[]{"500L", "500L Living", "500X Pulse"}),
@@ -57,9 +60,9 @@ public enum Brands { // Here I can add more car brands + their models! Data take
     // (key, value)
     //
     // (key, (key, value))
-    private final HashMap<Integer, HashMap<String, Integer>> models;
+    private final Models[] models;
 
-    Brands(String name, HashMap<> models) {
+    Brands(String name, Models[] models) {
         this.name = name;
         this.models = models;
     }
@@ -83,13 +86,14 @@ public enum Brands { // Here I can add more car brands + their models! Data take
         return name;
     }
 
-    public String[] getModels() {
+    public Models[] getModels() {
         return models;
     }
 
     // Assigning random integer that will be then an index of models[], so we can pick a specific model from it.
     public String randomModel() {
         int i = RNG.nextInt(models.length);
-        return models[i];
+        Models model = models[i];
+        return model.getName();
     }
 }
