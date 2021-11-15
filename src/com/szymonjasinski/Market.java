@@ -1,5 +1,6 @@
 package com.szymonjasinski;
 
+import java.security.SecureRandom;
 import java.util.*;
 import java.lang.*;
 
@@ -20,18 +21,21 @@ public class Market {
         String[] producers = {"Fiat", "Opel", "Ford", "Mercedes-Benz", "Renault", "Tesla", "Toyota", "Hyundai", "BMW", "SAAB", "KIA", "Daewoo", "Honda", "Nissan", "Peugeot", "Volvo", "Suzuki", "Mazda", "Subaru", "Jeep", "Audi", "Jaguar", "Dodge", "Alfa Romeo", "Lexus", "Chevrolet", "Volkswagen", "Mitsubishi", "Citroen", "Skoda", "SEAT", "Dacia"};
         String[] models = {"500", "Insignia", "Fiesta", "CLA45", "Clio", "Model X"};
         String[] fiatModels = {"500L", "500L Living", "500X", "Pulse", "Tipo", "Cronos", "Argo", "Uno", "Panda", "500", "New 500", "Mobi", *//* up to this moment there are current models*//* "Sedici", "Seiciento", "Multipla", "Siena", "Palio", "Marea", "Bravo", "Punto", "Cinquecento", "Tipo", "Tempra", "Croma", "Penny", "Marengo"};
-        */
+         */
 
 
-        Random rng = new Random();
+        SecureRandom rng = new SecureRandom();
 
-        int ageRandom = rng.nextInt(30);
-        String brandRandom = Brands.randomBrand().getName(); // For random brand name. These methods will assign String.
+        Brands brand = Brands.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
+        String brandRandom = brand.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
+        String brandModelRandom = brand.randomModel(); // And here we take a random model from array models which is inside brand as one of variables.
+
+        int ageRandom = rng.nextInt(30); // Random age from 0 to 30.
 
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        Car carRandom = new Car(brandRandom, /*modelRandom*/ "", ageRandom, /*mileageRandom*/ 0.0, /*valueRandom*/ 0.0, /*colorRandom*/ Color.BLACK);
+        Car carRandom = new Car(brandRandom, brandModelRandom, ageRandom, /*mileageRandom*/ 0.0, /*valueRandom*/ 0.0, /*colorRandom*/ Color.BLACK);
         cars.add(carRandom);
 
         setCars(cars);
