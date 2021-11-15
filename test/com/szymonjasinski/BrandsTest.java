@@ -12,8 +12,5 @@ class BrandsTest {
     @Test
     void Test() {
         Brands brand = Brands.randomBrand();
-        System.out.println(brand.getName());
-        System.out.println(brand.getModel());
-        System.out.println(brand.getModels());
     }
 }
