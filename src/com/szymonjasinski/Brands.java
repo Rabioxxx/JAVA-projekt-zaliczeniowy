@@ -11,7 +11,7 @@ public enum Brands { // Here I can add more car brands + their models! Data take
      *   AUDI("Audi", new Models[]{Models.A4, Models.A6, Models.A3, Models.Q5, Models.A5, Models.A8, Models.Q7, Models.Q3, Models.TT, Models.S3}),
      *
      *   which means:
-     *   CONSTANT_NAME("NAME OF BRAND", new Models[]{Models.MODEL1, Models.MODEL2 ... Models.MODELN},
+     *   CONSTANT_NAME("NAME OF BRAND", new Models[]{Models.MODEL1, Models.MODEL2, ... Models.MODELN},
      */
 
     BMW("BMW", new Models[]{Models.SERIES3, Models.SERIES5, Models.SERIES1, Models.X3, Models.X5, Models.SERIES7, Models.X1, Models.SERIES4, Models.SERIES2, Models.X6, Models.X4, Models.SERIES6, Models.I3, Models.X2}), // Sorted from the least popular
