@@ -23,8 +23,10 @@ public class Market {
         String brandRandom = brand.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
         String brandModelRandom = brand.randomModel(); // And here we take a random model from array models which is taken from another enum named Models.
 
+        // TODO #007
         int ageRandom = rng.nextInt(30); // Random age from 0 to 30.
 
+        // TODO #008
 
         ArrayList<Car> cars = new ArrayList<>();
 
