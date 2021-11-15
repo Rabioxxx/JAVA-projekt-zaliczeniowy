@@ -65,6 +65,7 @@ public enum Brands { // Here I can add more car brands + their models! Data take
         return BRANDS_LIST.get(i);
     }
 
+    // It is mainly to use with randomBrand() to get a variable name. Then we will have also model to pick from, so we have a randomModel() for that.
     public String getName() {
         return name;
     }
