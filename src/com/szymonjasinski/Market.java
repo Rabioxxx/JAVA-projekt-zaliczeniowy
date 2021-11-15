@@ -16,13 +16,6 @@ public class Market {
     }
 
     public void carsGenerator(Integer number) {
-        // TODO #003
-        /*
-        String[] producers = {"Fiat", "Opel", "Ford", "Mercedes-Benz", "Renault", "Tesla", "Toyota", "Hyundai", "BMW", "SAAB", "KIA", "Daewoo", "Honda", "Nissan", "Peugeot", "Volvo", "Suzuki", "Mazda", "Subaru", "Jeep", "Audi", "Jaguar", "Dodge", "Alfa Romeo", "Lexus", "Chevrolet", "Volkswagen", "Mitsubishi", "Citroen", "Skoda", "SEAT", "Dacia"};
-        String[] models = {"500", "Insignia", "Fiesta", "CLA45", "Clio", "Model X"};
-        String[] fiatModels = {"500L", "500L Living", "500X", "Pulse", "Tipo", "Cronos", "Argo", "Uno", "Panda", "500", "New 500", "Mobi", *//* up to this moment there are current models*//* "Sedici", "Seiciento", "Multipla", "Siena", "Palio", "Marea", "Bravo", "Punto", "Cinquecento", "Tipo", "Tempra", "Croma", "Penny", "Marengo"};
-         */
-
 
         SecureRandom rng = new SecureRandom();
 
