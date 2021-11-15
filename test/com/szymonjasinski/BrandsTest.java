@@ -10,7 +10,6 @@ class BrandsTest {
 
     @Test
     void randomBrand() {
-        System.out.println(Brands.randomBrand().getName());
     }
 
     @Test
