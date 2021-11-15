@@ -59,7 +59,8 @@ public enum Brands { // Here I can add more car brands + their models! Data take
 
     private static final SecureRandom RNG = new SecureRandom();
 
-    public static Brands randomBrand() { // assigning random integer BUT not bigger than size of BRANDS_LIST. After that returns specified brands ex. ALFAROMEO.
+    // Assigning random integer that will be then an index of BRANDS_LIST, so we can pick a specific brand from it.
+    public static Brands randomBrand() {
         int i = RNG.nextInt(SIZE);
         return BRANDS_LIST.get(i);
     }
@@ -72,7 +73,9 @@ public enum Brands { // Here I can add more car brands + their models! Data take
         return models;
     }
 
-    public String getModel() {
-        return models[0];
+    // Assigning random integer that will be then an index of models[], so we can pick a specific model from it.
+    public String randomModel() {
+        int i = RNG.nextInt(models.length);
+        return models[i];
     }
 }
