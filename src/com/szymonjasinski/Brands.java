@@ -23,6 +23,7 @@ public enum Brands { // Here I can add more car brands + their models! Data take
     VOLKSWAGEN("Volkswagen", new Models[]{Models.GOLF, Models.PASSAT, Models.POLO, Models.TIGUAN, Models.TOURAN, Models.CADDY, Models.GOLFPLUS, Models.SHARAN, Models.ARTEON, Models.UP, Models.TRANSPORTER, Models.JETTA, Models.TOUAREG, Models.MULTIVAN, Models.TCROSS, Models.SCIROCCO, Models.CARAVELLE, Models.CC, Models.NEWBEETLE, Models.FOX, Models.GOLFSPORTSVAN, Models.TIGUANALLSPACE}),
 
     FORD/*12785*/("Ford", new Models[]{Models.FOCUS, Models.MONDEO, Models.FIESTA, Models.KUGA, Models.SMAX, Models.CMAX, Models.MUSTANG, Models.GALAXY, Models.FUSION, Models.ECOSPORT, Models.GRANDECMAX, Models.FOCUSCMAX, Models.KA, Models.EDGE, Models.ESCAPE, Models.TRANSIT, Models.RANGER, Models.TRANSITCUSTOM, Models.BMAX});
+
     //TOYOTA/*7250*/("Toyota", new String[]{"500L", "500L Living", "500X Pulse"}),
     //NISSAN/*4470*/("Nissan", new String[]{"500L", "500L Living", "500X Pulse"}),
     //FIAT/*4450*/("Fiat", new String[]{"500L", "500L Living", "500X Pulse"}),
