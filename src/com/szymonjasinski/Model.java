@@ -1,5 +1,10 @@
 package com.szymonjasinski;
 
+import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public enum Model {
     //BMW models 15009
     SERIES3("Series3", 3866, new Segment[]{Segment.STANDARD}),
@@ -95,6 +100,14 @@ public enum Model {
     private final Integer commonness;
     private final Segment[] segment;
 
+    // Creating new list of Model with all the values from enum Model.
+    private static final List<Model> MODEL_LIST = Collections.unmodifiableList(Arrays.asList(values()));
+
+    //Now we check size of the list above.
+    private static final int SIZE = MODEL_LIST.size();
+
+    private static final SecureRandom RNG = new SecureRandom();
+
     Model(String name, Integer commonness, Segment[] segment) {
         this.name = name;
         this.commonness = commonness;
@@ -102,7 +115,7 @@ public enum Model {
     }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public Integer getCommonness() {
@@ -113,7 +126,9 @@ public enum Model {
         return segment;
     }
 
-    public Segment getRandomSegment(){
-        return segment[0];
+    public String getRandomSegment(){
+        int i = RNG.nextInt(segment.length);
+        Segment segment = this.segment[i];
+        return segment.getName();
     }
 }
