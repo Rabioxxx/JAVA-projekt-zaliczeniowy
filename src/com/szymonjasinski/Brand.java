@@ -1,6 +1,5 @@
 package com.szymonjasinski;
 
-import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -68,14 +67,18 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
     // Creating new list of Brand with all the values from enum Brand.
     private static final List<Brand> BRAND_LIST = Collections.unmodifiableList(Arrays.asList(values()));
 
-    public static final Integer SUM_ALL_BRANDS_COMMONNESS = getTotalBrandsCommonness();
+    private static final Integer SUM_ALL_BRANDS_COMMONNESS = getAllBrandsCommonnessTotal();
 
     //Now we check size of the list above.
     private static final int SIZE = BRAND_LIST.size();
 
+    public static Integer getSumAllBrandsCommonness(){
+        return SUM_ALL_BRANDS_COMMONNESS;
+    }
+
     // Assigning random integer that will be then an index of BRAND_LIST, so we can pick a specific brand from it.
     public static Brand randomBrand() {
-        double x = Helper.RNG.nextDouble();
+        double randomPercent = Helper.RNG.nextDouble();
         double chanceSum = 0;
 
         for (Brand brand : BRAND_LIST) {
@@ -83,26 +86,28 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
             chanceSum += chance;
             //System.out.println(brand + " chance: " + chance + ". Sum = " + chanceSum);
 
-            if (x < chanceSum) {
+            if (randomPercent < chanceSum) {
                 return brand;
             }
         }
         throw new Error("ERROR/. Something here went wrong. Looks like variable x is too high, so any brand have no chance to spawn.");
     }
 
-    // It is mainly to use with randomBrand() to get a variable name. Then we will have also model to pick from, so we have a randomModel() for that.
-    public String getName() {
-        return this.name;
-    }
-
-    public Model[] getModel() {
-        return model;
-    }
-
     // Assigning random integer that will be then an index of models[], so we can pick a specific model from it.
     public Model randomModel() {
-        int i = Helper.RNG.nextInt(model.length);
-        return this.model[i];
+        double randomPercent = Helper.RNG.nextDouble();
+        double chanceSum = 0;
+
+        for (Model model : this.model) {
+            double chance = ((double) model.getCommonness() / this.getBrandCommonness());
+            chanceSum += chance;
+            //System.out.println(brand + " chance: " + chance + ". Sum = " + chanceSum);
+
+            if (randomPercent < chanceSum) {
+                return model;
+            }
+        }
+        throw new Error("ERROR/. Something here went wrong. Looks like variable x is too high, so any brand have no chance to spawn.");
     }
 
     public Integer getBrandCommonness() {
@@ -115,7 +120,7 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
         return value;
     }
 
-    private static Integer getTotalBrandsCommonness() {
+    private static Integer getAllBrandsCommonnessTotal() {
 
         Integer value = 0;
 
@@ -128,5 +133,10 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     public static List<Brand> getBrandList() {
         return BRAND_LIST;
+    }
+
+    // It is mainly to use with randomBrand() to get a variable name. Then we will have also model to pick from, so we have a randomModel() for that.
+    public String getName() {
+        return this.name;
     }
 }
