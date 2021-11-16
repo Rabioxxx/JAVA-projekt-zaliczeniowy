@@ -88,9 +88,8 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
     }
 
     // Assigning random integer that will be then an index of models[], so we can pick a specific model from it.
-    public String randomModel() {
+    public Model randomModel() {
         int i = RNG.nextInt(model.length);
-        Model model = this.model[i];
-        return model.getName();
+        return this.model[i];
     }
 }
