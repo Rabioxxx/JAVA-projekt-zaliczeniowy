@@ -74,11 +74,19 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     // Assigning random integer that will be then an index of BRAND_LIST, so we can pick a specific brand from it.
     public static Brand randomBrand() {
-        int x = Helper.RNG.nextInt(100);
+        double x = Helper.RNG.nextDouble();
+        double chanceSum = 0;
 
+        for (Brand brand : BRAND_LIST) {
+            double chance = ((double) brand.getBrandCommonness() / SUM_ALL_BRANDS_COMMONNESS);
+            chanceSum += chance;
+            //System.out.println(brand + " chance: " + chance + ". Sum = " + chanceSum);
 
-        int i = Helper.RNG.nextInt(SIZE);
-        return BRAND_LIST.get(i);
+            if (x < chanceSum) {
+                return brand;
+            }
+        }
+        throw new Error("ERROR/. Something here went wrong. Looks like variable x is too high, so any brand have no chance to spawn.");
     }
 
     // It is mainly to use with randomBrand() to get a variable name. Then we will have also model to pick from, so we have a randomModel() for that.
@@ -115,5 +123,9 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
                 value += model.getCommonness();
         }
         return value;
+    }
+
+    public static List<Brand> getBrandList() {
+        return BRAND_LIST;
     }
 }
