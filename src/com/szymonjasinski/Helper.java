@@ -12,4 +12,10 @@ public interface Helper {
     }
 
     SecureRandom RNG = new SecureRandom();
+
+    static double randomWeightedInteger(){
+        Integer placeHolder = 0;
+
+        return placeHolder;
+    }
 }
