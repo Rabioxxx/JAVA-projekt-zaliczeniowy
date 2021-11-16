@@ -21,7 +21,9 @@ public class Market {
 
         Brand brand = Brand.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
         String brandRandom = brand.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
-        String brandModelRandom = brand.randomModel(); // And here we take a random model from array models which is taken from another enum named Model. E.g. "Class C"
+
+        Model brandModelRandom = brand.randomModel(); // And here we take a random model from array models which is taken from another enum named Model. E.g. "Class C"
+        String modelName = brandModelRandom.getName(); // Taking model name as String.
 
         // TODO #007
         int ageRandom = rng.nextInt(30); // Random age from 0 to 30.
@@ -30,7 +32,7 @@ public class Market {
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        Car carRandom = new Car(brandRandom, brandModelRandom, ageRandom, /*mileageRandom*/ 0.0, /*valueRandom*/ 0.0, /*colorRandom*/ Color.BLACK);
+        Car carRandom = new Car(brandRandom, modelName, ageRandom, /*mileageRandom*/ 0.0, /*valueRandom*/ 0.0, /*colorRandom*/ Color.BLACK);
         cars.add(carRandom);
 
         setCars(cars);
