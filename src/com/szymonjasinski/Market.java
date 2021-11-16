@@ -42,30 +42,5 @@ public class Market {
         cars.add(carRandom);
 
         setCars(cars);
-
-
-
-        /*if (number <= models.length) {
-
-            Random rng = new Random();
-
-            ArrayList<Car> cars = new ArrayList<>();
-
-            for (int i = 0; i < number; i++) {
-
-                int randomProducerAndModel = rng.nextInt(0, producers.length);
-                int randomAge = rng.nextInt(0, 30);
-                // TODO #004
-                Double randomDouble = rng.nextDouble(25000.0, 300000.0);
-
-                Car carRandom = new Car(producers[randomProducerAndModel], models[randomProducerAndModel], randomAge, randomDouble, randomDouble, Color.BLACK);
-                cars.add(carRandom);
-            }
-
-            setCars(cars);
-
-        } else {
-            throw new ArrayIndexOutOfBoundsException("Variable number cannot be bigger than producers[]/models[] index.");
-        }*/
     }
 }
