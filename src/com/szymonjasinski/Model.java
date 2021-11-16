@@ -1,6 +1,5 @@
 package com.szymonjasinski;
 
-import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -136,5 +135,9 @@ public enum Model {
         int i = Helper.RNG.nextInt(segment.length);
         Segment segment = this.segment[i];
         return segment.getName();
+    }
+
+    public static List<Model> getModelList(){
+        return MODEL_LIST;
     }
 }
