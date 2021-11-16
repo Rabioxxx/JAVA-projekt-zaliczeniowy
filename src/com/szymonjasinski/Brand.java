@@ -57,11 +57,11 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     // I need a String value, so these values can have names.
     private final String name;
-    private final Model[] models;
+    private final Model[] model;
 
-    Brand(String name, Model[] models) {
+    Brand(String name, Model[] model) {
         this.name = name;
-        this.models = models;
+        this.model = model;
     }
 
     // Creating new list of Brand with all the values from enum Brand.
@@ -83,14 +83,14 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
         return name;
     }
 
-    public Model[] getModels() {
-        return models;
+    public Model[] getModel() {
+        return model;
     }
 
     // Assigning random integer that will be then an index of models[], so we can pick a specific model from it.
     public String randomModel() {
-        int i = RNG.nextInt(models.length);
-        Model model = models[i];
+        int i = RNG.nextInt(model.length);
+        Model model = this.model[i];
         return model.getName();
     }
 }
