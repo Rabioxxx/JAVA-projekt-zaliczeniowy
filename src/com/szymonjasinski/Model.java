@@ -6,18 +6,18 @@ import java.util.List;
 
 public enum Model {
     //BMW models 15009
-    SERIES3("Series3",      3866,       new Segment[]{Segment.STANDARD}),
-    SERIES5("Series5",      3272,       new Segment[]{Segment.STANDARD}),
-    SERIES1("Series1",      1377,       new Segment[]{Segment.STANDARD}),
+    SERIES3("Series 3",      3866,       new Segment[]{Segment.STANDARD}),
+    SERIES5("Series 5",      3272,       new Segment[]{Segment.STANDARD}),
+    SERIES1("Series 1",      1377,       new Segment[]{Segment.STANDARD}),
     X3(     "X3",           1224,       new Segment[]{Segment.STANDARD}),
     X5(     "X5",           926,        new Segment[]{Segment.STANDARD}),
-    SERIES7("SERIES7",      729,        new Segment[]{Segment.STANDARD}),
+    SERIES7("SERIES 7",      729,        new Segment[]{Segment.STANDARD}),
     X1(     "X1",           599,        new Segment[]{Segment.STANDARD}),
-    SERIES4("SERIES4",      455,        new Segment[]{Segment.STANDARD}),
-    SERIES2("SERIES2",      332,        new Segment[]{Segment.STANDARD}),
+    SERIES4("SERIES 4",      455,        new Segment[]{Segment.STANDARD}),
+    SERIES2("SERIES 2",      332,        new Segment[]{Segment.STANDARD}),
     X6(     "X6",           267,        new Segment[]{Segment.STANDARD}),
     X4(     "X4",           214,        new Segment[]{Segment.STANDARD}),
-    SERIES6("SERIES6",      196,        new Segment[]{Segment.STANDARD}),
+    SERIES6("SERIES 6",      196,        new Segment[]{Segment.STANDARD}),
     I3(     "I3",           154,        new Segment[]{Segment.STANDARD}),
     X2(     "X2",           106,        new Segment[]{Segment.STANDARD}),
 
