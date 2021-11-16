@@ -69,4 +69,9 @@ class BrandTest {
             System.out.println(s);
         }
     }
+
+    @Test
+    void Test2(){
+        System.out.println(Helper.randomWeightedInteger());
+    }
 }
