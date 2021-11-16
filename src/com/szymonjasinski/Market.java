@@ -17,8 +17,6 @@ public class Market {
 
     public void carsGenerator(Integer number) {
 
-        SecureRandom rng = new SecureRandom();
-
         Brand brandRandom = Brand.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
         Model brandModelRandom = brandRandom.randomModel(); // Now we take from brand variable (E.g. MERCEDES) a random model specific to a brand (E.g. CLASSC).
 
@@ -26,13 +24,13 @@ public class Market {
         String modelName = brandModelRandom.getName(); // Taking model name as String. E.g. "Class C".
 
         // TODO #007, #013
-        int ageRandom = rng.nextInt(30); // Random age [0, 30).
+        int ageRandom = Helper.RNG.nextInt(30); // Random age [0, 30).
 
         // TODO #008
-        double mileageRandom = rng.nextDouble(5000.0, 500000.0); // Random mileage [5000.0, 500000.0).
+        double mileageRandom = Helper.RNG.nextDouble(5000.0, 500000.0); // Random mileage [5000.0, 500000.0).
 
         // TODO #010
-        double valueRandom = rng.nextDouble(100000.0);
+        double valueRandom = Helper.RNG.nextDouble(100000.0);
 
         Color colorRandom = Color.getRandomColor();
 
