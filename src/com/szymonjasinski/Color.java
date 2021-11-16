@@ -1,5 +1,19 @@
 package com.szymonjasinski;
 
 public enum Color {
-    BLACK, WHITE, RED, GREEN, BLUE, YELLOW, PINK, VIOLET, ORANGE
+    BLACK("Black"),
+    WHITE("White"),
+    RED("Red"),
+    GREEN("Green"),
+    BLUE("Blue"),
+    YELLOW("Yellow"),
+    PINK("Pink"),
+    VIOLET("Violet"),
+    ORANGE("Orange");
+
+    private final String name;
+
+    Color(String name) {
+        this.name = name;
+    }
 }
