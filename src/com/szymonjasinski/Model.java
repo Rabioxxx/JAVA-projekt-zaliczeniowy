@@ -93,9 +93,17 @@ public enum Model {
     TRANSIT(        "Transit",        128,      new Segment[]{Segment.STANDARD}),
     RANGER(         "Ranger",         126,      new Segment[]{Segment.STANDARD}),
     TRANSITCUSTOM(  "Transit Custom", 123,      new Segment[]{Segment.STANDARD}),
-    BMAX(           "B-MAX",          120,      new Segment[]{Segment.STANDARD});
+    BMAX(           "B-MAX",          120,      new Segment[]{Segment.STANDARD}),
 
+    //Alfa Romeo models 1370
+    STELVIO(        "Stelvio",  353, new Segment[]{Segment.STANDARD}),
+    ONEFIVENINE(    "159",      248, new Segment[]{Segment.STANDARD}),
+    GIULIA(         "Giulia",   244, new Segment[]{Segment.STANDARD}),
+    GIULIETTA(      "Giulietta",232, new Segment[]{Segment.STANDARD}),
+    MITO(           "Mito",     127, new Segment[]{Segment.STANDARD}),
+    ONEFOURSEVEN(   "147",      79,  new Segment[]{Segment.STANDARD});
 
+    
     private final String name;
     private final Integer commonness;
     private final Segment[] segment;
@@ -105,8 +113,6 @@ public enum Model {
 
     //Now we check size of the list above.
     private static final int SIZE = MODEL_LIST.size();
-
-    private static final SecureRandom RNG = new SecureRandom();
 
     Model(String name, Integer commonness, Segment[] segment) {
         this.name = name;
@@ -127,7 +133,7 @@ public enum Model {
     }
 
     public String getRandomSegment(){
-        int i = RNG.nextInt(segment.length);
+        int i = Helper.RNG.nextInt(segment.length);
         Segment segment = this.segment[i];
         return segment.getName();
     }

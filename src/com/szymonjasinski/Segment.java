@@ -22,8 +22,6 @@ public enum Segment {
     //Now we check size of the list above.
     private static final int SIZE = SEGMENT_LIST.size();
 
-    private static final SecureRandom RNG = new SecureRandom();
-
     public String getName() {
         return this.segment;
     }

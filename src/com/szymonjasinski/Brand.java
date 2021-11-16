@@ -22,12 +22,13 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     VOLKSWAGEN("Volkswagen", new Model[]{Model.GOLF, Model.PASSAT, Model.POLO, Model.TIGUAN, Model.TOURAN, Model.CADDY, Model.GOLFPLUS, Model.SHARAN, Model.ARTEON, Model.UP, Model.TRANSPORTER, Model.JETTA, Model.TOUAREG, Model.MULTIVAN, Model.TCROSS, Model.SCIROCCO, Model.CARAVELLE, Model.CC, Model.NEWBEETLE, Model.FOX, Model.GOLFSPORTSVAN, Model.TIGUANALLSPACE}),
 
-    FORD("Ford", new Model[]{Model.FOCUS, Model.MONDEO, Model.FIESTA, Model.KUGA, Model.SMAX, Model.CMAX, Model.MUSTANG, Model.GALAXY, Model.FUSION, Model.ECOSPORT, Model.GRANDECMAX, Model.FOCUSCMAX, Model.KA, Model.EDGE, Model.ESCAPE, Model.TRANSIT, Model.RANGER, Model.TRANSITCUSTOM, Model.BMAX});
+    FORD("Ford", new Model[]{Model.FOCUS, Model.MONDEO, Model.FIESTA, Model.KUGA, Model.SMAX, Model.CMAX, Model.MUSTANG, Model.GALAXY, Model.FUSION, Model.ECOSPORT, Model.GRANDECMAX, Model.FOCUSCMAX, Model.KA, Model.EDGE, Model.ESCAPE, Model.TRANSIT, Model.RANGER, Model.TRANSITCUSTOM, Model.BMAX}),
+
+    ALFAROMEO("Alfa Romeo", new Model[]{Model.STELVIO, Model.ONEFIVENINE, Model.GIULIA, Model.GIULIETTA, Model.MITO, Model.ONEFOURSEVEN,});
 
     //TOYOTA/*7250*/("Toyota", new String[]{"500L", "500L Living", "500X Pulse"}),
     //NISSAN/*4470*/("Nissan", new String[]{"500L", "500L Living", "500X Pulse"}),
     //FIAT/*4450*/("Fiat", new String[]{"500L", "500L Living", "500X Pulse"}),
-    //ALFAROMEO/*1370*/("Alfa Romeo", new String[]{"500L", "500L Living", "500X Pulse", "Sedici", "Seiciento", "Multipla", "Siena", "Palio", "Marea", "Bravo", "Punto", "Cinquecento", "Tipo", "Tempra", "Croma", "Penny", "Marengo"}),
     //CHEVROLET/*1582*/("Chevrolet", new String[]{"500L", "500L Living", "500X Pulse"}),
     //CITROEN/*6115*/("Citroen", new String[]{"500L", "500L Living", "500X Pulse"}),
     //DACIA/*1782*/("Dacia", new String[]{"500L", "500L Living", "500X Pulse"}),
@@ -67,15 +68,26 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
     // Creating new list of Brand with all the values from enum Brand.
     private static final List<Brand> BRAND_LIST = Collections.unmodifiableList(Arrays.asList(values()));
 
+    public static final Integer SUM_ALL_BRANDS_COMMONNESS = getTotalBrandsCommonness();
+
     //Now we check size of the list above.
     private static final int SIZE = BRAND_LIST.size();
 
-    private static final SecureRandom RNG = new SecureRandom();
-
     // Assigning random integer that will be then an index of BRAND_LIST, so we can pick a specific brand from it.
     public static Brand randomBrand() {
-        int i = RNG.nextInt(SIZE);
-        return BRAND_LIST.get(i);
+        double x = Helper.RNG.nextDouble(0.98, 1.0);
+        double chanceSum = 0;
+
+        for (Brand brand : BRAND_LIST) {
+            double chance = ((double) brand.getBrandCommonness() / SUM_ALL_BRANDS_COMMONNESS);
+            chanceSum += chance;
+            System.out.println(brand + " chance: " + chance + ". Sum = " + chanceSum);
+
+            if (x < chanceSum) {
+                return brand;
+            }
+        }
+        throw new Error("ERROR/. Something here went wrong. Looks like variable x is too high, so any brand have no chance to spawn.");
     }
 
     // It is mainly to use with randomBrand() to get a variable name. Then we will have also model to pick from, so we have a randomModel() for that.
@@ -89,7 +101,32 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     // Assigning random integer that will be then an index of models[], so we can pick a specific model from it.
     public Model randomModel() {
-        int i = RNG.nextInt(model.length);
+        int i = Helper.RNG.nextInt(model.length);
         return this.model[i];
+    }
+
+    public Integer getBrandCommonness() {
+
+        Integer value = 0;
+
+        for (Model model : this.model)
+            value += model.getCommonness();
+
+        return value;
+    }
+
+    private static Integer getTotalBrandsCommonness() {
+
+        Integer value = 0;
+
+        for (Brand brand : BRAND_LIST) {
+            for (Model model : brand.model)
+                value += model.getCommonness();
+        }
+        return value;
+    }
+
+    public static List<Brand> getBrandList() {
+        return BRAND_LIST;
     }
 }

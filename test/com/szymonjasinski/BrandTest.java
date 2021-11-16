@@ -14,5 +14,29 @@ class BrandTest {
 
         DecimalFormat df = new DecimalFormat("#.0");
         System.out.println(df.format(mileageRandom));
+
+        Brand bmw = Brand.BMW;
+        Brand audi = Brand.AUDI;
+        Brand opel = Brand.OPEL;
+        Brand volkswagen = Brand.VOLKSWAGEN;
+        Brand ford = Brand.FORD;
+
+        System.out.println(bmw.getBrandCommonness());
+        System.out.println(audi.getBrandCommonness());
+        System.out.println(opel.getBrandCommonness());
+        System.out.println(volkswagen.getBrandCommonness());
+        System.out.println(ford.getBrandCommonness());
+
+        System.out.println(Brand.SUM_ALL_BRANDS_COMMONNESS);
+
+        System.out.println(Helper.RNG.nextDouble());
+
+
+        System.out.println("\n");
+
+        System.out.println(Brand.getBrandList());
+        System.out.println("\n");
+
+        System.out.println(Brand.randomBrand());
     }
 }
