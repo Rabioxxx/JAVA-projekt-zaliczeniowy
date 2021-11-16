@@ -14,5 +14,9 @@ class BrandTest {
 
         DecimalFormat df = new DecimalFormat("#.0");
         System.out.println(df.format(mileageRandom));
+
+        Brand bmw = Brand.BMW;
+
+        System.out.println(bmw.getBrandCommonness());
     }
 }
