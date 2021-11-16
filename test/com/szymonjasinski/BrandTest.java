@@ -2,7 +2,10 @@ package com.szymonjasinski;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 
 class BrandTest {
 
@@ -42,6 +45,28 @@ class BrandTest {
 
         Brand brand = Brand.randomBrand();
 
-        System.out.println(brand.randomModel().getName());
+        System.out.println(brand.getName() + " is the chosen one!");
+
+        String brandModel = brand.randomModel().getName();
+
+        System.out.println("And the chosen model is: " + brandModel);
+        System.out.println(brand + " " + brandModel);
+
+        System.out.println("\n\n\n");
+
+        ArrayList<String> car = new ArrayList<>();
+
+        for (int i = 0; i < 20; i++) {
+            Brand brand1 = Brand.randomBrand();
+            Model brandModel1 = brand1.randomModel();
+
+            car.add(brand1.getName() + " " + brandModel1.getName());
+        }
+
+        Collections.sort(car);
+
+        for (String s : car) {
+            System.out.println(s);
+        }
     }
 }
