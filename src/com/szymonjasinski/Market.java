@@ -26,11 +26,11 @@ public class Market {
         String brandName = brandRandom.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
         String modelName = brandModelRandom.getName(); // Taking model name as String. E.g. "Class C".
 
-        // TODO #007
-        int ageRandom = rng.nextInt(30); // Random age from 0 to 30.
+        // TODO #007, #013
+        int ageRandom = rng.nextInt(30); // Random age [0, 30).
 
         // TODO #008
-        double mileageRandom = rng.nextDouble(350000.0);
+        double mileageRandom = rng.nextDouble(5000.0, 500000.0); // Random mileage [5000.0, 500000.0).
 
         // TODO #010
         double valueRandom = rng.nextDouble(100000.0);
