@@ -30,5 +30,13 @@ class BrandTest {
         System.out.println(Brand.SUM_ALL_BRANDS_COMMONNESS);
 
         System.out.println(Helper.RNG.nextDouble());
+
+
+        System.out.println("\n");
+
+        System.out.println(Brand.getBrandList());
+        System.out.println("\n");
+
+        System.out.println(Brand.randomBrand());
     }
 }
