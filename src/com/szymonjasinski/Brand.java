@@ -81,14 +81,14 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
         double randomPercent = Helper.RNG.nextDouble();
         double chanceSum = 0;
 
-        // For debugging purposed.
+        // For debugging purposes.
         //System.out.println("Percent = " + randomPercent);
 
         for (Brand brand : BRAND_LIST) {
             double chance = ((double) brand.getBrandCommonness() / SUM_ALL_BRANDS_COMMONNESS);
             chanceSum += chance;
 
-            // For debugging purposed.
+            // For debugging purposes.
             //System.out.println(brand + " chance: " + chance + ". Sum = " + chanceSum);
 
             if (randomPercent < chanceSum) {
@@ -103,14 +103,14 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
         double randomPercent = Helper.RNG.nextDouble();
         double chanceSum = 0;
 
-        // For debugging purposed.
+        // For debugging purposes.
         //System.out.println("Percent = " + randomPercent);
 
         for (Model model : this.model) {
             double chance = ((double) model.getCommonness() / this.getBrandCommonness());
             chanceSum += chance;
 
-            // For debugging purposed.
+            // For debugging purposes.
             //System.out.println(model + " chance: " + chance + ". Sum = " + chanceSum);
 
             if (randomPercent < chanceSum) {
