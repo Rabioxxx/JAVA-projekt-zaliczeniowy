@@ -81,7 +81,7 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
         for (Brand brand : BRAND_LIST) {
             double chance = ((double) brand.getBrandCommonness() / SUM_ALL_BRANDS_COMMONNESS);
             chanceSum += chance;
-            System.out.println(brand + " chance: " + chance + ". Sum = " + chanceSum);
+            //System.out.println(brand + " chance: " + chance + ". Sum = " + chanceSum);
 
             if (x < chanceSum) {
                 return brand;
