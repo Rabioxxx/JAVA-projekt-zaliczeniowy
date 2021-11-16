@@ -1,5 +1,7 @@
 package com.szymonjasinski;
 
+import java.text.DecimalFormat;
+
 public class Car {
     private String producer;
     private String model;
@@ -19,6 +21,11 @@ public class Car {
         } else {
             System.out.println("ERROR/. This car have a negative value of age and/or mileage.");
         }
+    }
+
+    public String mileageToString(){
+        DecimalFormat decimalFormat = new DecimalFormat("#.0");
+        return decimalFormat.format(mileage);
     }
 
     @Override
