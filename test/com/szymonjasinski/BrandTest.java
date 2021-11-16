@@ -28,5 +28,7 @@ class BrandTest {
         System.out.println(ford.getBrandCommonness());
 
         System.out.println(Brand.SUM_ALL_BRANDS_COMMONNESS);
+
+        System.out.println(Helper.RNG.nextDouble());
     }
 }
