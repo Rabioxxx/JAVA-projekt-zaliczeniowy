@@ -92,4 +92,14 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
         int i = RNG.nextInt(model.length);
         return this.model[i];
     }
+
+    public Integer getBrandCommonness() {
+
+        Integer value = 0;
+
+        for (Model model : this.model)
+            value += model.getCommonness();
+
+        return value;
+    }
 }
