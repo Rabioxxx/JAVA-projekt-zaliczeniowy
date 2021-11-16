@@ -55,7 +55,7 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
     //TESLA/*75*/("Tesla", new String[]{"500L", "500L Living", "500X Pulse"}),
     //VOLVO/*4788*/("Volvo", new String[]{"500L", "500L Living", "500X Pulse"});
 
-    // I need a String value, so these values can have names.
+    // I need a String value, so these values above can have names.
     private final String name;
     private final Model[] model;
 
