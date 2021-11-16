@@ -35,9 +35,11 @@ public class Market {
         // TODO #010
         double valueRandom = rng.nextDouble(100000.0);
 
+        Color colorRandom = Color.getRandomColor();
+
         ArrayList<Car> cars = new ArrayList<>();
 
-        Car carRandom = new Car(brandRandom, modelName, ageRandom, mileageRandom, valueRandom, /*colorRandom*/ Color.BLACK);
+        Car carRandom = new Car(brandRandom, modelName, ageRandom, mileageRandom, valueRandom, colorRandom);
         cars.add(carRandom);
 
         setCars(cars);
