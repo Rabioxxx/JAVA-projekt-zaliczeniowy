@@ -1,6 +1,7 @@
 package com.szymonjasinski;
 
 import java.security.SecureRandom;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.lang.*;
 
@@ -29,10 +30,11 @@ public class Market {
         int ageRandom = rng.nextInt(30); // Random age from 0 to 30.
 
         // TODO #008
+        double mileageRandom = rng.nextDouble(350000.0);
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        Car carRandom = new Car(brandRandom, modelName, ageRandom, /*mileageRandom*/ 0.0, /*valueRandom*/ 0.0, /*colorRandom*/ Color.BLACK);
+        Car carRandom = new Car(brandRandom, modelName, ageRandom, mileageRandom, /*valueRandom*/ 0.0, /*colorRandom*/ Color.BLACK);
         cars.add(carRandom);
 
         setCars(cars);
