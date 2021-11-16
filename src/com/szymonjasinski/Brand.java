@@ -57,10 +57,6 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     // I need a String value, so these values can have names.
     private final String name;
-    // value = (key, value)
-    // (key, value)
-    //
-    // (key, (key, value))
     private final Model[] models;
 
     Brand(String name, Model[] models) {
