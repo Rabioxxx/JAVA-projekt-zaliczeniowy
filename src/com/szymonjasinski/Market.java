@@ -24,10 +24,10 @@ public class Market {
         String modelName = brandModelRandom.getName(); // Taking model name as String. E.g. "Class C".
 
         // TODO #007, #013
-        int ageRandom = Helper.RNG.nextInt(30); // Random age [0, 30).
+        int ageRandom = Helper.RNG.nextInt(30); // Random age [0, 30)
 
         // TODO #008
-        double mileageRandom = Helper.RNG.nextDouble(5000.0, 500000.0); // Random mileage [5000.0, 500000.0).
+        double mileageRandom = Helper.RNG.nextDouble(5000.0, 500000.0); // Random mileage [5000.0, 500000.0)
 
         // TODO #010
         double valueRandom = Helper.RNG.nextDouble(100000.0);
