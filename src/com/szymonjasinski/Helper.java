@@ -2,6 +2,7 @@ package com.szymonjasinski;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.SecureRandom;
 
 public interface Helper {
     static Double roundMoney(Double value) {
@@ -9,4 +10,6 @@ public interface Helper {
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
+
+    SecureRandom RNG = new SecureRandom();
 }

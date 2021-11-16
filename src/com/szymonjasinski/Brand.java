@@ -72,11 +72,12 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
     //Now we check size of the list above.
     private static final int SIZE = BRAND_LIST.size();
 
-    private static final SecureRandom RNG = new SecureRandom();
-
     // Assigning random integer that will be then an index of BRAND_LIST, so we can pick a specific brand from it.
     public static Brand randomBrand() {
-        int i = RNG.nextInt(SIZE);
+        int x = Helper.RNG.nextInt(100);
+
+
+        int i = Helper.RNG.nextInt(SIZE);
         return BRAND_LIST.get(i);
     }
 
@@ -91,7 +92,7 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     // Assigning random integer that will be then an index of models[], so we can pick a specific model from it.
     public Model randomModel() {
-        int i = RNG.nextInt(model.length);
+        int i = Helper.RNG.nextInt(model.length);
         return this.model[i];
     }
 

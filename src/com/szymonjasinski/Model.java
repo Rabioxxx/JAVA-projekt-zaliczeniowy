@@ -106,8 +106,6 @@ public enum Model {
     //Now we check size of the list above.
     private static final int SIZE = MODEL_LIST.size();
 
-    private static final SecureRandom RNG = new SecureRandom();
-
     Model(String name, Integer commonness, Segment[] segment) {
         this.name = name;
         this.commonness = commonness;
@@ -127,7 +125,7 @@ public enum Model {
     }
 
     public String getRandomSegment(){
-        int i = RNG.nextInt(segment.length);
+        int i = Helper.RNG.nextInt(segment.length);
         Segment segment = this.segment[i];
         return segment.getName();
     }
