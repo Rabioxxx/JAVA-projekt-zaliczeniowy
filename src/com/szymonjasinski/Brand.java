@@ -69,9 +69,6 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     private static final Integer SUM_ALL_BRANDS_COMMONNESS = getAllBrandsCommonnessTotal();
 
-    //Now we check size of the list above.
-    private static final int SIZE = BRAND_LIST.size();
-
     public static Integer getSumAllBrandsCommonness(){
         return SUM_ALL_BRANDS_COMMONNESS;
     }
