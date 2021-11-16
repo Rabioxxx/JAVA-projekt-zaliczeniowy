@@ -75,7 +75,7 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
 
     // Assigning random integer that will be then an index of BRAND_LIST, so we can pick a specific brand from it.
     public static Brand randomBrand() {
-        double x = Helper.RNG.nextDouble(0.98, 1.0);
+        double x = Helper.RNG.nextDouble();
         double chanceSum = 0;
 
         for (Brand brand : BRAND_LIST) {
