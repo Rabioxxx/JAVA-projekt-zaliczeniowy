@@ -5,24 +5,24 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public enum Brands { // Here I can add more car brands + their models! Data taken from https://www.otomoto.pl
+public enum Brand { // Here I can add more car brands + their models! Data taken from https://www.otomoto.pl
 
     /*  These are constants which should be formatted like this:
-     *   AUDI("Audi", new Models[]{Models.A4, Models.A6, Models.A3, Models.Q5, Models.A5, Models.A8, Models.Q7, Models.Q3, Models.TT, Models.S3}),
+     *   AUDI("Audi", new Model[]{Model.A4, Model.A6, Model.A3, Model.Q5, Model.A5, Model.A8, Model.Q7, Model.Q3, Model.TT, Model.S3}),
      *
      *   which means:
-     *   CONSTANT_NAME("NAME OF BRAND", new Models[]{Models.MODEL1, Models.MODEL2, ... Models.MODELN},
+     *   CONSTANT_NAME("NAME OF BRAND", new Model[]{Model.MODEL1, Model.MODEL2, ... Model.MODELN},
      */
 
-    BMW("BMW", new Models[]{Models.SERIES3, Models.SERIES5, Models.SERIES1, Models.X3, Models.X5, Models.SERIES7, Models.X1, Models.SERIES4, Models.SERIES2, Models.X6, Models.X4, Models.SERIES6, Models.I3, Models.X2}), // Sorted from the least popular
+    BMW("BMW", new Model[]{Model.SERIES3, Model.SERIES5, Model.SERIES1, Model.X3, Model.X5, Model.SERIES7, Model.X1, Model.SERIES4, Model.SERIES2, Model.X6, Model.X4, Model.SERIES6, Model.I3, Model.X2}), // Sorted from the least popular
 
-    AUDI("Audi", new Models[]{Models.A4, Models.A6, Models.A3, Models.Q5, Models.A5, Models.A8, Models.Q7, Models.Q3, Models.TT, Models.S3}),
+    AUDI("Audi", new Model[]{Model.A4, Model.A6, Model.A3, Model.Q5, Model.A5, Model.A8, Model.Q7, Model.Q3, Model.TT, Model.S3}),
 
-    OPEL("Opel", new Models[]{Models.ASTRA, Models.INSIGNIA, Models.CORSA, Models.ZAFIRA, Models.MERIVA, Models.MOKKA, Models.VECTRA, Models.VIVARO, Models.CROSSLANDX, Models.GRANDLANDX, Models.COMBO, Models.ANTARA, Models.SIGNUM, Models.AGILA}),
+    OPEL("Opel", new Model[]{Model.ASTRA, Model.INSIGNIA, Model.CORSA, Model.ZAFIRA, Model.MERIVA, Model.MOKKA, Model.VECTRA, Model.VIVARO, Model.CROSSLANDX, Model.GRANDLANDX, Model.COMBO, Model.ANTARA, Model.SIGNUM, Model.AGILA}),
 
-    VOLKSWAGEN("Volkswagen", new Models[]{Models.GOLF, Models.PASSAT, Models.POLO, Models.TIGUAN, Models.TOURAN, Models.CADDY, Models.GOLFPLUS, Models.SHARAN, Models.ARTEON, Models.UP, Models.TRANSPORTER, Models.JETTA, Models.TOUAREG, Models.MULTIVAN, Models.TCROSS, Models.SCIROCCO, Models.CARAVELLE, Models.CC, Models.NEWBEETLE, Models.FOX, Models.GOLFSPORTSVAN, Models.TIGUANALLSPACE}),
+    VOLKSWAGEN("Volkswagen", new Model[]{Model.GOLF, Model.PASSAT, Model.POLO, Model.TIGUAN, Model.TOURAN, Model.CADDY, Model.GOLFPLUS, Model.SHARAN, Model.ARTEON, Model.UP, Model.TRANSPORTER, Model.JETTA, Model.TOUAREG, Model.MULTIVAN, Model.TCROSS, Model.SCIROCCO, Model.CARAVELLE, Model.CC, Model.NEWBEETLE, Model.FOX, Model.GOLFSPORTSVAN, Model.TIGUANALLSPACE}),
 
-    FORD("Ford", new Models[]{Models.FOCUS, Models.MONDEO, Models.FIESTA, Models.KUGA, Models.SMAX, Models.CMAX, Models.MUSTANG, Models.GALAXY, Models.FUSION, Models.ECOSPORT, Models.GRANDECMAX, Models.FOCUSCMAX, Models.KA, Models.EDGE, Models.ESCAPE, Models.TRANSIT, Models.RANGER, Models.TRANSITCUSTOM, Models.BMAX});
+    FORD("Ford", new Model[]{Model.FOCUS, Model.MONDEO, Model.FIESTA, Model.KUGA, Model.SMAX, Model.CMAX, Model.MUSTANG, Model.GALAXY, Model.FUSION, Model.ECOSPORT, Model.GRANDECMAX, Model.FOCUSCMAX, Model.KA, Model.EDGE, Model.ESCAPE, Model.TRANSIT, Model.RANGER, Model.TRANSITCUSTOM, Model.BMAX});
 
     //TOYOTA/*7250*/("Toyota", new String[]{"500L", "500L Living", "500X Pulse"}),
     //NISSAN/*4470*/("Nissan", new String[]{"500L", "500L Living", "500X Pulse"}),
@@ -61,25 +61,25 @@ public enum Brands { // Here I can add more car brands + their models! Data take
     // (key, value)
     //
     // (key, (key, value))
-    private final Models[] models;
+    private final Model[] models;
 
-    Brands(String name, Models[] models) {
+    Brand(String name, Model[] models) {
         this.name = name;
         this.models = models;
     }
 
-    // Creating new list of Brands with all the values from enum Brands.
-    private static final List<Brands> BRANDS_LIST = Collections.unmodifiableList(Arrays.asList(values()));
+    // Creating new list of Brand with all the values from enum Brand.
+    private static final List<Brand> BRAND_LIST = Collections.unmodifiableList(Arrays.asList(values()));
 
     //Now we check size of the list above.
-    private static final int SIZE = BRANDS_LIST.size();
+    private static final int SIZE = BRAND_LIST.size();
 
     private static final SecureRandom RNG = new SecureRandom();
 
-    // Assigning random integer that will be then an index of BRANDS_LIST, so we can pick a specific brand from it.
-    public static Brands randomBrand() {
+    // Assigning random integer that will be then an index of BRAND_LIST, so we can pick a specific brand from it.
+    public static Brand randomBrand() {
         int i = RNG.nextInt(SIZE);
-        return BRANDS_LIST.get(i);
+        return BRAND_LIST.get(i);
     }
 
     // It is mainly to use with randomBrand() to get a variable name. Then we will have also model to pick from, so we have a randomModel() for that.
@@ -87,14 +87,14 @@ public enum Brands { // Here I can add more car brands + their models! Data take
         return name;
     }
 
-    public Models[] getModels() {
+    public Model[] getModels() {
         return models;
     }
 
     // Assigning random integer that will be then an index of models[], so we can pick a specific model from it.
     public String randomModel() {
         int i = RNG.nextInt(models.length);
-        Models model = models[i];
+        Model model = models[i];
         return model.getName();
     }
 }

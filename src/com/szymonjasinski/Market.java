@@ -19,9 +19,9 @@ public class Market {
 
         SecureRandom rng = new SecureRandom();
 
-        Brands brand = Brands.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
+        Brand brand = Brand.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
         String brandRandom = brand.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
-        String brandModelRandom = brand.randomModel(); // And here we take a random model from array models which is taken from another enum named Models. E.g. "Class C"
+        String brandModelRandom = brand.randomModel(); // And here we take a random model from array models which is taken from another enum named Model. E.g. "Class C"
 
         // TODO #007
         int ageRandom = rng.nextInt(30); // Random age from 0 to 30.
