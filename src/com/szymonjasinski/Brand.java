@@ -67,6 +67,8 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
     // Creating new list of Brand with all the values from enum Brand.
     private static final List<Brand> BRAND_LIST = Collections.unmodifiableList(Arrays.asList(values()));
 
+    public static final Integer SUM_ALL_BRANDS_COMMONNESS = getTotalBrandsCommonness();
+
     //Now we check size of the list above.
     private static final int SIZE = BRAND_LIST.size();
 
@@ -100,6 +102,17 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
         for (Model model : this.model)
             value += model.getCommonness();
 
+        return value;
+    }
+
+    private static Integer getTotalBrandsCommonness() {
+
+        Integer value = 0;
+
+        for (Brand brand : BRAND_LIST) {
+            for (Model model : brand.model)
+                value += model.getCommonness();
+        }
         return value;
     }
 }
