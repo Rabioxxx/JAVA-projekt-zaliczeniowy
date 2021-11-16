@@ -27,7 +27,7 @@ class BrandTest {
         System.out.println(volkswagen.getBrandCommonness());
         System.out.println(ford.getBrandCommonness());
 
-        System.out.println(Brand.SUM_ALL_BRANDS_COMMONNESS);
+        System.out.println(Brand.getSumAllBrandsCommonness());
 
         System.out.println(Helper.RNG.nextDouble());
 
@@ -37,6 +37,11 @@ class BrandTest {
         System.out.println(Brand.getBrandList());
         System.out.println("\n");
 
-        System.out.println(Brand.randomBrand());
+        System.out.println(Brand.randomBrand().getName());
+        System.out.println("\n");
+
+        Brand brand = Brand.randomBrand();
+
+        System.out.println(brand.randomModel().getName());
     }
 }
