@@ -3,9 +3,9 @@ package com.szymonjasinski;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Array;
+import java.security.SecureRandom;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 class BrandTest {
 
@@ -71,7 +71,21 @@ class BrandTest {
     }
 
     @Test
-    void Test2(){
-        System.out.println(Helper.randomWeightedInteger());
+    void Test2() {
+
+        Map<Object, Double> map = new TreeMap<>();
+
+        for (int i = 0; i < 25; i++) {
+
+            Double rng = 100000.0;
+
+            if (false) {
+                rng += i - 18.0 + 1.0;
+            }
+
+            map.put(i, rng);
+        }
+
+        System.out.println(Helper.getWeightedRandom(map));
     }
 }
