@@ -3,6 +3,7 @@ package com.szymonjasinski;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.SecureRandom;
+import java.util.Map;
 
 public interface Helper {
     static Double roundMoney(Double value) {
@@ -13,9 +14,22 @@ public interface Helper {
 
     SecureRandom RNG = new SecureRandom();
 
-    static double randomWeightedInteger(){
-        Integer placeHolder = 0;
+    // This method works by giving her a Map with object as key and weight as a value.
+    static <E> E getWeightedRandom(Map<E, Double> weights) {
+        E result = null;
+        double bestValue = Double.MAX_VALUE;
 
-        return placeHolder;
+        for (E element : weights.keySet()) {
+            Double x = weights.get(element);
+            Double rn = RNG.nextDouble();
+            Double y = -Math.log(rn);
+            double value = y / x;
+
+            if (value < bestValue) {
+                bestValue = value;
+                result = element;
+            }
+        }
+        return result;
     }
 }
