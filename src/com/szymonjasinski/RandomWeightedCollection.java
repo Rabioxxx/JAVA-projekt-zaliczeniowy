@@ -4,17 +4,17 @@ import java.util.NavigableMap;
 import java.util.Random;
 import java.util.TreeMap;
 
-public class WeightedCollection<E> {
+public class RandomWeightedCollection<E> {
 
     private NavigableMap<Integer, E> map = new TreeMap<Integer, E>();
     private Random random;
     private int total = 0;
 
-    public WeightedCollection() {
+    public RandomWeightedCollection() {
         this(new Random());
     }
 
-    public WeightedCollection(Random random) {
+    public RandomWeightedCollection(Random random) {
         this.random = random;
     }
 
