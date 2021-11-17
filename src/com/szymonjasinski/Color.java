@@ -34,4 +34,8 @@ public enum Color {
         int i = RNG.nextInt(SIZE);
         return COLOR_LIST.get(i);
     }
+
+    String getName(){
+        return name;
+    }
 }
