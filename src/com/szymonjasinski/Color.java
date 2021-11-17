@@ -35,7 +35,7 @@ public enum Color {
         return COLOR_LIST.get(i);
     }
 
-    String getName(){
+    public String getName(){
         return name;
     }
 }
