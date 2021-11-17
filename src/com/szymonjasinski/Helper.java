@@ -6,9 +6,19 @@ import java.security.SecureRandom;
 import java.util.Map;
 
 public interface Helper {
+
+    // TODO #016
+    // Functions for rounding values to specific number of decimal places.
+
     static Double roundMoney(Double value) {
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
+    static Double roundMileage(Double value) {
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(1, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
 

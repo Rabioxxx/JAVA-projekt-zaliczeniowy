@@ -1,6 +1,7 @@
 package com.szymonjasinski;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
@@ -40,7 +41,7 @@ public class Main {
             player.setCash(50000.0);
             System.out.println("Your cash is set! It is now: " + player.getCash());
 
-            market.carsGenerator(6);
+            market.carsGenerator(20);
             System.out.println("Cars available to buy - ready!");
 
             do {
@@ -62,10 +63,19 @@ public class Main {
                 switch (input) {
                     case 'a' -> {
                         System.out.println(input + " clicked.\n");
+
                         // get ArrayList of cars and then printing all cars in this Array to console. What exactly is printed is defined with toString().
                         ArrayList<Car> cars = market.getCars();
+
+                        // It is a lambda expression.
+                        // Honestly don't know how does that works, but it sorts cars by String producer and String Model.
+                        cars.sort(Comparator.comparing(Car::getProducer).thenComparing(Car::getModel));
+
+                        // TODO #014
+                        int i = 97; // 97 represents lowercase a.
                         for (Car car : cars) {
-                            System.out.println(car.toString());
+                            System.out.println((char)i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
+                            i++;
                         }
                     }
                     case 'b' -> {
