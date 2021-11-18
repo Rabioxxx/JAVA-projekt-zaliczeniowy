@@ -72,7 +72,7 @@ public class Main {
                         // Honestly don't know how does that works, but it sorts cars by String producer and String Model.
                         cars.sort(Comparator.comparing(Car::getProducer).thenComparing(Car::getModel));
 
-                        // TODO #014
+                        // TODO #014 - Restricting loops.
                         int i = 97; // 97 represents lowercase a.
                         for (Car car : cars) {
                             System.out.println((char)i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
