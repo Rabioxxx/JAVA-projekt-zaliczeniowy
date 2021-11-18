@@ -38,8 +38,9 @@ public class Main {
             Player player = new Player();
             Market market = new Market();
 
+            //Debugging purposes.
             player.setCash(50000.0);
-            System.out.println("Your cash is set! It is now: " + player.getCash());
+            System.out.println("Your cash is set! It is now: " + Helper.roundMoney(player.getCash()));
 
             market.carsGenerator(20);
             System.out.println("Cars available to buy - ready!");
