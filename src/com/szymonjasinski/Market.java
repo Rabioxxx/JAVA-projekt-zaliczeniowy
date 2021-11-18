@@ -20,9 +20,16 @@ public class Market {
         for (int i = 0; i < number; i++) {
             Brand brandRandom = Brand.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
             Model brandModelRandom = brandRandom.randomModel(); // Now we take from brand variable (E.g. MERCEDES) a random model specific to a brand (E.g. CLASSC).
+            Segment segment = brandModelRandom.getSegment();
 
             String brandName = brandRandom.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
             String modelName = brandModelRandom.getName(); // Taking model name as String. E.g. "Class C".
+
+            if (segment == Segment.BUDGET) {
+            } else if (segment == Segment.STANDARD) {
+            } else {
+            }
+
 
             // TODO #007, #015
             // Randomizing age in between (exclusive) ageMin and ageMax values.
