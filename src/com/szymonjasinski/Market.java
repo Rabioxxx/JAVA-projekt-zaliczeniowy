@@ -87,7 +87,7 @@ public class Market {
             // TODO #010
             double valueRandom;
 
-            // Based on segment we take randomize a car value in thousands.
+            // Based on segment we take randomize a car value.
             if (segment == Segment.BUDGET) {
                 valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.8, 1.1)) * 1000;
             } else if (segment == Segment.STANDARD) {
