@@ -7,6 +7,12 @@ public class Car {
     private Double mileage;
     private Double value;
     private Color color;
+    private Boolean engine;
+    private Boolean body;
+    private Boolean transmission;
+    private Boolean suspension;
+    private Boolean brakes;
+
 
     public Car(String producer, String model, Integer age, Double mileage, Double value, Color color) {
         if (age >= 0 && mileage >= 0) {
@@ -17,7 +23,7 @@ public class Car {
             this.value = value;
             this.color = color;
         } else {
-            System.out.println("ERROR/. This car have a negative value of age and/or mileage.");
+            System.out.println("ERROR/. This car cannot have a negative value of age and/or mileage.");
         }
     }
 
