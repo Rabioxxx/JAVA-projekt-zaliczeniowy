@@ -50,9 +50,36 @@ public class Market {
             }
             Integer ageRandom = Helper.getWeightedRandom(map);
 
+            map.clear(); // Clears everything inside map, just to be sure.
 
-            // TODO #008
-            double mileageRandom = Helper.RNG.nextDouble(5000.0, 500000.0); // Random mileage [5000.0, 500000.0)
+            // TODO #015
+            // Randomizing mileage in between (exclusive both values) distMin and distMax.
+            // This code below simply means something like "it is possible to
+            // make between 6 and 16 thousands kilometers in a year" with weighting values
+            // to more like 8 - 12 k kms a year. After that I multiply it by age of car.
+            int distMin = 6;
+            int distMax = 16;
+
+            for (int k = distMin; k <= distMax; k++) {
+                if (k >= 10 && k <= 11)
+                    map.put(k, 8.0);
+                else if ((k >= 8 && k <= 9) || k == 12)
+                    map.put(k, 6.0);
+                else if (k == 7 || k == 13)
+                    map.put(k, 4.0);
+                else if (k == 6 || k == 14)
+                    map.put(k, 2.0);
+                else
+                    map.put(k, 1.0);
+            }
+
+            Integer traveledDist = Helper.getWeightedRandom(map);
+
+            double randomN = Helper.RNG.nextDouble(1000.0);
+
+            // Take car age, multiply by random weighted value between distMin and distMax multiplied by
+            // 10,000 and add some random value [0.0, 1000.0) on the end, so it looks more natural.
+            Double mileageRandom = ageRandom * (double) traveledDist * 1000.0 + randomN;
 
             // TODO #010
             double valueRandom = Helper.RNG.nextDouble(100000.0);
