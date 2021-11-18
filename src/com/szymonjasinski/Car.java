@@ -33,6 +33,10 @@ public class Car {
         return age;
     }
 
+    public Double getMileage() {
+        return mileage;
+    }
+
     public Double getValue() {
         return value;
     }
