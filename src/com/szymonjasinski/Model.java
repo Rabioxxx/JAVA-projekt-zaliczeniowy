@@ -6,28 +6,28 @@ import java.util.List;
 
 public enum Model {
     //BMW models 15009
-    SERIES3(        "Series 3",         3866,   100000,      Segment.STANDARD), // standard! 100k
-    SERIES5(        "Series 5",         3272,   135000,      Segment.PREMIUM), // Premium 135k
-    SERIES1(        "Series 1",         1377,   70000,       Segment.STANDARD), // Standard 70k
-    X3(             "X3",               1224,   100000,      Segment.PREMIUM), // premium! 100k
-    X5(             "X5",               926,    170000,      Segment.PREMIUM), // Premium 170k
-    SERIES7(        "SERIES 7",         729,    150000,      Segment.PREMIUM), // Premium 150k
-    X1(             "X1",               599,    70000,       Segment.STANDARD), // standard 70k
-    SERIES4(        "SERIES 4",         455,    125000,      Segment.PREMIUM), // premium 125k
-    SERIES2(        "SERIES 2",         332,    70000,       Segment.STANDARD), // standard 70k
-    X6(             "X6",               267,    180000,      Segment.PREMIUM), // Premium 180k
-    X4(             "X4",               214,    125000,      Segment.PREMIUM), // Premium 125k
-    SERIES6(        "SERIES 6",         196,    150000,      Segment.PREMIUM), // Premium 150k
-    THREEGT(        "3GT",              194,    75000,       Segment.STANDARD), // standard 75k
-    I3(             "I3",               154,    70000,       Segment.STANDARD), // electric standard 70k
-    X5M(            "X5M",              117,    160000,      Segment.PREMIUM), // Premium 160k
-    X2(             "X2",               106,    160000,      Segment.PREMIUM), // premium 2018 160k
-    X7(             "X7",               92,     500000,      Segment.PREMIUM), // Premium 2019+ 500k
-    SERIES8(        "SERIES 8",         91,     666000,      Segment.PREMIUM), // Premium 2020+ 666k, 1990-1996 150k
-    FIVEGT(         "5GT",              89,     100000,      Segment.PREMIUM), // premium 100k
-    M3(             "M3",               86,     160000,      Segment.PREMIUM), // premium 2008 120k, 2015 160k, 2020+ 400k+
-    M4(             "M4",               83,     170000,      Segment.PREMIUM), // premium 170k
-    M5(             "M5",               82,     150000,      Segment.PREMIUM), // premium 150k similar to M3, value is similar for old models.
+    SERIES3(        "Series 3",         3866,   100000,     Segment.STANDARD), // standard! 100k
+    SERIES5(        "Series 5",         3272,   135000,     Segment.PREMIUM), // Premium 135k
+    SERIES1(        "Series 1",         1377,   70000,      Segment.STANDARD), // Standard 70k
+    X3(             "X3",               1224,   100000,     Segment.PREMIUM), // premium! 100k
+    X5(             "X5",               926,    170000,     Segment.PREMIUM), // Premium 170k
+    SERIES7(        "SERIES 7",         729,    150000,     Segment.PREMIUM), // Premium 150k
+    X1(             "X1",               599,    70000,      Segment.STANDARD), // standard 70k
+    SERIES4(        "SERIES 4",         455,    125000,     Segment.PREMIUM), // premium 125k
+    SERIES2(        "SERIES 2",         332,    70000,      Segment.STANDARD), // standard 70k
+    X6(             "X6",               267,    180000,     Segment.PREMIUM), // Premium 180k
+    X4(             "X4",               214,    125000,     Segment.PREMIUM), // Premium 125k
+    SERIES6(        "SERIES 6",         196,    150000,     Segment.PREMIUM), // Premium 150k
+    THREEGT(        "3GT",              194,    75000,      Segment.STANDARD), // standard 75k
+    I3(             "I3",               154,    70000,      Segment.STANDARD), // electric standard 70k
+    X5M(            "X5M",              117,    160000,     Segment.PREMIUM), // Premium 160k
+    X2(             "X2",               106,    160000,     Segment.PREMIUM), // premium 2018 160k
+    X7(             "X7",               92,     500000,     Segment.PREMIUM), // Premium 2019+ 500k
+    SERIES8(        "SERIES 8",         91,     666000,     Segment.PREMIUM), // Premium 2020+ 666k, 1990-1996 150k
+    FIVEGT(         "5GT",              89,     100000,     Segment.PREMIUM), // premium 100k
+    M3(             "M3",               86,     160000,     Segment.PREMIUM), // premium 2008 120k, 2015 160k, 2020+ 400k+
+    M4(             "M4",               83,     170000,     Segment.PREMIUM), // premium 170k
+    M5(             "M5",               82,     150000,     Segment.PREMIUM), // premium 150k similar to M3, value is similar for old models.
 
     //Audi models 14767
     A4(             "A4",               3884,   70000,      Segment.STANDARD), // standard 70k
@@ -82,7 +82,7 @@ public enum Model {
     JETTA(          "Jetta",            266,    45000,      Segment.BUDGET), // budget 45k
     TOUAREG(        "Touareg",          248,    90000,      Segment.STANDARD), // standard 80-100k
     MULTIVAN(       "Multivan",         237,    140000,     Segment.PREMIUM), // Premium. van, so cargo? 140k
-    TCROSS(         "T-Cross",          223,    100000,     Segment.BUDGET), // budget 2019 100k
+    TCROSS(         "T-Cross",          223,    50000,      Segment.BUDGET), // budget 2019 100k, so I will give it 50 for 2015.
     SCIROCCO(       "Scirocco",         170,    50000,      Segment.BUDGET), // budget 50k
     CARAVELLE(      "Caravelle",        148,    95000,      Segment.STANDARD), // Standard. van, so cargo? 85-110k
     CC(             "CC",               145,    70000,      Segment.STANDARD), // Standard 70k
