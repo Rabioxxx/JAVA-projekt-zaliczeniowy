@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public enum Segment {
-    BUDGET("Budget"),
-    STANDARD("Standard"),
-    PREMIUM("Premium");
+    BUDGET("Budget"),       // >100k
+    STANDARD("Standard"),   // 100k - 200k
+    PREMIUM("Premium");     // 200k<
 
     private final String segment;
 
