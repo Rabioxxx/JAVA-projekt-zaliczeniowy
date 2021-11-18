@@ -6,101 +6,119 @@ import java.util.List;
 
 public enum Model {
     //BMW models 15009
-    SERIES3(        "Series 3",         3866,     new Segment[]{Segment.STANDARD}),
-    SERIES5(        "Series 5",         3272,     new Segment[]{Segment.STANDARD}),
-    SERIES1(        "Series 1",         1377,     new Segment[]{Segment.STANDARD}),
-    X3(             "X3",               1224,     new Segment[]{Segment.STANDARD}),
-    X5(             "X5",               926,      new Segment[]{Segment.STANDARD}),
-    SERIES7(        "SERIES 7",         729,      new Segment[]{Segment.STANDARD}),
-    X1(             "X1",               599,      new Segment[]{Segment.STANDARD}),
-    SERIES4(        "SERIES 4",         455,      new Segment[]{Segment.STANDARD}),
-    SERIES2(        "SERIES 2",         332,      new Segment[]{Segment.STANDARD}),
-    X6(             "X6",               267,      new Segment[]{Segment.STANDARD}),
-    X4(             "X4",               214,      new Segment[]{Segment.STANDARD}),
-    SERIES6(        "SERIES 6",         196,      new Segment[]{Segment.STANDARD}),
-    I3(             "I3",               154,      new Segment[]{Segment.STANDARD}),
-    X2(             "X2",               106,      new Segment[]{Segment.STANDARD}),
+    SERIES3(        "Series 3",         3866,     new Segment[]{Segment.STANDARD}), // standard! 100k
+    SERIES5(        "Series 5",         3272,     new Segment[]{Segment.PREMIUM}), // Premium 135k
+    SERIES1(        "Series 1",         1377,     new Segment[]{Segment.STANDARD}), // Standard 70k
+    X3(             "X3",               1224,     new Segment[]{Segment.PREMIUM}), // premium! 100k
+    X5(             "X5",               926,      new Segment[]{Segment.PREMIUM}), // Premium 170k
+    SERIES7(        "SERIES 7",         729,      new Segment[]{Segment.PREMIUM}), // Premium 150k
+    X1(             "X1",               599,      new Segment[]{Segment.STANDARD}), // standard 70k
+    SERIES4(        "SERIES 4",         455,      new Segment[]{Segment.PREMIUM}), // premium 125k
+    SERIES2(        "SERIES 2",         332,      new Segment[]{Segment.STANDARD}), // standard 70k
+    X6(             "X6",               267,      new Segment[]{Segment.PREMIUM}), // Premium 180k
+    X4(             "X4",               214,      new Segment[]{Segment.PREMIUM}), // Premium 125k
+    SERIES6(        "SERIES 6",         196,      new Segment[]{Segment.PREMIUM}), // Premium 150k
+    THREEGT(        "3GT",              194,      new Segment[]{Segment.STANDARD}), // standard 75k
+    I3(             "I3",               154,      new Segment[]{Segment.STANDARD}), // electric standard 70k
+    X5M(            "X5M",              117,      new Segment[]{Segment.PREMIUM}), // Premium 160k
+    X2(             "X2",               106,      new Segment[]{Segment.PREMIUM}), // premium 2018 160k
+    X7(             "X7",               92,       new Segment[]{Segment.PREMIUM}), // Premium 2019+ 500k
+    SERIES8(        "SERIES 8",         91,       new Segment[]{Segment.PREMIUM}), // Premium 2020+ 666k, 1990-1996 150k
+    FIVEGT(         "5GT",              89,       new Segment[]{Segment.PREMIUM}), // premium 100k
+    M3(             "M3",               86,       new Segment[]{Segment.PREMIUM}), // premium 2008 120k, 2015 160k, 2020+ 400k+
+    M4(             "M4",               83,       new Segment[]{Segment.PREMIUM}), // premium 170k
+    M5(             "M5",               82,       new Segment[]{Segment.PREMIUM}), // premium 150k similar to M3, value is similar for old models.
 
     //Audi models 14767
-    A4(             "A4",               3884,     new Segment[]{Segment.STANDARD}),
-    A6(             "A6",               2992,     new Segment[]{Segment.STANDARD}),
-    A3(             "A3",               2206,     new Segment[]{Segment.STANDARD}),
-    Q5(             "Q5",               960,      new Segment[]{Segment.STANDARD}),
-    A5(             "A5",               885,      new Segment[]{Segment.STANDARD}),
-    A8(             "A8",               518,      new Segment[]{Segment.STANDARD}),
-    Q7(             "Q7",               478,      new Segment[]{Segment.STANDARD}),
-    Q3(             "Q3",               451,      new Segment[]{Segment.STANDARD}),
-    TT(             "TT",               175,      new Segment[]{Segment.STANDARD}),
-    S3(             "S3",               150,      new Segment[]{Segment.STANDARD}),
+    A4(             "A4",               3884,     new Segment[]{Segment.STANDARD}), // standard 70k
+    A6(             "A6",               2992,     new Segment[]{Segment.PREMIUM}), // premium 130k
+    A3(             "A3",               2206,     new Segment[]{Segment.STANDARD}), // standard 70k
+    Q5(             "Q5",               960,      new Segment[]{Segment.STANDARD}), // standard? 95k
+    A5(             "A5",               885,      new Segment[]{Segment.STANDARD}), // standard 90k
+    A8(             "A8",               518,      new Segment[]{Segment.PREMIUM}), // premium 180k
+    Q7(             "Q7",               478,      new Segment[]{Segment.PREMIUM}), // premium 160k
+    Q3(             "Q3",               451,      new Segment[]{Segment.STANDARD}), // standard 75k
+    A7(             "A7",               255,      new Segment[]{Segment.PREMIUM}), // premium 130k
+    A6ALLROAD(      "A6 Allroad",       184,      new Segment[]{Segment.PREMIUM}), // premium 115k
+    TT(             "TT",               175,      new Segment[]{Segment.STANDARD}), // standard 45k
+    A1(             "A1",               174,      new Segment[]{Segment.STANDARD}), // standard? 40k
+    A4ALLROAD(      "A4 Allroad",       173,      new Segment[]{Segment.STANDARD}), // standard 65k
+    S3(             "S3",               150,      new Segment[]{Segment.STANDARD}), // standard? 60-90k
+    S5(             "S5",               85,       new Segment[]{Segment.PREMIUM}), // premium 120k, old age.
+    S6(             "S6",               84,       new Segment[]{Segment.PREMIUM}), // premium 125k
+    Q8(             "Q8",               81,       new Segment[]{Segment.PREMIUM}), // 2018 premium 380k+
+    S4(             "S4",               75,       new Segment[]{Segment.STANDARD}), // standard 70k
 
     //Opel models 14721
-    ASTRA(          "Astra",            4754,     new Segment[]{Segment.STANDARD}),
-    INSIGNIA(       "Insignia",         2324,     new Segment[]{Segment.STANDARD}),
-    CORSA(          "Corsa",            2109,     new Segment[]{Segment.STANDARD}),
-    ZAFIRA(         "Zafira",           1169,     new Segment[]{Segment.STANDARD}),
-    MERIVA(         "Meriva",           1131,     new Segment[]{Segment.STANDARD}),
-    MOKKA(          "Mokka",            982,      new Segment[]{Segment.STANDARD}),
-    VECTRA(         "Vectra",           582,      new Segment[]{Segment.STANDARD}),
-    VIVARO(         "Vivaro",           266,      new Segment[]{Segment.STANDARD}),
-    CROSSLANDX(     "Crossland X",      250,      new Segment[]{Segment.STANDARD}),
-    GRANDLANDX(     "Grandland X",      193,      new Segment[]{Segment.STANDARD}),
-    COMBO(          "Combo",            189,      new Segment[]{Segment.STANDARD}),
-    ANTARA(         "Antara",           183,      new Segment[]{Segment.STANDARD}),
-    SIGNUM(         "Signum",           126,      new Segment[]{Segment.STANDARD}),
-    AGILA(          "Agila",            10,       new Segment[]{Segment.STANDARD}),
+    ASTRA(          "Astra",            4754,     new Segment[]{Segment.STANDARD}), // standard? 50k
+    INSIGNIA(       "Insignia",         2324,     new Segment[]{Segment.STANDARD}), // standard? 60k
+    CORSA(          "Corsa",            2109,     new Segment[]{Segment.BUDGET}), // budget 37k
+    ZAFIRA(         "Zafira",           1169,     new Segment[]{Segment.STANDARD}), // standard? 50k
+    MERIVA(         "Meriva",           1131,     new Segment[]{Segment.BUDGET}), // budget 38k
+    MOKKA(          "Mokka",            982,      new Segment[]{Segment.STANDARD}), // standard? 60k
+    VECTRA(         "Vectra",           582,      new Segment[]{Segment.BUDGET}), // budget 20k
+    VIVARO(         "Vivaro",           266,      new Segment[]{Segment.STANDARD}), // cargo standard! 65k
+    CROSSLANDX(     "Crossland X",      250,      new Segment[]{Segment.STANDARD}), // 2017 60k standard
+    GRANDLANDX(     "Grandland X",      193,      new Segment[]{Segment.STANDARD}), // 2017 80k standard!
+    COMBO(          "Combo",            189,      new Segment[]{Segment.BUDGET}), // budget, small cargo, 30k
+    ANTARA(         "Antara",           183,      new Segment[]{Segment.BUDGET}), // budget 45k
+    SIGNUM(         "Signum",           126,      new Segment[]{Segment.STANDARD}), // 2008 budget 15k
+    ADAM(           "Adam",             97,       new Segment[]{Segment.BUDGET}), // budget 35k
+    AGILA(          "Agila",            95,       new Segment[]{Segment.BUDGET}), // budget 17k
+
 
     //Volkswagen models 14236
-    GOLF(           "Golf",             3380,     new Segment[]{Segment.STANDARD}),
-    PASSAT(         "Passat",           2826,     new Segment[]{Segment.STANDARD}),
-    POLO(           "Polo",             1328,     new Segment[]{Segment.STANDARD}),
-    TIGUAN(         "Tiguan",           1071,     new Segment[]{Segment.STANDARD}),
-    TOURAN(         "Touran",           835,      new Segment[]{Segment.STANDARD}),
-    CADDY(          "Caddy",            459,      new Segment[]{Segment.STANDARD}),
-    GOLFPLUS(       "Golf Plus",        449,      new Segment[]{Segment.STANDARD}),
-    SHARAN(         "Sharan",           338,      new Segment[]{Segment.STANDARD}),
-    ARTEON(         "Arteon",           301,      new Segment[]{Segment.STANDARD}),
-    UP(             "up!",              280,      new Segment[]{Segment.STANDARD}),
-    TRANSPORTER(    "Transporter",      279,      new Segment[]{Segment.STANDARD}),
-    JETTA(          "Jetta",            266,      new Segment[]{Segment.STANDARD}),
-    TOUAREG(        "Touareg",          248,      new Segment[]{Segment.STANDARD}),
-    MULTIVAN(       "Multivan",         237,      new Segment[]{Segment.STANDARD}),
-    TCROSS(         "T-Cross",          223,      new Segment[]{Segment.STANDARD}),
-    SCIROCCO(       "Scirocco",         170,      new Segment[]{Segment.STANDARD}),
-    CARAVELLE(      "Caravelle",        148,      new Segment[]{Segment.STANDARD}),
-    CC(             "CC",               145,      new Segment[]{Segment.STANDARD}),
-    NEWBEETLE(      "New Beetle",       129,      new Segment[]{Segment.STANDARD}),
-    FOX(            "Fox",              119,      new Segment[]{Segment.STANDARD}),
-    GOLFSPORTSVAN(  "Golf Sportsvan",   112,      new Segment[]{Segment.STANDARD}),
-    TIGUANALLSPACE( "Tiguan Allspace",  102,      new Segment[]{Segment.STANDARD}),
+    GOLF(           "Golf",             3380,     new Segment[]{Segment.STANDARD}), // Standard 90k
+    PASSAT(         "Passat",           2826,     new Segment[]{Segment.STANDARD}), // Standard 85k
+    POLO(           "Polo",             1328,     new Segment[]{Segment.BUDGET}), // budget 37k
+    TIGUAN(         "Tiguan",           1071,     new Segment[]{Segment.STANDARD}), // Standard 70k
+    TOURAN(         "Touran",           835,      new Segment[]{Segment.BUDGET}), // budget 50k
+    CADDY(          "Caddy",            459,      new Segment[]{Segment.BUDGET}), // budget low cargo 45-55k
+    GOLFPLUS(       "Golf Plus",        449,      new Segment[]{Segment.BUDGET}), // budget 33k
+    SHARAN(         "Sharan",           338,      new Segment[]{Segment.STANDARD}), // Standard 70k
+    ARTEON(         "Arteon",           301,      new Segment[]{Segment.PREMIUM}), // premium 2017 150k
+    UP(             "up!",              280,      new Segment[]{Segment.BUDGET}), // budget 30-35k electric
+    TRANSPORTER(    "Transporter",      279,      new Segment[]{Segment.BUDGET}), // budget 55k
+    JETTA(          "Jetta",            266,      new Segment[]{Segment.BUDGET}), // budget 45k
+    TOUAREG(        "Touareg",          248,      new Segment[]{Segment.STANDARD}), // standard 80-100k
+    MULTIVAN(       "Multivan",         237,      new Segment[]{Segment.PREMIUM}), // Premium. van, so cargo? 140k
+    TCROSS(         "T-Cross",          223,      new Segment[]{Segment.BUDGET}), // budget 2019 100k
+    SCIROCCO(       "Scirocco",         170,      new Segment[]{Segment.BUDGET}), // budget 50k
+    CARAVELLE(      "Caravelle",        148,      new Segment[]{Segment.STANDARD}), // Standard. van, so cargo? 85-110k
+    CC(             "CC",               145,      new Segment[]{Segment.STANDARD}), // Standard 70k
+    NEWBEETLE(      "New Beetle",       129,      new Segment[]{Segment.BUDGET}), // budget 20k
+    FOX(            "Fox",              119,      new Segment[]{Segment.BUDGET}), // budget 10k
+    GOLFSPORTSVAN(  "Golf Sportsvan",   112,      new Segment[]{Segment.BUDGET}), // budget 50k
+    TIGUANALLSPACE( "Tiguan Allspace",  102,      new Segment[]{Segment.STANDARD}), // standard 2017-18 125k
 
     //Ford models 12785
-    FOCUS(          "Focus",            2712,     new Segment[]{Segment.STANDARD}),
-    MONDEO(         "Mondeo",           2340,     new Segment[]{Segment.STANDARD}),
-    FIESTA(         "Fiesta",           1481,     new Segment[]{Segment.STANDARD}),
-    KUGA(           "Kuga",             1137,     new Segment[]{Segment.STANDARD}),
-    SMAX(           "S-MAX",            941,      new Segment[]{Segment.STANDARD}),
-    CMAX(           "C-MAX",            654,      new Segment[]{Segment.STANDARD}),
-    MUSTANG(        "Mustang",          437,      new Segment[]{Segment.STANDARD}),
-    GALAXY(         "Galaxy",           337,      new Segment[]{Segment.STANDARD}),
-    FUSION(         "Fusion",           262,      new Segment[]{Segment.STANDARD}),
-    ECOSPORT(       "EcoSport",         227,      new Segment[]{Segment.STANDARD}),
-    GRANDECMAX(     "Grands C-MAX",     213,      new Segment[]{Segment.STANDARD}),
-    FOCUSCMAX(      "Focus C-MAX",      189,      new Segment[]{Segment.STANDARD}),
-    KA(             "KA",               188,      new Segment[]{Segment.STANDARD}),
-    EDGE(           "EDGE",             188,      new Segment[]{Segment.STANDARD}),
-    ESCAPE(         "Escape",           142,      new Segment[]{Segment.STANDARD}),
-    TRANSIT(        "Transit",          128,      new Segment[]{Segment.STANDARD}),
-    RANGER(         "Ranger",           126,      new Segment[]{Segment.STANDARD}),
-    TRANSITCUSTOM(  "Transit Custom",   123,      new Segment[]{Segment.STANDARD}),
-    BMAX(           "B-MAX",            120,      new Segment[]{Segment.STANDARD}),
+    FOCUS(          "Focus",            2712,     new Segment[]{Segment.STANDARD}), // Standard 60k
+    MONDEO(         "Mondeo",           2340,     new Segment[]{Segment.STANDARD}), // standard 70k
+    FIESTA(         "Fiesta",           1481,     new Segment[]{Segment.BUDGET}), // budget 37k
+    KUGA(           "Kuga",             1137,     new Segment[]{Segment.STANDARD}), // Standard 70k
+    SMAX(           "S-MAX",            941,      new Segment[]{Segment.STANDARD}), // Standard 60k
+    CMAX(           "C-MAX",            654,      new Segment[]{Segment.BUDGET}), // budget 45k
+    MUSTANG(        "Mustang",          437,      new Segment[]{Segment.PREMIUM}), // premium/antique?/classic? 2015+ 150k, 1965-1970 300-500k
+    GALAXY(         "Galaxy",           337,      new Segment[]{Segment.BUDGET}), // budget 45k
+    FUSION(         "Fusion",           262,      new Segment[]{Segment.BUDGET}), // budget 40k
+    ECOSPORT(       "EcoSport",         227,      new Segment[]{Segment.BUDGET}), // budget 40k
+    GRANDECMAX(     "Grands C-MAX",     213,      new Segment[]{Segment.BUDGET}), // budget 40k
+    FOCUSCMAX(      "Focus C-MAX",      189,      new Segment[]{Segment.BUDGET}), // budget 22k
+    KA(             "KA",               188,      new Segment[]{Segment.BUDGET}), // budget 20k
+    EDGE(           "EDGE",             188,      new Segment[]{Segment.STANDARD}), // 2015 80k, 2018+ 150k standard!
+    ESCAPE(         "Escape",           142,      new Segment[]{Segment.STANDARD}), // standard? i think. 55k
+    TRANSIT(        "Transit",          128,      new Segment[]{Segment.BUDGET}), // cargo, 40-50k
+    RANGER(         "Ranger",           126,      new Segment[]{Segment.STANDARD}), // Standard 70k
+    TRANSITCUSTOM(  "Transit Custom",   123,      new Segment[]{Segment.STANDARD}), // Standard cargo, 50k
+    BMAX(           "B-MAX",            120,      new Segment[]{Segment.BUDGET}), // budget 33k
 
     //Alfa Romeo models 1370
-    STELVIO(        "Stelvio",          353,      new Segment[]{Segment.STANDARD}),
-    ONEFIVENINE(    "159",              248,      new Segment[]{Segment.STANDARD}),
-    GIULIA(         "Giulia",           244,      new Segment[]{Segment.STANDARD}),
-    GIULIETTA(      "Giulietta",        232,      new Segment[]{Segment.STANDARD}),
-    MITO(           "Mito",             127,      new Segment[]{Segment.STANDARD}),
-    ONEFOURSEVEN(   "147",              79,       new Segment[]{Segment.STANDARD});
+    STELVIO(        "Stelvio",          353,      new Segment[]{Segment.PREMIUM}), // premium 275k+ 2017 140k
+    ONEFIVENINE(    "159",              248,      new Segment[]{Segment.BUDGET}), // budget 25k
+    GIULIA(         "Giulia",           244,      new Segment[]{Segment.PREMIUM}), // premium 250k+ 2016 100k
+    GIULIETTA(      "Giulietta",        232,      new Segment[]{Segment.BUDGET}), // budget 45k
+    MITO(           "Mito",             127,      new Segment[]{Segment.BUDGET}), // budget 25k
+    ONEFOURSEVEN(   "147",              79,       new Segment[]{Segment.BUDGET}); // budget 10k
 
     
     private final String name;
