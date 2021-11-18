@@ -13,15 +13,36 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
      *   CONSTANT_NAME("NAME OF BRAND", new Model[]{Model.MODEL1, Model.MODEL2, ... Model.MODELN},
      */
 
-    BMW("BMW", new Model[]{Model.SERIES3, Model.SERIES5, Model.SERIES1, Model.X3, Model.X5, Model.SERIES7, Model.X1, Model.SERIES4, Model.SERIES2, Model.X6, Model.X4, Model.SERIES6, Model.I3, Model.X2}), // Sorted from the least popular
+    BMW("BMW", new Model[]{
+            Model.SERIES1, Model.SERIES2, Model.SERIES3, Model.SERIES4, Model.SERIES5, Model.SERIES6, Model.SERIES7, Model.SERIES8,
+            Model.X1, Model.X2, Model.X3, Model.X4, Model.X5, Model.X5M, Model.X6, Model.X7,
+            Model.THREEGT, Model.FIVEGT,
+            Model.I3,
+            Model.M3, Model.M4, Model.M5}),
 
-    AUDI("Audi", new Model[]{Model.A4, Model.A6, Model.A3, Model.Q5, Model.A5, Model.A8, Model.Q7, Model.Q3, Model.TT, Model.S3}),
+    AUDI("Audi", new Model[]{
+            Model.A1, Model.A3, Model.A4, Model.A4ALLROAD, Model.A5, Model.A6, Model.A6ALLROAD, Model.A7, Model.A8,
+            Model.S3, Model.S4, Model.S5, Model.S6,
+            Model.Q3, Model.Q5, Model.Q7, Model.Q8,
+            Model.TT}),
 
-    OPEL("Opel", new Model[]{Model.ASTRA, Model.INSIGNIA, Model.CORSA, Model.ZAFIRA, Model.MERIVA, Model.MOKKA, Model.VECTRA, Model.VIVARO, Model.CROSSLANDX, Model.GRANDLANDX, Model.COMBO, Model.ANTARA, Model.SIGNUM, Model.AGILA}),
+    OPEL("Opel", new Model[]{
+            Model.ADAM, Model.ASTRA, Model.INSIGNIA, Model.CORSA, Model.ZAFIRA,
+            Model.MERIVA, Model.MOKKA, Model.VECTRA, Model.VIVARO, Model.CROSSLANDX,
+            Model.GRANDLANDX, Model.COMBO, Model.ANTARA, Model.SIGNUM, Model.AGILA}),
 
-    VOLKSWAGEN("Volkswagen", new Model[]{Model.GOLF, Model.PASSAT, Model.POLO, Model.TIGUAN, Model.TOURAN, Model.CADDY, Model.GOLFPLUS, Model.SHARAN, Model.ARTEON, Model.UP, Model.TRANSPORTER, Model.JETTA, Model.TOUAREG, Model.MULTIVAN, Model.TCROSS, Model.SCIROCCO, Model.CARAVELLE, Model.CC, Model.NEWBEETLE, Model.FOX, Model.GOLFSPORTSVAN, Model.TIGUANALLSPACE}),
+    VOLKSWAGEN("Volkswagen", new Model[]{
+            Model.GOLF, Model.PASSAT, Model.POLO, Model.TIGUAN, Model.TOURAN,
+            Model.CADDY, Model.GOLFPLUS, Model.SHARAN, Model.ARTEON, Model.UP,
+            Model.TRANSPORTER, Model.JETTA, Model.TOUAREG, Model.MULTIVAN, Model.TCROSS,
+            Model.SCIROCCO, Model.CARAVELLE, Model.CC, Model.NEWBEETLE, Model.FOX,
+            Model.GOLFSPORTSVAN, Model.TIGUANALLSPACE}),
 
-    FORD("Ford", new Model[]{Model.FOCUS, Model.MONDEO, Model.FIESTA, Model.KUGA, Model.SMAX, Model.CMAX, Model.MUSTANG, Model.GALAXY, Model.FUSION, Model.ECOSPORT, Model.GRANDECMAX, Model.FOCUSCMAX, Model.KA, Model.EDGE, Model.ESCAPE, Model.TRANSIT, Model.RANGER, Model.TRANSITCUSTOM, Model.BMAX}),
+    FORD("Ford", new Model[]{
+            Model.FOCUS, Model.MONDEO, Model.FIESTA, Model.KUGA, Model.SMAX,
+            Model.CMAX, Model.MUSTANG, Model.GALAXY, Model.FUSION, Model.ECOSPORT,
+            Model.GRANDECMAX, Model.FOCUSCMAX, Model.KA, Model.EDGE, Model.ESCAPE,
+            Model.TRANSIT, Model.RANGER, Model.TRANSITCUSTOM, Model.BMAX}),
 
     ALFAROMEO("Alfa Romeo", new Model[]{Model.STELVIO, Model.ONEFIVENINE, Model.GIULIA, Model.GIULIETTA, Model.MITO, Model.ONEFOURSEVEN,});
 
