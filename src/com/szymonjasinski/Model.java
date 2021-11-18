@@ -147,6 +147,10 @@ public enum Model {
         return commonness;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
     public Segment getSegment() {
         return segment;
     }
