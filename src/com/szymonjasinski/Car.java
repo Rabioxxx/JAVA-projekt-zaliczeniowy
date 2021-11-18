@@ -21,8 +21,28 @@ public class Car {
         }
     }
 
+    public String getProducer() {
+        return producer;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Double getMileage() {
+        return mileage;
+    }
+
+    public Double getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-            return producer + " " + model;
+            return producer + " " + model + " $" + Helper.roundMoney(value) + "\nAge = " + age + "\nMileage = " + Helper.roundMileage(mileage) + "\nPainted " + color.getName() + "\n";
     }
 }

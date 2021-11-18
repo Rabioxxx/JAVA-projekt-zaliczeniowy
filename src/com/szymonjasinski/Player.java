@@ -6,6 +6,7 @@ public class Player {
     private Double cash;
     private ArrayList<Car> cars;
     private ArrayList<Client> clients;
+    private ArrayList<String> transactions; // Maybe type will be changed.
 
     public Double getCash() {
         return cash;
