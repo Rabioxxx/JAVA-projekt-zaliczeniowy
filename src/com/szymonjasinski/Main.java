@@ -56,7 +56,7 @@ public class Main {
                                 b - show cars you own.
                                 c - show clients.
                                 d - check marketing options.
-                                e - check you bank account.""");
+                                e - check yours bank account.""");
 
                 input = scanner.next().charAt(0);
 
