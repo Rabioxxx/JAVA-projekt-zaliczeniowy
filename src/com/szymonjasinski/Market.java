@@ -25,6 +25,8 @@ public class Market {
             String brandName = brandRandom.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
             String modelName = brandModelRandom.getName(); // Taking model name as String. E.g. "Class C".
 
+            Integer price = brandModelRandom.getPrice();
+
             // TODO #007, #015
             // Randomizing age in between (exclusive) ageMin and ageMax values.
             // For now I am manually weighting it, can't find better solution for now.
@@ -87,11 +89,11 @@ public class Market {
 
             // Based on segment we take randomize a car value in thousands.
             if (segment == Segment.BUDGET) {
-                valueRandom = Helper.RNG.nextDouble(2.0, 50.0) * 1000.0;
+                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.8, 1.1)) * 1000;
             } else if (segment == Segment.STANDARD) {
-                valueRandom = Helper.RNG.nextDouble(10.0, 100.0) * 1000.0;
+                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else { // else means Segment.PREMIUM in that case
-                valueRandom = Helper.RNG.nextDouble(120.0, 220.0) * 1000.0;
+                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.95, 1.3)) * 1000;
             }
 
             Color colorRandom = Color.getRandomColor();
