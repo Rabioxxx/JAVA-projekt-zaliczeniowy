@@ -44,7 +44,6 @@ public interface Helper {
     }
 
     /*
-
     This method creates something like this for 9 values...
 
                weight
