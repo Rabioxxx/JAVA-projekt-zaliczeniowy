@@ -42,4 +42,52 @@ public interface Helper {
         }
         return result;
     }
+
+    /*
+
+    This method creates something like this for 9 values...
+
+               weight
+                 5             |
+                 4          |  |  |
+                 3       |  |  |  |  |
+                 2    |  |  |  |  |  |  |
+                 1 |  |  |  |  |  |  |  |  |
+                   1  2  3  4  5  6  7  8  9
+                             value
+
+    It can also take odd values, but two middle values will have the same weight.
+     */
+    static Map<Integer, Double> createWeightedMap(Map<Integer, Double> map, int max) {
+        double average = max / 2.0;
+        double averageDown = Math.floor(average);
+        double averageUp = Math.ceil(average);
+        double counter = max - averageDown;
+        double contraCounter = max;
+
+        boolean switchUp = false;
+
+        double isOdd = max % 2;
+        double isEven = isOdd;
+        if (isOdd == 0)
+            isOdd = 1.0;
+        else
+            isOdd = 0.0;
+
+
+        for (int i = 1; i <= max; i++) {
+            if (i == averageUp) {
+                map.put(i, averageUp);
+                switchUp = true;
+                counter = 0;
+            }
+            else if (i == counter - averageDown + isOdd && !switchUp)
+                map.put(i, max - contraCounter + 1.0);
+            else if (i == counter + averageDown + isEven && switchUp)
+                map.put(i, max - (max - contraCounter));
+            counter++;
+            contraCounter--;
+        }
+    return map;
+    }
 }
