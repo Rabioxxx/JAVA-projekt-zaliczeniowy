@@ -18,7 +18,8 @@ public class Market {
         ArrayList<Car> cars = new ArrayList<>();
 
         for (int i = 0; i < number; i++) {
-            Brand brandRandom = Brand.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
+            //Brand brandRandom = Brand.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
+            Brand brandRandom = Brand.VOLKSWAGEN;
             Model brandModelRandom = brandRandom.randomModel(); // Now we take from brand variable (E.g. MERCEDES) a random model specific to a brand (E.g. CLASSC).
             Segment segment = brandModelRandom.getSegment();
 
@@ -32,9 +33,18 @@ public class Market {
             // For now I am manually weighting it, can't find better solution for now.
             Map<Integer, Double> map = new HashMap<>();
 
-            map.put(5, 2.0); map.put(6, 4.0); map.put(7, 8.0); map.put(8, 11.0);
-            map.put(9, 12.0); map.put(10, 12.0); map.put(11, 12.0); map.put(12, 8.0);
-            map.put(13, 3.0); map.put(14, 2.0); map.put(15, 2.0); map.put(16, 1.0);
+            map.put(5, 2.0);
+            map.put(6, 4.0);
+            map.put(7, 8.0);
+            map.put(8, 11.0);
+            map.put(9, 12.0);
+            map.put(10, 12.0);
+            map.put(11, 12.0);
+            map.put(12, 8.0);
+            map.put(13, 3.0);
+            map.put(14, 2.0);
+            map.put(15, 2.0);
+            map.put(16, 1.0);
 
 
             int ageMin = 5;
@@ -96,12 +106,14 @@ public class Market {
 
             // Based on segment we take randomize a car value.
             if (segment == Segment.BUDGET) {
-                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.8, 1.1)) * 1000;
+                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else if (segment == Segment.STANDARD) {
                 valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else { // else means Segment.PREMIUM in that case
                 valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.95, 1.3)) * 1000;
             }
+
+            valueRandom = ageToValue(ageMin, ageRandom, valueRandom);
 
             Color colorRandom = Color.getRandomColor();
 
@@ -111,4 +123,27 @@ public class Market {
         }
         setCars(cars);
     }
+
+    // This method simulate losing value of a car with age.
+    private Double ageToValue(Integer ageMin, Integer age, Double value) {
+        if (age != ageMin) {
+            for (int k = 0; k < age - ageMin; k++) {
+                if (value >= 200000.0)
+                    value -= 10000.0;
+                else if (value >= 130000.0)
+                    value -= 20000.0;
+                else if (value >= 100000.0)
+                    value -= 15000.0;
+                else if (value >= 25000.0)
+                    value -= 10000.0;
+                else if (value >= 15000.0)
+                    value -= 5000.0;
+                else if (value >= 5000.0)
+                    value -= 2500.0;
+                else break;
+            }
+        }
+        return value;
+    }
 }
+
