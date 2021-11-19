@@ -32,9 +32,15 @@ public class Market {
             // For now I am manually weighting it, can't find better solution for now.
             Map<Integer, Double> map = new HashMap<>();
 
-            int ageMin = 6;
-            int ageMax = 20;
+            map.put(5, 2.0); map.put(6, 4.0); map.put(7, 8.0); map.put(8, 11.0);
+            map.put(9, 12.0); map.put(10, 12.0); map.put(11, 12.0); map.put(12, 8.0);
+            map.put(13, 3.0); map.put(14, 2.0); map.put(15, 2.0); map.put(16, 1.0);
 
+
+            int ageMin = 5;
+            int ageMax = 16;
+
+            /*
             for (int j = ageMin; j <= ageMax; j++) {
                 if (j >= 9 && j <= 11)
                     map.put(j, 14.0);
@@ -51,15 +57,16 @@ public class Market {
                 else
                     map.put(j, 1.0);
             }
+            */
             Integer ageRandom = Helper.getWeightedRandom(map);
-            map.clear(); // Clears everything inside map, just to be sure.
+            map.clear(); // Clears everything inside map.
 
             // TODO #015
             // Randomizing mileage in between (exclusive both values) distMin and distMax.
             // This code below simply means something like "it is possible to
             // make between 6 and 16 thousands kilometers in a year" with weighting values
             // to more like 8 - 12 k kms a year. After that I multiply it by age of car.
-            int distMin = 6;
+            int distMin = 5;
             int distMax = 16;
 
             for (int k = distMin; k <= distMax; k++) {
