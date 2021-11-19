@@ -7,7 +7,7 @@ import java.util.List;
 public enum Model {
     //BMW models 15009
     SERIES3(        "Series 3",         3866,   100,     Segment.STANDARD), // standard! 100k
-    SERIES5(        "Series 5",         3272,   135,     Segment.PREMIUM), // Premium 135k
+    SERIES5(        "Series 5",         3272,   120,     Segment.PREMIUM), // Premium 135k
     SERIES1(        "Series 1",         1377,   70,      Segment.STANDARD), // Standard 70k
     X3(             "X3",               1224,   100,     Segment.PREMIUM), // premium! 100k
     X5(             "X5",               926,    170,     Segment.PREMIUM), // Premium 170k
@@ -79,7 +79,7 @@ public enum Model {
     ARTEON(         "Arteon",           301,    150,     Segment.PREMIUM), // premium 2017 150k
     UP(             "up!",              280,    30,      Segment.BUDGET), // budget 30-35k electric
     TRANSPORTER(    "Transporter",      279,    55,      Segment.BUDGET), // budget 55k
-    JETTA(          "Jetta",            266,    45,      Segment.BUDGET), // budget 45k
+    JETTA(          "Jetta",            266,    55,      Segment.STANDARD), // budget 45k
     TOUAREG(        "Touareg",          248,    90,      Segment.STANDARD), // standard 80-100k
     MULTIVAN(       "Multivan",         237,    140,     Segment.PREMIUM), // Premium. van, so cargo? 140k
     TCROSS(         "T-Cross",          223,    50,      Segment.BUDGET), // budget 2019 100k, so I will give it 50 for 2015.
@@ -93,8 +93,8 @@ public enum Model {
 
     //Ford models 12785
     FOCUS(          "Focus",            2712,   60,      Segment.STANDARD), // Standard 60k
-    MONDEO(         "Mondeo",           2340,   70,      Segment.STANDARD), // standard 70k
-    FIESTA(         "Fiesta",           1481,   37,      Segment.BUDGET), // budget 37k
+    MONDEO(         "Mondeo",           2340,   65,      Segment.STANDARD), // standard 70k
+    FIESTA(         "Fiesta",           1481,   60,      Segment.STANDARD), // budget 37k
     KUGA(           "Kuga",             1137,   70,      Segment.STANDARD), // Standard 70k
     SMAX(           "S-MAX",            941,    60,      Segment.STANDARD), // Standard 60k
     CMAX(           "C-MAX",            654,    45,      Segment.BUDGET), // budget 45k
