@@ -110,7 +110,7 @@ public class Market {
             } else if (segment == Segment.STANDARD) {
                 valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else { // else means Segment.PREMIUM in that case
-                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.95, 1.3)) * 1000;
+                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.95, 1.2)) * 1000;
             }
 
             valueRandom = ageToValue(ageMin, ageRandom, valueRandom);
