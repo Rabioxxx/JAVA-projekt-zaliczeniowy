@@ -40,7 +40,7 @@ public class Main {
 
             //Debugging purposes.
             player.setCash(50000.0);
-            System.out.println("Your cash is set! It is now: " + Helper.roundMoney(player.getCash()));
+            System.out.println("Your cash is set! It is now: " + Helper.moneyPretty(player.getCash()));
 
             market.carsGenerator(20);
             System.out.println("Cars available to buy - ready!");
@@ -96,7 +96,7 @@ public class Main {
                     }
                     case 'e' -> {
                         System.out.println(input + " clicked.\n");
-                        System.out.println("You have $" + Helper.roundMoney(player.getCash()) + ".");
+                        System.out.println("You have $" + Helper.moneyPretty(player.getCash()) + ".");
                         char input;
                         do {
                             System.out.println("Do you want to check your last transactions? (y/n)");
