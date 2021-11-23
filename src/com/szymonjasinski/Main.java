@@ -76,7 +76,7 @@ public class Main {
                         // TODO #014 - Restricting loops.
                         int i = 97; // 97 represents lowercase a.
                         for (Car car : cars) {
-                            System.out.println((char)i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
+                            System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
                             i++;
                         }
                     }
@@ -96,7 +96,7 @@ public class Main {
                     }
                     case 'e' -> {
                         System.out.println(input + " clicked.\n");
-                        System.out.println("You have $\040" + Helper.roundMoney(player.getCash()) + ".");
+                        System.out.println("You have $" + Helper.roundMoney(player.getCash()) + ".");
                         char input;
                         do {
                             System.out.println("Do you want to check your last transactions? (y/n)");
@@ -109,7 +109,8 @@ public class Main {
                             }
                         } while (input != 'y' && input != 'n');
                     }
-                    case 'f' -> {}
+                    case 'f' -> {
+                    }
                     default -> System.out.println(">:(");
                 }
                 // TODO #005 while input == something
