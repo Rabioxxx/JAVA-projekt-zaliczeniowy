@@ -56,7 +56,8 @@ public class Main {
                                 b - show cars you own.
                                 c - show clients.
                                 d - check marketing options.
-                                e - check yours bank account.""");
+                                e - check yours bank account.
+                                f - exit game.""");
 
                 input = scanner.next().charAt(0);
 
@@ -108,10 +109,11 @@ public class Main {
                             }
                         } while (input != 'y' && input != 'n');
                     }
+                    case 'f' -> {}
                     default -> System.out.println(">:(");
                 }
                 // TODO #005 while input == something
-            } while (true);
+            } while (input != 'f');
         }
     }
 }
