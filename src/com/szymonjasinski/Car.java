@@ -5,8 +5,22 @@ public class Car {
     private String model;
     private Integer age;
     private Double mileage;
-    private Double value;
+    private Double value; // of fully repaired car
     private Color color;
+
+    /*
+    Every car is build out of these things below.
+
+    Engine          is 35% of its value.
+    Transmission    is 25% of its value.
+    Body            is 15% of its value.
+    Suspension      is 10% of its value.
+    Brakes          is 5% of its value.
+                       90% of total value.
+
+    10% that left is added by a car itself, as it works, was built, all parts were connected yada yada.
+     */
+
     private Boolean engine;
     private Boolean body;
     private Boolean transmission;
