@@ -11,11 +11,11 @@ public class Car {
     /*
     Every car is build out of these things below.
 
-    Engine          is 35% of its value.
+    Engine          is 30% of its value.
     Transmission    is 25% of its value.
-    Body            is 15% of its value.
-    Suspension      is 10% of its value.
-    Brakes          is 5% of its value.
+    Body            is 25% of its value.
+    Suspension      is 8% of its value.
+    Brakes          is 2% of its value.
                        90% of total value.
 
     10% that left is added by a car itself, as it works, was built, all parts were connected yada yada.
