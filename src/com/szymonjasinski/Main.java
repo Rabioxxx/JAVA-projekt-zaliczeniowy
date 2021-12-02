@@ -46,7 +46,6 @@ public class Main {
             System.out.println("Cars available to buy - ready!");
 
             do {
-
                 System.out.println(
                         """
                                                             
@@ -64,21 +63,38 @@ public class Main {
                 // TODO #001
                 switch (input) {
                     case 'a' -> {
-                        System.out.println(input + " clicked.\n");
+                        char input2;
+                        do {
+                            System.out.println(input + " clicked.\n");
 
-                        // get ArrayList of cars and then printing all cars in this Array to console. What exactly is printed is defined with toString().
-                        ArrayList<Car> cars = market.getCars();
+                            // get ArrayList of cars and then printing all cars in this Array to console. What exactly is printed is defined with toString().
+                            ArrayList<Car> cars = market.getCars();
 
-                        // It is a lambda expression.
-                        // Honestly don't know how does that works, but it sorts cars by String producer and String Model.
-                        cars.sort(Comparator.comparing(Car::getProducer).thenComparing(Car::getModel));
+                            // It is a lambda expression.
+                            // Honestly don't know how does that works, but it sorts cars by String producer and String Model.
+                            cars.sort(Comparator.comparing(Car::getProducer).thenComparing(Car::getModel));
 
-                        // TODO #014 - Restricting loops.
-                        int i = 97; // 97 represents lowercase a.
-                        for (Car car : cars) {
-                            System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
-                            i++;
-                        }
+                            // TODO #014 - Restricting loops.
+                            int i = 97; // 97 represents lowercase a.
+                            for (Car car : cars) {
+                                System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
+                                i++;
+                            }
+
+
+                            System.out.println("\nChoose a car or get back (x).");
+
+                            input2 = scanner.next().charAt(0);
+
+                            switch (input2) {
+                                case 'x' -> System.out.println(input2 + " clicked.\n");
+                                case 'a' -> {
+                                    Car car = cars.get(0);
+                                    System.out.println(car);
+                                }
+                            }
+
+                        } while (input2 != 'x');
                     }
                     case 'b' -> {
                         System.out.println(input + " clicked.\n");
