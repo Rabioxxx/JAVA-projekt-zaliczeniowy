@@ -113,6 +113,6 @@ public class Car {
 
     @Override
     public String toString() {
-            return producer + " " + model + " $" + Helper.roundMoney(value) + "\nAge = " + age + "\nMileage = " + Helper.roundMileage(mileage) + "\nPainted " + color.getName() + "\n";
+            return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n$" + Helper.moneyPretty(price);
     }
 }
