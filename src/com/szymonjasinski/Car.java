@@ -23,8 +23,8 @@ public class Car {
      */
 
     private Boolean engine;
-    private Boolean body;
     private Boolean transmission;
+    private Boolean body;
     private Boolean suspension;
     private Boolean brakes;
 
@@ -66,12 +66,12 @@ public class Car {
         return engine;
     }
 
-    public Boolean getBody() {
-        return body;
-    }
-
     public Boolean getTransmission() {
         return transmission;
+    }
+
+    public Boolean getBody() {
+        return body;
     }
 
     public Boolean getSuspension() {
@@ -86,12 +86,12 @@ public class Car {
         this.engine = engine;
     }
 
-    public void setBody(Boolean body) {
-        this.body = body;
-    }
-
     public void setTransmission(Boolean transmission) {
         this.transmission = transmission;
+    }
+
+    public void setBody(Boolean body) {
+        this.body = body;
     }
 
     public void setSuspension(Boolean suspension) {
