@@ -102,6 +102,14 @@ public class Car {
         this.brakes = brakes;
     }
 
+    public void setParts(Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes){
+        setEngine(engine);
+        setTransmission(transmission);
+        setBody(body);
+        setSuspension(suspension);
+        setBrakes(brakes);
+    }
+
     @Override
     public String toString() {
             return producer + " " + model + " $" + Helper.roundMoney(value) + "\nAge = " + age + "\nMileage = " + Helper.roundMileage(mileage) + "\nPainted " + color.getName() + "\n";
