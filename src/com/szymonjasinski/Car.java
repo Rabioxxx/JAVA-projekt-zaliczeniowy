@@ -29,13 +29,14 @@ public class Car {
     private Boolean brakes;
 
 
-    public Car(String producer, String model, Integer age, Double mileage, Double value, Color color) {
+    public Car(String producer, String model, Integer age, Double mileage, Double value, Double price, Color color) {
         if (age >= 0 && mileage >= 0) {
             this.producer = producer;
             this.model = model;
             this.age = age;
             this.mileage = mileage;
             this.value = value;
+            this.price = price;
             this.color = color;
         } else {
             System.out.println("ERROR/. This car cannot have a negative value of age and/or mileage.");
