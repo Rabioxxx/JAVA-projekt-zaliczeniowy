@@ -6,6 +6,7 @@ public class Car {
     private Integer age;
     private Double mileage;
     private Double value; // of fully repaired car
+    private Double price; // price of this specific car
     private Color color;
 
     /*
@@ -59,6 +60,46 @@ public class Car {
 
     public Double getValue() {
         return value;
+    }
+
+    public Boolean getEngine() {
+        return engine;
+    }
+
+    public Boolean getBody() {
+        return body;
+    }
+
+    public Boolean getTransmission() {
+        return transmission;
+    }
+
+    public Boolean getSuspension() {
+        return suspension;
+    }
+
+    public Boolean getBrakes() {
+        return brakes;
+    }
+
+    public void setEngine(Boolean engine) {
+        this.engine = engine;
+    }
+
+    public void setBody(Boolean body) {
+        this.body = body;
+    }
+
+    public void setTransmission(Boolean transmission) {
+        this.transmission = transmission;
+    }
+
+    public void setSuspension(Boolean suspension) {
+        this.suspension = suspension;
+    }
+
+    public void setBrakes(Boolean brakes) {
+        this.brakes = brakes;
     }
 
     @Override
