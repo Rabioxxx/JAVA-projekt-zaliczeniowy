@@ -114,7 +114,7 @@ public class Market {
                 priceRandom = Math.ceil(defaultPrice * Helper.RNG.nextDouble(0.95, 1.2)) * 1000;
             }
 
-            priceRandom = ageToValue(ageMin, ageRandom, priceRandom);
+            Double valueRandom = ageToValue(ageMin, ageRandom, priceRandom); // value of this car at current age.
 
             // TODO #016 Randomizing parts of a car.
             Boolean engine;
@@ -129,11 +129,11 @@ public class Market {
             suspension = Helper.RNG.nextBoolean();
             brakes = Helper.RNG.nextBoolean();
 
-            Double valueRandom = priceRandom;
-
             Color colorRandom = Color.getRandomColor();
 
             Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, valueRandom, colorRandom);
+
+            carRandom.setParts(engine, transmission, body, suspension, brakes);
 
             cars.add(carRandom);
         }
