@@ -26,7 +26,7 @@ public class Market {
             String brandName = brandRandom.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
             String modelName = brandModelRandom.getName(); // Taking model name as String. E.g. "Class C".
 
-            Integer defaultPrice = brandModelRandom.getPrice();
+            Integer defaultValue = brandModelRandom.getValue();
 
             // TODO #007, #015
             // Randomizing age in between (exclusive) ageMin and ageMax values.
@@ -102,21 +102,21 @@ public class Market {
             Double mileageRandom = ageRandom * (double) traveledDist * 1000.0 + randomN;
 
             // TODO #010
-            double priceRandom;
+            Double value;
 
-            // Based on segment we take randomize a car value.
-            // Taking price of a car and multiplying it by some multiplier. After that 'converting' it to thousands.
+            // Real, objective value of a car.
+            // Based on a segment we are randomizing car value a little.
+            // Taking value of a car and multiplying it by some multiplier. After that 'converting' it to thousands.
             if (segment == Segment.BUDGET) {
-                priceRandom = Math.ceil(defaultPrice * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
+                value = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else if (segment == Segment.STANDARD) {
-                priceRandom = Math.ceil(defaultPrice * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
+                value = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else { // else means Segment.PREMIUM in that case
-                priceRandom = Math.ceil(defaultPrice * Helper.RNG.nextDouble(0.95, 1.2)) * 1000;
+                value = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.95, 1.2)) * 1000;
             }
 
-            Double valueRandom = ageToValue(ageMin, ageRandom, priceRandom); // value of this car at current age.
+            value = ageToValue(ageMin, ageRandom, value); // value of this car at current age.
 
-            // TODO #016 Randomizing parts of a car.
             Boolean engine;
             Boolean transmission;
             Boolean body;
@@ -129,9 +129,42 @@ public class Market {
             suspension = Helper.RNG.nextBoolean();
             brakes = Helper.RNG.nextBoolean();
 
+            // TODO #017 Randomizing price of a car based on parts it has to repair.
+            Double price;
+
+            // Subjective price of a car.
+            // Based on a segment we are randomizing car value a little.
+            // Taking value of a car and multiplying it by some multiplier we get a price that seller want to get for it.
+            if (segment == Segment.BUDGET) {
+                price = Math.ceil(value * Helper.RNG.nextDouble(0.9, 1.1));
+            } else if (segment == Segment.STANDARD) {
+                price = Math.ceil(value * Helper.RNG.nextDouble(0.9, 1.1));
+            } else { // else means Segment.PREMIUM in that case
+                price = Math.ceil(value * Helper.RNG.nextDouble(0.95, 1.2));
+            }
+
+            Double enginePrice = price * 0.3;
+            Double transmissionPrice = price * 0.25;
+            Double bodyPrice = price * 0.25;
+            Double suspensionPrice = price * 0.08;
+            Double brakesPrice = price * 0.02;
+
+            if (!engine)
+                price -= enginePrice;
+            else if(!transmission)
+                price -= transmissionPrice;
+            else if (!body)
+                price -= bodyPrice;
+            else if (!suspension)
+                price -= suspensionPrice;
+            else if (!brakes)
+                price -= brakesPrice;
+            else
+                System.out.println("Perfect car!");
+
             Color colorRandom = Color.getRandomColor();
 
-            Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, valueRandom, colorRandom);
+            Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, value, price, colorRandom);
 
             carRandom.setParts(engine, transmission, body, suspension, brakes);
 
