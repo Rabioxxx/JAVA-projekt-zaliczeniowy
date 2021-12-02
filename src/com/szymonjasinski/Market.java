@@ -19,14 +19,14 @@ public class Market {
 
         for (int i = 0; i < number; i++) {
             //Brand brandRandom = Brand.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
-            Brand brandRandom = Brand.VOLKSWAGEN;
+            Brand brandRandom = Brand.randomBrand();
             Model brandModelRandom = brandRandom.randomModel(); // Now we take from brand variable (E.g. MERCEDES) a random model specific to a brand (E.g. CLASSC).
             Segment segment = brandModelRandom.getSegment();
 
             String brandName = brandRandom.getName(); // Now we get name of the brand. If it is e.g. MERCEDES it will give us "Mercedes-Benz".
             String modelName = brandModelRandom.getName(); // Taking model name as String. E.g. "Class C".
 
-            Integer price = brandModelRandom.getPrice();
+            Integer defaultPrice = brandModelRandom.getPrice();
 
             // TODO #007, #015
             // Randomizing age in between (exclusive) ageMin and ageMax values.
@@ -102,18 +102,34 @@ public class Market {
             Double mileageRandom = ageRandom * (double) traveledDist * 1000.0 + randomN;
 
             // TODO #010
-            double valueRandom;
+            double priceRandom;
 
             // Based on segment we take randomize a car value.
+            // Taking price of a car and multiplying it by some multiplier. After that 'converting' it to thousands.
             if (segment == Segment.BUDGET) {
-                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
+                priceRandom = Math.ceil(defaultPrice * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else if (segment == Segment.STANDARD) {
-                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
+                priceRandom = Math.ceil(defaultPrice * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else { // else means Segment.PREMIUM in that case
-                valueRandom = Math.ceil(price * Helper.RNG.nextDouble(0.95, 1.2)) * 1000;
+                priceRandom = Math.ceil(defaultPrice * Helper.RNG.nextDouble(0.95, 1.2)) * 1000;
             }
 
-            valueRandom = ageToValue(ageMin, ageRandom, valueRandom);
+            priceRandom = ageToValue(ageMin, ageRandom, priceRandom);
+
+            // TODO #016 Randomizing parts of a car.
+            Boolean engine;
+            Boolean transmission;
+            Boolean body;
+            Boolean suspension;
+            Boolean brakes;
+
+            engine = Helper.RNG.nextBoolean();
+            transmission = Helper.RNG.nextBoolean();
+            body = Helper.RNG.nextBoolean();
+            suspension = Helper.RNG.nextBoolean();
+            brakes = Helper.RNG.nextBoolean();
+
+            Double valueRandom = priceRandom;
 
             Color colorRandom = Color.getRandomColor();
 
