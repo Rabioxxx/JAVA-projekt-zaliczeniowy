@@ -64,9 +64,10 @@ public class Main {
                 switch (input) {
                     case 'a' -> {
                         char input2;
-                        do {
-                            System.out.println(input + " clicked.\n");
 
+                        System.out.println(input + " clicked.\n");
+
+                        do {
                             // get ArrayList of cars and then printing all cars in this Array to console. What exactly is printed is defined with toString().
                             ArrayList<Car> cars = market.getCars();
 
@@ -82,15 +83,29 @@ public class Main {
                             }
 
 
-                            System.out.println("\nChoose a car or get back (x).");
+                            System.out.println("\nChoose a car or get back (z).");
 
                             input2 = scanner.next().charAt(0);
+
+                            if (input2 >= 97 && input2 <= 121) {
+
+                            } else if (input2 == 122) {
+
+                            }
 
                             switch (input2) {
                                 case 'x' -> System.out.println(input2 + " clicked.\n");
                                 case 'a' -> {
-                                    Car car = cars.get(0);
+                                    System.out.println(input2 + " clicked.\n");
+                                    Car car = cars.get(input2);
                                     System.out.println(car);
+
+                                    char trashInput;
+                                    System.out.println("Press x to continue.");
+                                    do {
+                                        trashInput = scanner.next().charAt(0);
+                                        System.out.println(trashInput + " clicked.\n");
+                                    } while (trashInput != 'x');
                                 }
                             }
 
