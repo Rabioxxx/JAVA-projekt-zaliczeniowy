@@ -123,7 +123,7 @@ public enum Model {
     
     private final String name;
     private final Integer commonness;
-    private final Integer price; // IN THOUSANDS!
+    private final Integer value; // IN THOUSANDS!
     private final Segment segment;
 
     // Creating new list of Model with all the values from enum Model.
@@ -132,10 +132,10 @@ public enum Model {
     //Now we check size of the list above.
     private static final int SIZE = MODEL_LIST.size();
 
-    Model(String name, Integer commonness, Integer price, Segment segment) {
+    Model(String name, Integer commonness, Integer value, Segment segment) {
         this.name = name;
         this.commonness = commonness;
-        this.price = price;
+        this.value = value;
         this.segment = segment;
     }
 
@@ -147,8 +147,8 @@ public enum Model {
         return commonness;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Integer getValue() {
+        return value;
     }
 
     public Segment getSegment() {
