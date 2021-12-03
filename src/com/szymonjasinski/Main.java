@@ -42,7 +42,7 @@ public class Main {
             player.setCash(50000.0);
             System.out.println("Your cash is set! It is now: " + Helper.moneyPretty(player.getCash()));
 
-            market.carsGenerator(20);
+            market.carsGenerator(21);
             System.out.println("Cars available to buy - ready!");
 
             do {
@@ -63,7 +63,7 @@ public class Main {
                 // TODO #001
                 switch (input) {
                     case 'a' -> {
-                        char input2;
+                        char input2 = 97;
 
                         System.out.println(input + " clicked.\n");
 
@@ -76,38 +76,79 @@ public class Main {
                             cars.sort(Comparator.comparing(Car::getProducer).thenComparing(Car::getModel));
 
                             // TODO #014 - Restricting loops.
-                            int i = 97; // 97 represents lowercase a.
-                            for (Car car : cars) {
-                                System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
-                                i++;
-                            }
+                            int i; // it is here to make this first letter that shows what will happen when you click it.
+                            int carsOnScreen = 10;
+                            int offset = 0;
+                            int max = Math.min(carsOnScreen, cars.size());
+                            int amountSites = (int) Math.ceil(cars.size() / (double) carsOnScreen);
+                            int check = cars.size() % carsOnScreen;
+                            int currentSite = 1;
 
+                            do {
+                                i = 97; // 97 represents lowercase a.
+                                for (int j = 0 + offset; j < max + offset; j++) {
+                                    Car car = cars.get(j);
+                                    System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
+                                    i++;
 
-                            System.out.println("\nChoose a car or get back (z).");
+                                    if (i >= 97 + carsOnScreen) {
+                                        System.out.println("Site " + currentSite + "/" + amountSites);
+                                        System.out.println("Choose a car, go to next site (>) or get back (x).");
+
+                                        input2 = scanner.next().charAt(0);
+                                        System.out.println(input2 + " clicked.\n");
+
+                                        if (input2 == 60) {
+                                            offset -= carsOnScreen;
+                                            currentSite -= 1;
+                                            break;
+                                        } else if (input2 == 62) { // 62 is '>' and 60 is '<'
+                                            offset += carsOnScreen;
+                                            currentSite += 1;
+                                            break;
+                                        } else if (input2 >= 97 && input2 <= 97 + carsOnScreen) {
+
+                                            car = cars.get(input2 - 97 + offset);
+                                            System.out.println(car);
+
+                                            char trashInput;
+                                            System.out.println("\nPress x to continue.");
+
+                                            do {
+                                                trashInput = scanner.next().charAt(0);
+                                                System.out.println(trashInput + " clicked.\n");
+                                                if (trashInput != 'x')
+                                                    System.out.println(">:(");
+                                            } while (trashInput != 'x');
+
+                                        } else
+                                            System.out.println(">:(");
+
+                                    }
+                                }
+
+                                    /* else {
+
+                                        System.out.println("Choose a car or get back (x).");
+
+                                        input2 = scanner.next().charAt(0);
+                                        System.out.println(input2 + " clicked.\n");
+
+                                        // get back to main menu
+
+                                    }*/
+
+                            } while (input2 == 62 || input2 == 60);
+
 
                             input2 = scanner.next().charAt(0);
+                            System.out.println(input2 + " clicked.\n");
 
-                            if (input2 >= 97 && input2 <= 121) {
 
-                            } else if (input2 == 122) {
+                            int maximum = cars.size() + 97;
 
-                            }
-
-                            switch (input2) {
-                                case 'x' -> System.out.println(input2 + " clicked.\n");
-                                case 'a' -> {
-                                    System.out.println(input2 + " clicked.\n");
-                                    Car car = cars.get(input2);
-                                    System.out.println(car);
-
-                                    char trashInput;
-                                    System.out.println("Press x to continue.");
-                                    do {
-                                        trashInput = scanner.next().charAt(0);
-                                        System.out.println(trashInput + " clicked.\n");
-                                    } while (trashInput != 'x');
-                                }
-                            }
+                            if (maximum >= 120) // 120 represents lowercase x.
+                                maximum = 119;
 
                         } while (input2 != 'x');
                     }
@@ -147,5 +188,9 @@ public class Main {
                 // TODO #005 while input == something
             } while (input != 'f');
         }
+    }
+
+    static void functiontest1(){
+
     }
 }
