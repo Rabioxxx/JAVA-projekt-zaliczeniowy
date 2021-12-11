@@ -48,7 +48,7 @@ public class Market {
 
 
             int ageMin = 5;
-            int ageMax = 16;
+            int ageMax = 16; // not used actually but may be in the future
 
             /*
             for (int j = ageMin; j <= ageMax; j++) {
@@ -117,11 +117,11 @@ public class Market {
 
             value = ageToValue(ageMin, ageRandom, value); // value of this car at current age.
 
-            Boolean engine;
-            Boolean transmission;
-            Boolean body;
-            Boolean suspension;
-            Boolean brakes;
+            boolean engine;
+            boolean transmission;
+            boolean body;
+            boolean suspension;
+            boolean brakes;
 
             engine = Helper.RNG.nextBoolean();
             transmission = Helper.RNG.nextBoolean();
@@ -130,7 +130,7 @@ public class Market {
             brakes = Helper.RNG.nextBoolean();
 
             // TODO #017 Randomizing price of a car based on parts it has to repair.
-            Double price;
+            double price;
 
             // Subjective price of a car.
             // Based on a segment we are randomizing car value a little.
@@ -143,11 +143,11 @@ public class Market {
                 price = Math.ceil(value * Helper.RNG.nextDouble(0.95, 1.2));
             }
 
-            Double enginePrice = price * 0.3;
-            Double transmissionPrice = price * 0.25;
-            Double bodyPrice = price * 0.25;
-            Double suspensionPrice = price * 0.08;
-            Double brakesPrice = price * 0.02;
+            double enginePrice = price * 0.3;
+            double transmissionPrice = price * 0.25;
+            double bodyPrice = price * 0.25;
+            double suspensionPrice = price * 0.08;
+            double brakesPrice = price * 0.02;
 
             if (!engine)
                 price -= enginePrice;
