@@ -5,7 +5,7 @@ public class Car {
     private String model;
     private Integer age;
     private Double mileage;
-    private Double value; // of fully repaired car
+    private Double value; // of fully repaired car, should be hidden from player I guess.
     private Double price; // price of this specific car
     private Color color;
 
