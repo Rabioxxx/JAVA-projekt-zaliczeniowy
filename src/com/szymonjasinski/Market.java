@@ -151,13 +151,13 @@ public class Market {
 
             if (!engine)
                 price -= enginePrice;
-            else if(!transmission)
+            if (!transmission)
                 price -= transmissionPrice;
-            else if (!body)
+            if (!body)
                 price -= bodyPrice;
-            else if (!suspension)
+            if (!suspension)
                 price -= suspensionPrice;
-            else if (!brakes)
+            if (!brakes)
                 price -= brakesPrice;
             /*
                 // debugging purposes.
