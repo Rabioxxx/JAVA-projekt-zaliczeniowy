@@ -160,6 +160,9 @@ public class Main {
                             System.out.println("You have no cars in your parking lot.");
                         }
                     }
+                    case 'c' -> {
+
+                    }
                     case 'e' -> {
                         System.out.println(input + " clicked.\n");
                         System.out.println("You have $" + Helper.moneyPretty(player.getCash()) + ".");
