@@ -135,12 +135,16 @@ public class Market {
             // Subjective price of a car.
             // Based on a segment we are randomizing car value a little.
             // Taking value of a car and multiplying it by some multiplier we get a price that seller want to get for it.
+            int roundingTo = 100;
+            if (value > 30000)
+                roundingTo = 1000;
+
             if (segment == Segment.BUDGET) {
-                price = Math.ceil(value * Helper.RNG.nextDouble(0.9, 1.1));
+                price = Math.ceil(value / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
             } else if (segment == Segment.STANDARD) {
-                price = Math.ceil(value * Helper.RNG.nextDouble(0.9, 1.1));
+                price = Math.ceil(value / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
             } else { // else means Segment.PREMIUM in that case
-                price = Math.ceil(value * Helper.RNG.nextDouble(0.95, 1.2));
+                price = Math.ceil(value / roundingTo * Helper.RNG.nextDouble(0.95, 1.2)) * roundingTo;
             }
 
             double enginePrice = price * 0.3;
