@@ -42,7 +42,7 @@ public class Main {
             player.setCash(50000.0);
             System.out.println("Your cash is set! It is now: " + Helper.moneyPretty(player.getCash()));
 
-            market.carsGenerator(8);
+            market.carsGenerator(15);
             System.out.println("Cars available to buy - ready!");
 
             do {
@@ -92,7 +92,7 @@ public class Main {
                                     System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
                                     i++;
 
-                                    if (i >= 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.
+                                    if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.
                                         System.out.println("Site " + currentSite + "/" + totalSites);
 
                                         if (currentSite == 1 && currentSite == totalSites) {
@@ -121,7 +121,7 @@ public class Main {
                                             }
                                             currentSite += 1;
                                             break;
-                                        } else if (input2 >= 97 && input2 <= 97 + carsToPrint - lastPageCorrection) {
+                                        } else if (input2 >= 97 && input2 < 97 + max - lastPageCorrection) {
 
                                             car = cars.get(input2 - 97 + offset);
                                             System.out.println(car);
@@ -142,7 +142,7 @@ public class Main {
                                         }
                                     }
                                 }
-                            } while (input2 == 62 || input2 == 60 || (input2 >= 97 && input2 <= 97 + carsToPrint)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
+                            } while (input2 == 62 || input2 == 60 || (input2 >= 97 && input2 <= 97 + max)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
                         } while (input2 != 'x');
                     }
                     case 'b' -> {
