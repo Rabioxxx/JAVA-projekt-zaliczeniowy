@@ -84,26 +84,31 @@ public class Car {
     }
 
     public void setEngine(Boolean engine) {
-        this.engine = engine;
+        if (engine != null)
+            this.engine = engine;
     }
 
     public void setTransmission(Boolean transmission) {
+        if (transmission != null)
         this.transmission = transmission;
     }
 
     public void setBody(Boolean body) {
+        if (body != null)
         this.body = body;
     }
 
     public void setSuspension(Boolean suspension) {
+        if (suspension != null)
         this.suspension = suspension;
     }
 
     public void setBrakes(Boolean brakes) {
+        if (brakes != null)
         this.brakes = brakes;
     }
 
-    public void setParts(Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes){
+    public void setParts(Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes) {
         setEngine(engine);
         setTransmission(transmission);
         setBody(body);
@@ -113,6 +118,6 @@ public class Car {
 
     @Override
     public String toString() {
-            return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n$" + Helper.moneyPretty(price);
+        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n$" + Helper.moneyPretty(price);
     }
 }
