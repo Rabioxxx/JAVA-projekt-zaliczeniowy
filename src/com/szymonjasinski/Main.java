@@ -95,6 +95,7 @@ public class Main {
                                     if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.
                                         System.out.println("Site " + currentSite + "/" + totalSites);
 
+                                        // Which message will be displayed depends on current site (first, last, first and last at the same time).
                                         if (currentSite == 1 && currentSite == totalSites) {
                                             System.out.println("Choose a car or get back (x).");
                                         } else if (currentSite == 1)
