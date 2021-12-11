@@ -183,8 +183,4 @@ public class Main {
             } while (input != 'f');
         }
     }
-
-    static void functiontest1() {
-
-    }
 }
