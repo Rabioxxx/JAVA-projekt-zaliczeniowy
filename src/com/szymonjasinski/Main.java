@@ -87,7 +87,7 @@ public class Main {
 
                             do {
                                 i = 97; // 97 represents lowercase a.
-                                for (int j = 0 + offset; j < max + offset - lastPageCorrection; j++) {
+                                for (int j = offset; j < max + offset - lastPageCorrection; j++) {
                                     Car car = cars.get(j);
                                     System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
                                     i++;
