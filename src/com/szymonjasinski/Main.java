@@ -89,7 +89,7 @@ public class Main {
                                 i = 97; // 97 represents lowercase a.
                                 for (int j = offset; j < max + offset - lastPageCorrection; j++) {
                                     Car car = cars.get(j);
-                                    System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
+                                    System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.moneyPretty(car.getPrice()) + " " + car.getAge());
                                     i++;
 
                                     if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.

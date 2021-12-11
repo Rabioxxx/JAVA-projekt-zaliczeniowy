@@ -63,6 +63,10 @@ public class Car {
         return value;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
     public Boolean getEngine() {
         return engine;
     }
