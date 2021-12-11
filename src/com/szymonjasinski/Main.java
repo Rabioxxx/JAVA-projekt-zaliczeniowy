@@ -42,7 +42,7 @@ public class Main {
             player.setCash(50000.0);
             System.out.println("Your cash is set! It is now: " + Helper.moneyPretty(player.getCash()));
 
-            market.carsGenerator(21);
+            market.carsGenerator(8);
             System.out.println("Cars available to buy - ready!");
 
             do {
@@ -77,36 +77,51 @@ public class Main {
 
                             // TODO #014 - Restricting loops.
                             int i; // it is here to make this first letter that shows what will happen when you click it.
-                            int carsOnScreen = 10;
+                            int carsArraySize = cars.size();
+                            int carsToPrint = 10; // how many rows containing cars names we want to print on one site.
                             int offset = 0;
-                            int max = Math.min(carsOnScreen, cars.size());
-                            int amountSites = (int) Math.ceil(cars.size() / (double) carsOnScreen);
-                            int check = cars.size() % carsOnScreen;
+                            int max = Math.min(carsToPrint, carsArraySize); // takes the lower value of these two which then we are using later as maximum in our for loop. Prevents java.lang.IndexOutOfBoundsException.
+                            int totalSites = (int) Math.ceil(carsArraySize / (double) carsToPrint); // total number of sites.
                             int currentSite = 1;
+                            int lastPageCorrection = 0;
 
                             do {
                                 i = 97; // 97 represents lowercase a.
-                                for (int j = 0 + offset; j < max + offset; j++) {
+                                for (int j = 0 + offset; j < max + offset - lastPageCorrection; j++) {
                                     Car car = cars.get(j);
                                     System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " $" + Helper.roundMoney(car.getValue()) + " " + car.getAge());
                                     i++;
 
-                                    if (i >= 97 + carsOnScreen) {
-                                        System.out.println("Site " + currentSite + "/" + amountSites);
-                                        System.out.println("Choose a car, go to next site (>) or get back (x).");
+                                    if (i >= 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.
+                                        System.out.println("Site " + currentSite + "/" + totalSites);
+
+                                        if (currentSite == 1 && currentSite == totalSites) {
+                                            System.out.println("Choose a car or get back (x).");
+                                        } else if (currentSite == 1)
+                                            System.out.println("Choose a car, go to next site (>) or get back (x).");
+                                        else if (currentSite == totalSites)
+                                            System.out.println("Choose a car, go to previous site (<) or get back (x).");
+                                        else
+                                            System.out.println("Choose a car, go to next site (>), previous site (<) or get back (x).");
 
                                         input2 = scanner.next().charAt(0);
                                         System.out.println(input2 + " clicked.\n");
 
-                                        if (input2 == 60) {
-                                            offset -= carsOnScreen;
+                                        if (input2 == 60 && currentSite != 1) { // 60 is '<'
+                                            lastPageCorrection = 0;
+                                            offset -= carsToPrint;
                                             currentSite -= 1;
                                             break;
-                                        } else if (input2 == 62) { // 62 is '>' and 60 is '<'
-                                            offset += carsOnScreen;
+                                        } else if (input2 == 62 && currentSite != totalSites) { // 62 is '>'
+                                            lastPageCorrection = 0;
+                                            offset += carsToPrint;
+                                            // This if is for correction on last page that can contain less than carsArraySize values, so it is to prevent java.lang.IndexOutOfBoundsException.
+                                            if (offset + carsToPrint > carsArraySize) {
+                                                lastPageCorrection = offset + carsToPrint - carsArraySize;
+                                            }
                                             currentSite += 1;
                                             break;
-                                        } else if (input2 >= 97 && input2 <= 97 + carsOnScreen) {
+                                        } else if (input2 >= 97 && input2 <= 97 + carsToPrint - lastPageCorrection) {
 
                                             car = cars.get(input2 - 97 + offset);
                                             System.out.println(car);
@@ -120,36 +135,14 @@ public class Main {
                                                 if (trashInput != 'x')
                                                     System.out.println(">:(");
                                             } while (trashInput != 'x');
-
+                                            break;
+                                        } else if (input2 == 'x') {
+                                            // idk has to leave it empty for now.
                                         } else
                                             System.out.println(">:(");
-
                                     }
                                 }
-
-                                    /* else {
-
-                                        System.out.println("Choose a car or get back (x).");
-
-                                        input2 = scanner.next().charAt(0);
-                                        System.out.println(input2 + " clicked.\n");
-
-                                        // get back to main menu
-
-                                    }*/
-
-                            } while (input2 == 62 || input2 == 60);
-
-
-                            input2 = scanner.next().charAt(0);
-                            System.out.println(input2 + " clicked.\n");
-
-
-                            int maximum = cars.size() + 97;
-
-                            if (maximum >= 120) // 120 represents lowercase x.
-                                maximum = 119;
-
+                            } while (input2 == 62 || input2 == 60 || (input2 >= 97 && input2 <= 97 + carsToPrint)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
                         } while (input2 != 'x');
                     }
                     case 'b' -> {
@@ -190,7 +183,7 @@ public class Main {
         }
     }
 
-    static void functiontest1(){
+    static void functiontest1() {
 
     }
 }
