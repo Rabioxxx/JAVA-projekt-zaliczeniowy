@@ -159,8 +159,12 @@ public class Market {
                 price -= suspensionPrice;
             else if (!brakes)
                 price -= brakesPrice;
+            /*
+                // debugging purposes.
             else
                 System.out.println("Perfect car!");
+
+            */
 
             Color colorRandom = Color.getRandomColor();
 
