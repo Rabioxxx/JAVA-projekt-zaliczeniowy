@@ -136,10 +136,10 @@ public class Main {
                                                     System.out.println(">:(");
                                             } while (trashInput != 'x');
                                             break;
-                                        } else if (input2 == 'x') {
-                                            // idk has to leave it empty for now.
-                                        } else
-                                            System.out.println(">:(");
+                                        } else {
+                                            if (input2 != 'x') // simply because when I was clicking to get back my own program gave me a heckin' angry face. >:( god damn it. But now its fixed smileyFace.
+                                                System.out.println(">:(");
+                                        }
                                     }
                                 }
                             } while (input2 == 62 || input2 == 60 || (input2 >= 97 && input2 <= 97 + carsToPrint)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
