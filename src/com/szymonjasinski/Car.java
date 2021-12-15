@@ -170,6 +170,28 @@ public class Car {
         else System.out.println("Trying to assign negative repair price to this part.");
     }
 
+    public String getShape() {
+        String shape = "excellent shape";
+
+        // If everything is broken then it is ruined (brakes can be ok, but it is still a ruin).
+        if (!this.engine && !this.transmission && !this.body && !this.suspension)
+            shape = "ruined";
+        // If 2 expensive parts are broken
+        else if ((!this.engine && !this.transmission) || (!this.engine && !this.body) || (!this.transmission && !this.body))
+            shape = "needs lot of work";
+        // If any of the expensive part is broken
+        else if (!this.engine || !this.transmission || !this.body)
+            shape = "need repairs";
+        // If everything is okay...
+        else {
+            // ... but not the sus or brakes.
+            if (!this.suspension || !this.brakes)
+                shape = "good condition";
+        }
+
+        return shape;
+    }
+
     public String getCar() {
         return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(price);
     }
