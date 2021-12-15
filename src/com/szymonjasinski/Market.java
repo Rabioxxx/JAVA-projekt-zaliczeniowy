@@ -123,11 +123,23 @@ public class Market {
             boolean suspension;
             boolean brakes;
 
+            /*
+             * Trying to rework that part a little. I have some ideas.
+             * One of my ideas is to random engine, then assign values to other parts to true if it's broken.
+             */
             engine = Helper.RNG.nextBoolean();
             transmission = Helper.RNG.nextBoolean();
             body = Helper.RNG.nextBoolean();
             suspension = Helper.RNG.nextBoolean();
             brakes = Helper.RNG.nextBoolean();
+
+            // Basically I want to prevent minimize situations where cars have broken engine, transmission and body.
+            if (!engine) {
+                transmission = true;
+                body = true;
+            } else if (!transmission) {
+                engine = Helper.RNG.nextBoolean();
+            }
 
             // TODO #017 Randomizing price of a car based on parts it has to repair.
             double price;
