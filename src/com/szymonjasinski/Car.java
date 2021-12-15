@@ -28,9 +28,15 @@ public class Car {
     private Boolean suspension;
     private Boolean brakes;
 
+    private Double engineRepairPrice;
+    private Double transmissionRepairPrice;
+    private Double bodyRepairPrice;
+    private Double suspensionRepairPrice;
+    private Double brakesRepairPrice;
 
-    public Car(String producer, String model, Integer age, Double mileage, Double value, Double price, Color color) {
-        if (age >= 0 && mileage >= 0) {
+
+    public Car(String producer, String model, Integer age, Double mileage, Double value, Double price, Color color, Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes) {
+        if (age >= 0 && mileage >= 0 && engine != null && transmission != null && body != null && suspension != null && brakes != null) {
             this.producer = producer;
             this.model = model;
             this.age = age;
@@ -38,6 +44,11 @@ public class Car {
             this.value = value;
             this.price = price;
             this.color = color;
+            this.engine = engine;
+            this.transmission = transmission;
+            this.body = body;
+            this.suspension = suspension;
+            this.brakes = brakes;
         } else {
             System.out.println("ERROR/. This car cannot have a negative value of age and/or mileage.");
         }
@@ -83,6 +94,27 @@ public class Car {
         return brakes;
     }
 
+    private String getPartsBlock() {
+        String engine = "need repairs";
+        String transmission = "need repairs";
+        String body = "need repairs";
+        String suspension = "need repairs";
+        String brakes = "need repairs";
+
+        if (getEngine())
+            engine = "works";
+        if (getTransmission())
+            transmission = "works";
+        if (getBody())
+            body = "lookin' good";
+        if (getSuspension())
+            suspension = "works";
+        if (getBrakes())
+            brakes = "works";
+
+        return "Engine: " + engine + "\nTransmission: " + transmission + "\nBody: " + body + "\nSuspension: " + suspension + "\nBrakes: " + brakes;
+    }
+
     public void setEngine(Boolean engine) {
         if (engine != null)
             this.engine = engine;
@@ -90,34 +122,60 @@ public class Car {
 
     public void setTransmission(Boolean transmission) {
         if (transmission != null)
-        this.transmission = transmission;
+            this.transmission = transmission;
     }
 
     public void setBody(Boolean body) {
         if (body != null)
-        this.body = body;
+            this.body = body;
     }
 
     public void setSuspension(Boolean suspension) {
         if (suspension != null)
-        this.suspension = suspension;
+            this.suspension = suspension;
     }
 
     public void setBrakes(Boolean brakes) {
         if (brakes != null)
-        this.brakes = brakes;
+            this.brakes = brakes;
     }
 
-    public void setParts(Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes) {
-        setEngine(engine);
-        setTransmission(transmission);
-        setBody(body);
-        setSuspension(suspension);
-        setBrakes(brakes);
+    public void setEngineRepairPrice(Double engineRepairPrice) {
+        if (engineRepairPrice >= 0)
+            this.engineRepairPrice = engineRepairPrice;
+        else System.out.println("Trying to assign negative repair price to this part.");
+    }
+
+    public void setTransmissionRepairPrice(Double transmissionRepairPrice) {
+        if (transmissionRepairPrice >= 0)
+            this.transmissionRepairPrice = transmissionRepairPrice;
+        else System.out.println("Trying to assign negative repair price to this part.");
+    }
+
+    public void setBodyRepairPrice(Double bodyRepairPrice) {
+        if (bodyRepairPrice >= 0)
+            this.bodyRepairPrice = bodyRepairPrice;
+        else System.out.println("Trying to assign negative repair price to this part.");
+    }
+
+    public void setSuspensionRepairPrice(Double suspensionRepairPrice) {
+        if (suspensionRepairPrice >= 0)
+            this.suspensionRepairPrice = suspensionRepairPrice;
+        else System.out.println("Trying to assign negative repair price to this part.");
+    }
+
+    public void setBrakesRepairPrice(Double brakesRepairPrice) {
+        if (brakesRepairPrice >= 0)
+            this.brakesRepairPrice = brakesRepairPrice;
+        else System.out.println("Trying to assign negative repair price to this part.");
+    }
+
+    public String getCar() {
+        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(price);
     }
 
     @Override
     public String toString() {
-        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n$" + Helper.moneyPretty(price);
+        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + Helper.moneyPretty(price);
     }
 }
