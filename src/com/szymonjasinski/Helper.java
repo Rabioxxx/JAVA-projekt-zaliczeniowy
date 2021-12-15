@@ -10,10 +10,10 @@ public interface Helper {
     // TODO #016
     // Functions for rounding values to specific number of decimal places.
 
-    static String moneyPretty(Double value){
+    static String moneyPretty(Double value) {
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(2, RoundingMode.HALF_UP);
-        return bd.toString();
+        return "$" + bd;
     }
 
     static Double roundMoney(Double value) {
@@ -85,14 +85,13 @@ public interface Helper {
                 map.put(i, averageUp);
                 switchUp = true;
                 counter = 0;
-            }
-            else if (i == counter - averageDown + isOdd && !switchUp)
+            } else if (i == counter - averageDown + isOdd && !switchUp)
                 map.put(i, max - contraCounter + 1.0);
             else if (i == counter + averageDown + isEven && switchUp)
                 map.put(i, max - (max - contraCounter));
             counter++;
             contraCounter--;
         }
-    return map;
+        return map;
     }
 }
