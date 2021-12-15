@@ -125,7 +125,7 @@ public class Main {
                                         } else if (input2 >= 97 && input2 < 97 + max - lastPageCorrection) {
 
                                             car = cars.get(input2 - 97 + offset);
-                                            System.out.println(car);
+                                            System.out.println(car.getCar());
 
                                             char trashInput;
                                             System.out.println("\nPress x to continue.");

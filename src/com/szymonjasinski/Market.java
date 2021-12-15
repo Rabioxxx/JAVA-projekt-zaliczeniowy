@@ -172,9 +172,7 @@ public class Market {
 
             Color colorRandom = Color.getRandomColor();
 
-            Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, value, price, colorRandom);
-
-            carRandom.setParts(engine, transmission, body, suspension, brakes);
+            Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, value, price, colorRandom, engine, transmission, body, suspension, brakes);
 
             cars.add(carRandom);
         }
