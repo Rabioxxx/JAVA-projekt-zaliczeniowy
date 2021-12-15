@@ -174,11 +174,13 @@ public class Car {
         String shape = "excellent shape";
 
         // If everything is broken then it is ruined (brakes can be ok, but it is still a ruin).
-        if (!this.engine && !this.transmission && !this.body && !this.suspension)
-            shape = "ruined";
+        if (!this.engine && !this.transmission && !this.body/* && !this.suspension*/)
+            shape = "ruin";
+        /*
         // If 3 expensive parts are broken
         else if (!this.engine && !this.transmission && !this.body)
             shape = "almost ruined";
+        */
         // If 2 expensive parts are broken
         else if ((!this.engine && !this.transmission) || (!this.engine && !this.body) || (!this.transmission && !this.body))
             shape = "needs lot of work";
