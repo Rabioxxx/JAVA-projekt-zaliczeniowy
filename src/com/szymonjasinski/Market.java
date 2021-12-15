@@ -159,6 +159,16 @@ public class Market {
                 price = Math.ceil(value / roundingTo * Helper.RNG.nextDouble(0.95, 1.2)) * roundingTo;
             }
 
+            /*
+            * This is something like seller subtracting from original price.
+            * Seller wants to get $10k for a car which is worth 11k, but his car has broken transmission.
+            * Okay, so he takes that $10k, subtract $2.5k (10k * 0.25 = 2.5k) and gets his final price, $7.5k
+            * This is what he wants for that car.
+            *
+            * Later when you have that car you will repair it for price that is adequate to car value
+            * (real value! not some random guy price that he wants to get...)
+            *
+            * */
             double enginePrice = price * 0.3;
             double transmissionPrice = price * 0.25;
             double bodyPrice = price * 0.25;
