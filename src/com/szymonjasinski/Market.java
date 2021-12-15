@@ -179,7 +179,6 @@ public class Market {
                 // debugging purposes.
             else
                 System.out.println("Perfect car!");
-
             */
 
             Color colorRandom = Color.getRandomColor();
