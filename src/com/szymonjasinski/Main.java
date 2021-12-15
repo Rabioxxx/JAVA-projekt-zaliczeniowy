@@ -42,7 +42,7 @@ public class Main {
             player.setCash(50000.0);
             System.out.println("Your cash is set! It is now: " + Helper.moneyPretty(player.getCash()));
 
-            market.carsGenerator(15);
+            market.carsGenerator(20);
             System.out.println("Cars available to buy - ready!");
 
             do {
@@ -89,7 +89,7 @@ public class Main {
                                 i = 97; // 97 represents lowercase a.
                                 for (int j = offset; j < max + offset - lastPageCorrection; j++) {
                                     Car car = cars.get(j);
-                                    System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " " + Helper.moneyPretty(car.getPrice()) + " " + car.getAge());
+                                    System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " " + Helper.moneyPretty(car.getPrice()) + " " + car.getShape());
                                     i++;
 
                                     if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.
