@@ -147,28 +147,37 @@ public class Market {
             // Subjective price of a car.
             // Based on a segment we are randomizing car value a little.
             // Taking value of a car and multiplying it by some multiplier we get a price that seller want to get for it.
-            int roundingTo = 100;
-            if (value > 30000)
-                roundingTo = 1000;
+            int roundingTo = 1000;
+            if (value <= 1000.0)
+                roundingTo = 10;
+            else if (value <= 10000.0)
+                roundingTo = 50;
+            else if (value <= 30000.0)
+                roundingTo = 500;
+            else if (value > 125000.0)
+                roundingTo = 5000;
 
             if (segment == Segment.BUDGET) {
-                price = Math.ceil(value / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
+                double rng = Helper.RNG.nextDouble(0.9, 1.1);
+                price = Math.round(value / roundingTo * rng) * roundingTo;
             } else if (segment == Segment.STANDARD) {
-                price = Math.ceil(value / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
+                double rng = Helper.RNG.nextDouble(0.9, 1.1);
+                price = Math.round(value / roundingTo * rng) * roundingTo;
             } else { // else means Segment.PREMIUM in that case
-                price = Math.ceil(value / roundingTo * Helper.RNG.nextDouble(0.95, 1.2)) * roundingTo;
+                double rng = Helper.RNG.nextDouble(0.9, 1.1);
+                price = Math.round(value / roundingTo * rng) * roundingTo;
             }
 
             /*
-            * This is something like seller subtracting from original price.
-            * Seller wants to get $10k for a car which is worth 11k, but his car has broken transmission.
-            * Okay, so he takes that $10k, subtract $2.5k (10k * 0.25 = 2.5k) and gets his final price, $7.5k
-            * This is what he wants for that car.
-            *
-            * Later when you have that car you will repair it for price that is adequate to car value
-            * (real value! not some random guy price that he wants to get...)
-            *
-            * */
+             * This is something like seller subtracting from original price.
+             * Seller wants to get $10k for a car which is worth 11k, but his car has broken transmission.
+             * Okay, so he takes that $10k, subtract $2.5k (10k * 0.25 = 2.5k) and gets his final price, $7.5k
+             * This is what he wants for that car.
+             *
+             * Later when you have that car you will repair it for price that is adequate to car value
+             * (real value! not some random guy price that he wants to get...)
+             *
+             * */
             double enginePrice = price * 0.3;
             double transmissionPrice = price * 0.25;
             double bodyPrice = price * 0.25;
