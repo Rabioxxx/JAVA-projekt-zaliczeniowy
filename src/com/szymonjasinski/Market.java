@@ -158,14 +158,11 @@ public class Market {
                 roundingTo = 5000;
 
             if (segment == Segment.BUDGET) {
-                double rng = Helper.RNG.nextDouble(0.9, 1.1);
-                price = Math.round(value / roundingTo * rng) * roundingTo;
+                price = Math.round(value / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
             } else if (segment == Segment.STANDARD) {
-                double rng = Helper.RNG.nextDouble(0.9, 1.1);
-                price = Math.round(value / roundingTo * rng) * roundingTo;
+                price = Math.round(value / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
             } else { // else means Segment.PREMIUM in that case
-                double rng = Helper.RNG.nextDouble(0.9, 1.1);
-                price = Math.round(value / roundingTo * rng) * roundingTo;
+                price = Math.round(value / roundingTo * Helper.RNG.nextDouble(0.95, 1.2)) * roundingTo;
             }
 
             /*
