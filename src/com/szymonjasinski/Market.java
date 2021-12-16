@@ -146,7 +146,7 @@ public class Market {
 
             // Subjective price of a car.
             // Based on a segment we are randomizing car value a little.
-            // Taking value of a car and multiplying it by some multiplier we get a price that seller want to get for it.
+            // Taking value of a car and multiplying it by some RNG and then rounding it to the nearest value set in roundingTo variable.
             int roundingTo = 1000;
             if (value <= 1000.0)
                 roundingTo = 10;
