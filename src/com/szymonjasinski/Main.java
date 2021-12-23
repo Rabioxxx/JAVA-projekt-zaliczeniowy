@@ -198,7 +198,7 @@ public class Main {
                     }
                     case 'e' -> {
                         System.out.println(input + " clicked.\n");
-                        System.out.println("You have $" + Helper.moneyPretty(player.getCash()) + ".");
+                        System.out.println("You have " + Helper.moneyPretty(player.getCash()) + ".");
                         char input;
                         do {
                             System.out.println("Do you want to check your last transactions? (y/n)");
