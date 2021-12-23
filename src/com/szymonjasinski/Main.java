@@ -42,7 +42,7 @@ public class Main {
             player.setCash(50000.0);
             System.out.println("Your cash is set! It is now: " + Helper.moneyPretty(player.getCash()));
 
-            market.carsGenerator(20);
+            market.carsGenerator(21);
             System.out.println("Cars available to buy - ready!");
 
             do {
@@ -76,6 +76,7 @@ public class Main {
                             cars.sort(Comparator.comparing(Car::getProducer).thenComparing(Car::getModel));
 
                             // TODO #014 - Restricting loops.
+                            // TODO #020
                             int i; // it is here to make this first letter that shows what will happen when you click it.
                             int carsArraySize = cars.size();
                             int carsToPrint = 10; // how many rows containing cars names we want to print on one site.
@@ -127,18 +128,50 @@ public class Main {
                                             car = cars.get(input2 - 97 + offset);
                                             System.out.println(car.getCar());
 
-                                            char trashInput;
-                                            System.out.println("\nPress x to continue.");
+                                            char buyInput;
+                                            System.out.println("\nPress x to continue or b to buy this car.");
 
                                             do {
-                                                trashInput = scanner.next().charAt(0);
-                                                System.out.println(trashInput + " clicked.\n");
-                                                if (trashInput != 'x')
+                                                buyInput = scanner.next().charAt(0);
+                                                System.out.println(buyInput + " clicked.\n");
+                                                if (buyInput == 'b') {
+                                                    Double playerCash = player.getCash();
+                                                    Double carPrice = car.getPrice();
+                                                    if (playerCash < carPrice) {
+                                                        System.out.println("You don't have enough cash for this transaction.");
+                                                    } else {
+                                                        player.setCash(playerCash - carPrice);
+                                                        System.out.println("Debug: player cash adjusted.");
+
+                                                        cars.remove(input2 - 97 + offset);
+                                                        System.out.println("Debug: car removed.");
+
+                                                        player.addCar(car);
+                                                        System.out.println("Debug: car added to player parking.");
+
+                                                        // When removing car we need to let the loop above know about it, as we first declare this variable outside the loop,
+                                                        // so if not updating it now, we never update it. It will try to print a car that is not in this list, so we will leave bounds of an array.
+                                                        carsArraySize = cars.size();
+
+                                                        // Changing new max if on new first page will be less than carsToPrint cars (ie 10).
+                                                        max = Math.min(carsToPrint, carsArraySize);
+
+                                                        if (currentSite == totalSites && currentSite != 1) { //if this is last page, but if this is first and last page... Then TODO #020
+                                                            totalSites -= 1;
+                                                            currentSite -= 1;
+                                                            lastPageCorrection = 0;
+                                                            offset -= carsToPrint;
+                                                        } else {
+                                                            // Basically check if we now have fewer pages.
+                                                            totalSites = (int) Math.ceil(carsArraySize / (double) carsToPrint); // This one also need to be updated if we are going to buy last car on the last page.
+                                                        }
+                                                    }
+                                                } else
                                                     System.out.println(">:(");
-                                            } while (trashInput != 'x');
+                                            } while (buyInput != 'x' && buyInput != 'b');
                                             break;
                                         } else {
-                                            if (input2 != 'x') // simply because when I was clicking to get back my own program gave me a heckin' angry face. >:( god damn it. But now its fixed smileyFace.
+                                            if (input2 != 'x') // simply because when I was clicking to get back my own program gave me a heckin' angry face. >:( god-damn it. But now its fixed smileyFace.
                                                 System.out.println(">:(");
                                         }
                                     }

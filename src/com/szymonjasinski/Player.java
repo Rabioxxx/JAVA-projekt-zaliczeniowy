@@ -24,6 +24,12 @@ public class Player {
         this.cars = cars;
     }
 
+    public void addCar(Car car) {
+        if (this.cars == null)
+            cars = new ArrayList<>();
+        cars.add(car);
+    }
+
     public ArrayList<Client> getClients() {
         return clients;
     }
