@@ -32,8 +32,7 @@ public class Main {
 
         //System.out.println(Player.carsBuyable);
 
-        if (input == 97) // That means new game was clicked.
-        {
+        if (input == 97) { // That means new game was clicked.
             // Here I am going to generate things needed to be generated on the beginning of the new game.
             Player player = new Player();
             Market market = new Market();
