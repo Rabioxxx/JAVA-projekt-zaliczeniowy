@@ -41,10 +41,10 @@ public class Main {
 
             //Debugging purposes.
             player.setCash(50000.0);
-            System.out.println("Your cash is set! It is now: " + Helper.moneyPretty(player.getCash()));
+            System.out.println("Debug: Cash set! It is now: " + Helper.moneyPretty(player.getCash()));
 
             market.carsGenerator(21);
-            System.out.println("Cars available to buy - ready!");
+            System.out.println("Debug: Cars available to buy - ready!");
 
             do {
                 System.out.println(
