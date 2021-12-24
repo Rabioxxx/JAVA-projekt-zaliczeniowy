@@ -35,7 +35,7 @@ public class Main {
         // That means new game was clicked.
         if (input == 97) {
 
-            // Here I am going to generate things needed to be generated on the beginning of the new game.
+            // Here I am going to generate objects needed to be generated on the beginning of the new game.
             Player player = new Player();
             Market market = new Market();
 
