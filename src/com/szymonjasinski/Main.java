@@ -184,13 +184,14 @@ public class Main {
 
                         ArrayList<Car> cars = player.getCars();
 
-                        if (cars != null) {
+                        if (cars == null) {
+                            System.out.println("You have no cars in your parking lot.");
+
+                        } else {
                             System.out.println("You have following cars in your parking lot:");
                             for (Car car : cars) {
                                 System.out.println(car.toString());
                             }
-                        } else {
-                            System.out.println("You have no cars in your parking lot.");
                         }
                     }
                     case 'c' -> {
