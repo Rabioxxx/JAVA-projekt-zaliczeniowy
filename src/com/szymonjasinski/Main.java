@@ -131,7 +131,7 @@ public class Main {
                                             System.out.println(car.getCar());
 
                                             char buyInput;
-                                            System.out.println("\nPress x to continue or b to buy this car.");
+                                            System.out.println("\nPress x to continue or b to buy this car (buying pass a day).");
 
                                             do {
                                                 buyInput = scanner.next().charAt(0);
