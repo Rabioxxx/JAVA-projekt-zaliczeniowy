@@ -51,7 +51,6 @@ public class Main {
                 System.out.println("\n" + calendar.getDate());
                 System.out.println(
                         """
-                                
                                 What do you want to do now?
                                                             
                                 a - show cars available to buy at https://www.cars.com/.
@@ -137,9 +136,11 @@ public class Main {
                                             do {
                                                 buyInput = scanner.next().charAt(0);
                                                 System.out.println(buyInput + " clicked.\n");
+
                                                 if (buyInput == 'b') {
                                                     Double playerCash = player.getCash();
                                                     Double carPrice = car.getPrice();
+
                                                     if (playerCash < carPrice) {
                                                         System.out.println("You don't have enough cash for this transaction.");
                                                     } else {
@@ -168,6 +169,9 @@ public class Main {
                                                             // Basically check if we now have fewer pages.
                                                             totalSites = (int) Math.ceil(carsArraySize / (double) carsToPrint); // This one also need to be updated if we are going to buy last car on the last page.
                                                         }
+
+                                                        // Passing a day, because car was bought.
+                                                        calendar.nextDay();
                                                     }
                                                 } else
                                                     System.out.println(">:(");
