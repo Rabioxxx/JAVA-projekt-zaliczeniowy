@@ -5,6 +5,7 @@ import java.lang.*;
 
 public class Market {
     private ArrayList<Car> cars;
+    private ArrayList<Client> clients;
 
     public ArrayList<Car> getCars() {
         return cars;
