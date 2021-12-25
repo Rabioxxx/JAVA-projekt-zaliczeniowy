@@ -38,6 +38,7 @@ public class Main {
             // Here I am going to generate objects needed to be generated on the beginning of the new game.
             Player player = new Player();
             Market market = new Market();
+            Calendar calendar = new Calendar();
 
             //Debugging purposes.
             player.setCash(50000.0);
@@ -47,9 +48,10 @@ public class Main {
             System.out.println("Debug: Cars available to buy - ready!");
 
             do {
+                System.out.println("\n" + calendar.getDate());
                 System.out.println(
                         """
-                                                            
+                                
                                 What do you want to do now?
                                                             
                                 a - show cars available to buy at https://www.cars.com/.
