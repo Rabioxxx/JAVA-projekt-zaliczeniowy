@@ -12,8 +12,25 @@ public class Player {
         return cash;
     }
 
+    // TODO #021
     public void setCash(Double cash) {
-        this.cash = Helper.roundMoney(cash);
+        if (this.transactions == null){
+            transactions = new ArrayList<>();
+        }
+
+        cash = Helper.roundMoney(cash);
+
+        String cashDifferenceString;
+        double cashDifference = cash - this.cash;
+
+        if (cashDifference > 0) // if new cash we want to set is bigger than cash we had now then it means that transactions is adding cash to our account. So we want to see '+' sign.
+            cashDifferenceString = "+" + cashDifference;
+        else
+            cashDifferenceString = "" + cashDifference;
+
+        transactions.add("Transaction ##### ---> " + cashDifferenceString);
+
+        this.cash = cash;
     }
 
     public ArrayList<Car> getCars() {
