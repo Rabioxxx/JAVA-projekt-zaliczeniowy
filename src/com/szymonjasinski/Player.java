@@ -3,7 +3,7 @@ package com.szymonjasinski;
 import java.util.ArrayList;
 
 public class Player {
-    private Double cash;
+    private Double cash = 0.0;
     private ArrayList<Car> cars;
     private ArrayList<Client> clients;
     private ArrayList<String> transactions; // Maybe type will be changed.
@@ -14,7 +14,7 @@ public class Player {
 
     // TODO #021
     public void setCash(Double cash) {
-        if (this.transactions == null){
+        if (this.transactions == null) {
             transactions = new ArrayList<>();
         }
 
