@@ -1,5 +1,6 @@
 package com.szymonjasinski;
 
+import javax.print.MultiDoc;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -29,22 +30,51 @@ public enum Brand { // Here I can add more car brands + their models! Data taken
     OPEL("Opel", new Model[]{
             Model.ADAM, Model.ASTRA, Model.INSIGNIA, Model.CORSA, Model.ZAFIRA,
             Model.MERIVA, Model.MOKKA, Model.VECTRA, Model.VIVARO, Model.CROSSLANDX,
-            Model.GRANDLANDX, Model.COMBO, Model.ANTARA, Model.SIGNUM, Model.AGILA}),
+            Model.GRANDLANDX, Model.COMBO, Model.ANTARA, Model.SIGNUM, Model.AGILA,
+            Model.MOVANO}),
 
     VOLKSWAGEN("Volkswagen", new Model[]{
             Model.GOLF, Model.PASSAT, Model.POLO, Model.TIGUAN, Model.TOURAN,
             Model.CADDY, Model.GOLFPLUS, Model.SHARAN, Model.ARTEON, Model.UP,
             Model.TRANSPORTER, Model.JETTA, Model.TOUAREG, Model.MULTIVAN, Model.TCROSS,
             Model.SCIROCCO, Model.CARAVELLE, Model.CC, Model.NEWBEETLE, Model.FOX,
-            Model.GOLFSPORTSVAN, Model.TIGUANALLSPACE}),
+            Model.GOLFSPORTSVAN, Model.TIGUANALLSPACE, Model.LT}),
 
     FORD("Ford", new Model[]{
             Model.FOCUS, Model.MONDEO, Model.FIESTA, Model.KUGA, Model.SMAX,
             Model.CMAX, Model.MUSTANG, Model.GALAXY, Model.FUSION, Model.ECOSPORT,
             Model.GRANDECMAX, Model.FOCUSCMAX, Model.KA, Model.EDGE, Model.ESCAPE,
-            Model.TRANSIT, Model.RANGER, Model.TRANSITCUSTOM, Model.BMAX}),
+            Model.TRANSIT, Model.RANGER, Model.TRANSITCUSTOM, Model.BMAX, Model.CUSTOM, Model.CONNECT}),
 
-    ALFAROMEO("Alfa Romeo", new Model[]{Model.STELVIO, Model.ONEFIVENINE, Model.GIULIA, Model.GIULIETTA, Model.MITO, Model.ONEFOURSEVEN,});
+    ALFAROMEO("Alfa Romeo", new Model[]{
+            Model.STELVIO, Model.ONEFIVENINE, Model.GIULIA, Model.GIULIETTA,
+            Model.MITO, Model.ONEFOURSEVEN}),
+
+    RENAULT("Renault", new Model[]{
+            Model.MASTER, Model.TRAFIC, Model.KANGOO}),
+
+    FIAT("Fiat", new Model[]{
+            Model.DUCATO, Model.DOBLO, Model.SCUDO, Model.FIORINO}),
+
+    IVECO("Iveco", new Model[]{
+            Model.DAILY}),
+
+    MERCEDES("Mercedes-Benz", new Model[]{
+            Model.SPRINTER, Model.VITO, Model.CITAN}),
+
+    PEUGEOT("Peugeot", new Model[]{
+            Model.BOXER, Model.PARTNER, Model.EXPERT}),
+
+    CITROEN("Citroen", new Model[]{
+        Model.JUMPER, Model.BERLINGO, Model.JUMPY}),
+
+    TOYOTA("Toyota", new Model[]{
+        Model.PROACE, Model.HIACE}),
+
+    DACIA("Dacia", new Model[]{
+            Model.DOKKER});
+
+
 
     //TOYOTA/*7250*/("Toyota", new String[]{"500L", "500L Living", "500X Pulse"}),
     //NISSAN/*4470*/("Nissan", new String[]{"500L", "500L Living", "500X Pulse"}),

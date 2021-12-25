@@ -57,14 +57,15 @@ public enum Model {
     MERIVA(         "Meriva",           1131,   38,      Segment.BUDGET), // budget 38k
     MOKKA(          "Mokka",            982,    60,      Segment.STANDARD), // standard? 60k
     VECTRA(         "Vectra",           582,    20,      Segment.BUDGET), // budget 20k
-    VIVARO(         "Vivaro",           266,    65,      Segment.STANDARD), // cargo standard! 65k
+    VIVARO(         "Vivaro",           501,    45,      Segment.STANDARD), // cargo standard! 65k
     CROSSLANDX(     "Crossland X",      250,    60,      Segment.STANDARD), // 2017 60k standard
+    COMBO(          "Combo",            244,    30,      Segment.BUDGET), // small cargo
     GRANDLANDX(     "Grandland X",      193,    80,      Segment.STANDARD), // 2017 80k standard!
-    COMBO(          "Combo",            189,    30,      Segment.BUDGET), // budget, small cargo, 30k
     ANTARA(         "Antara",           183,    45,      Segment.BUDGET), // budget 45k
     SIGNUM(         "Signum",           126,    15,      Segment.STANDARD), // 2008 budget 15k
     ADAM(           "Adam",             97,     35,      Segment.BUDGET), // budget 35k
     AGILA(          "Agila",            95,     17,      Segment.BUDGET), // budget 17k
+    MOVANO(         "Movano",           88,     45,      Segment.STANDARD), // cargo
 
 
     //Volkswagen models 14236
@@ -73,12 +74,12 @@ public enum Model {
     POLO(           "Polo",             1328,   37,      Segment.BUDGET), // budget 37k
     TIGUAN(         "Tiguan",           1071,   70,      Segment.STANDARD), // Standard 70k
     TOURAN(         "Touran",           835,    50,      Segment.BUDGET), // budget 50k
-    CADDY(          "Caddy",            459,    50,      Segment.BUDGET), // budget low cargo 45-55k
+    CADDY(          "Caddy",            459,    50,      Segment.BUDGET), // cargo
     GOLFPLUS(       "Golf Plus",        449,    33,      Segment.BUDGET), // budget 33k
     SHARAN(         "Sharan",           338,    70,      Segment.STANDARD), // Standard 70k
     ARTEON(         "Arteon",           301,    150,     Segment.PREMIUM), // premium 2017 150k
     UP(             "up!",              280,    30,      Segment.BUDGET), // budget 30-35k electric
-    TRANSPORTER(    "Transporter",      279,    55,      Segment.BUDGET), // budget 55k
+    TRANSPORTER(    "Transporter",      279,    55,      Segment.BUDGET), // cargo
     JETTA(          "Jetta",            266,    55,      Segment.STANDARD), // budget 45k
     TOUAREG(        "Touareg",          248,    90,      Segment.STANDARD), // standard 80-100k
     MULTIVAN(       "Multivan",         237,    140,     Segment.PREMIUM), // Premium. van, so cargo? 140k
@@ -88,8 +89,10 @@ public enum Model {
     CC(             "CC",               145,    70,      Segment.STANDARD), // Standard 70k
     NEWBEETLE(      "New Beetle",       129,    20,      Segment.BUDGET), // budget 20k
     FOX(            "Fox",              119,    10,      Segment.BUDGET), // budget 10k
+    CRAFTER(        "Crafter",          115,    47,      Segment.BUDGET), // cargo
     GOLFSPORTSVAN(  "Golf Sportsvan",   112,    50,      Segment.BUDGET), // budget 50k
     TIGUANALLSPACE( "Tiguan Allspace",  102,    125,     Segment.STANDARD), // standard 2017-18 125k
+    LT(             "LT-35",            31,     120,     Segment.STANDARD), // cargo. maybe value need some tweaking, but it is 2006 MAX vehicle and it is worth ~20k, so if my math is correct it should be this 120k i set.
 
     //Ford models 12785
     FOCUS(          "Focus",            2712,   60,      Segment.STANDARD), // Standard 60k
@@ -106,11 +109,13 @@ public enum Model {
     FOCUSCMAX(      "Focus C-MAX",      189,    22,      Segment.BUDGET), // budget 22k
     KA(             "KA",               188,    20,      Segment.BUDGET), // budget 20k
     EDGE(           "EDGE",             188,    80,      Segment.STANDARD), // 2015 80k, 2018+ 150k standard!
+    TRANSIT(        "Transit",          172,    58,      Segment.STANDARD), // cargo
     ESCAPE(         "Escape",           142,    55,      Segment.STANDARD), // standard? i think. 55k
-    TRANSIT(        "Transit",          128,    45,      Segment.BUDGET), // cargo, 40-50k
     RANGER(         "Ranger",           126,    70,      Segment.STANDARD), // Standard 70k
     TRANSITCUSTOM(  "Transit Custom",   123,    50,      Segment.STANDARD), // Standard cargo, 50k
     BMAX(           "B-MAX",            120,    33,      Segment.BUDGET), // budget 33k
+    CUSTOM(         "Custom",           51,     45,      Segment.BUDGET), // cargo
+    CONNECT(        "Connect",          50,     30,      Segment.BUDGET), // cargo
 
     //Alfa Romeo models 1370
     STELVIO(        "Stelvio",          353,    140,     Segment.PREMIUM), // premium 275k+ 2017 140k
@@ -118,9 +123,46 @@ public enum Model {
     GIULIA(         "Giulia",           244,    100,     Segment.PREMIUM), // premium 250k+ 2016 100k
     GIULIETTA(      "Giulietta",        232,    45,      Segment.BUDGET), // budget 45k
     MITO(           "Mito",             127,    25,      Segment.BUDGET), // budget 25k
-    ONEFOURSEVEN(   "147",              79,     10,      Segment.BUDGET); // budget 10k
+    ONEFOURSEVEN(   "147",              79,     10,      Segment.BUDGET), // budget 10k
 
-    
+    //Renault models
+    MASTER(         "Master",           382,     60,     Segment.STANDARD), // cargo
+    TRAFIC(         "Trafic",           289,     50,     Segment.BUDGET),   // cargo
+    KANGOO(         "Kangoo",           79,      27,     Segment.BUDGET),   // cargo
+
+    //Fiat models
+    DUCATO(        "Ducato",           286,     60,     Segment.STANDARD),  // cargo
+    DOBLO(         "Doblo",            77,      27,     Segment.BUDGET),    // cargo
+    SCUDO(         "Scudo",            48,      28,     Segment.BUDGET),    // cargo
+    FIORINO(       "Fiorino",          36,      14,     Segment.BUDGET),    // cargo
+
+    //Iveco models
+    DAILY(         "Daily",            145,     63,     Segment.STANDARD),    // cargo
+
+    //Mercedes-Benz models
+    SPRINTER(       "Sprinter",         191,    70,     Segment.STANDARD),    // cargo
+    VITO(           "Vito",             104,    50,     Segment.STANDARD),    // cargo
+    CITAN(          "Citan",            15,     25,     Segment.BUDGET),      // cargo
+
+    //Peugeot models
+    BOXER(          "Boxer",            211,    50,     Segment.STANDARD),    // cargo
+    PARTNER(        "Partner",          88,     27,     Segment.BUDGET),    // cargo
+    EXPERT(         "Expert",           59,     24,     Segment.BUDGET),    // cargo
+
+    //Citroen models
+    JUMPER(         "Jumper",           203,    48,     Segment.BUDGET),    // cargo
+    BERLINGO(       "Berlingo",         88,     25,     Segment.BUDGET),    // cargo
+    JUMPY(          "Jumpy",            65,     25,     Segment.BUDGET),    // cargo
+
+    //Toyota models
+    PROACE(         "Proace",           110,     35,     Segment.BUDGET),    // cargo
+    HIACE(          "Hiace",            4,       40,     Segment.BUDGET),    // cargo
+
+    //Dacia models
+    DOKKER(         "Dokker",           21,      42,     Segment.BUDGET);    // cargo
+
+
+
     private final String name;
     private final Integer commonness;
     private final Integer value; // IN THOUSANDS!
