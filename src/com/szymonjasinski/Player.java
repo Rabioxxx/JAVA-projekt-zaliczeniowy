@@ -21,12 +21,12 @@ public class Player {
         cash = Helper.roundMoney(cash);
 
         String cashDifferenceString;
-        double cashDifference = cash - this.cash;
+        double cashDifference = Helper.roundMoney(cash - this.cash);
 
         if (cashDifference > 0) // if new cash we want to set is bigger than cash we had now then it means that transactions is adding cash to our account. So we want to see '+' sign.
-            cashDifferenceString = "+" + cashDifference;
+            cashDifferenceString = "+" + Helper.moneyPretty(cashDifference);
         else
-            cashDifferenceString = "" + cashDifference;
+            cashDifferenceString = "" + Helper.moneyPretty(cashDifference);
 
         transactions.add("Transaction ##### ---> " + cashDifferenceString);
 
