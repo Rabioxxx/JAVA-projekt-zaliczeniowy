@@ -94,6 +94,17 @@ public class Car {
         return brakes;
     }
 
+    /**
+     * Returns array of status of car parts. That is
+     * 5 Boolean values, where 0 - is broken part and
+     * 1 - is cool, not need repair.
+     *
+     * @return  Boolean Engine, Transmissin, Body, Suspension, Brakes.
+     */
+    public Boolean[] getAllParts(){
+        return new Boolean[]{getEngine(), getTransmission(), getBody(), getSuspension(), getBrakes()};
+    }
+
     private String getPartsBlock() {
         String engine = "need repairs";
         String transmission = "need repairs";
