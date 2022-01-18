@@ -103,11 +103,11 @@ public class Market {
             Double mileageRandom = ageRandom * (double) traveledDist * 1000.0 + randomN;
 
             // TODO #010
-            Double value;
-
             // Real, objective value of a car.
             // Based on a segment we are randomizing car value a little.
             // Taking value of a car and multiplying it by some multiplier. After that 'converting' it to thousands.
+            Double value;
+
             if (segment == Segment.BUDGET) {
                 value = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else if (segment == Segment.STANDARD) {
@@ -201,6 +201,36 @@ public class Market {
             Color colorRandom = Color.getRandomColor();
 
             Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, value, price, colorRandom, engine, transmission, body, suspension, brakes);
+
+            // Assigning car part value.
+            double ageValue = ageToValue(ageMin, ageRandom, (double) defaultValue * 1000.0);
+
+            double engineValue;
+            double transmissionValue;
+            double bodyValue;
+            double suspensionValue;
+            double brakesValue;
+
+            if (!engine) {
+                engineValue = ageValue * 0.3;
+                carRandom.setEngineRepairPrice(engineValue);
+            }
+            if (!transmission) {
+                transmissionValue = ageValue * 0.25;
+                carRandom.setTransmissionRepairPrice(transmissionValue);
+            }
+            if (!body) {
+                bodyValue = ageValue * 0.25;
+                carRandom.setBodyRepairPrice(bodyValue);
+            }
+            if (!suspension) {
+                suspensionValue = ageValue * 0.08;
+                carRandom.setSuspensionRepairPrice(suspensionValue);
+            }
+            if (!brakes) {
+                brakesValue = ageValue * 0.02;
+                carRandom.setBrakesRepairPrice(brakesValue);
+            }
 
             cars.add(carRandom);
         }

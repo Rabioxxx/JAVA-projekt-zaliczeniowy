@@ -28,11 +28,11 @@ public class Car {
     private Boolean suspension;
     private Boolean brakes;
 
-    private Double engineRepairPrice;
-    private Double transmissionRepairPrice;
-    private Double bodyRepairPrice;
-    private Double suspensionRepairPrice;
-    private Double brakesRepairPrice;
+    private Double engineRepairPrice = 0.0;
+    private Double transmissionRepairPrice = 0.0;
+    private Double bodyRepairPrice = 0.0;
+    private Double suspensionRepairPrice = 0.0;
+    private Double brakesRepairPrice = 0.0;
 
 
     public Car(String producer, String model, Integer age, Double mileage, Double value, Double price, Color color, Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes) {
@@ -124,6 +124,26 @@ public class Car {
             brakes = "works";
 
         return "Engine: " + engine + "\nTransmission: " + transmission + "\nBody: " + body + "\nSuspension: " + suspension + "\nBrakes: " + brakes;
+    }
+
+    public Double getEngineRepairPrice() {
+        return engineRepairPrice;
+    }
+
+    public Double getTransmissionRepairPrice() {
+        return transmissionRepairPrice;
+    }
+
+    public Double getBodyRepairPrice() {
+        return bodyRepairPrice;
+    }
+
+    public Double getSuspensionRepairPrice() {
+        return suspensionRepairPrice;
+    }
+
+    public Double getBrakesRepairPrice() {
+        return brakesRepairPrice;
     }
 
     public void setEngine(Boolean engine) {

@@ -260,9 +260,10 @@ public class Main {
                                             char washKey = 'w';
 
                                             char input;
-                                            System.out.println("\nPress x to get back, " + repairKey + " to repair part or " + washKey + " to wash car.");
 
                                             do {
+                                                System.out.println("\nPress x to get back, " + repairKey + " to repair part or " + washKey + " to wash car.");
+
                                                 input = scanner.next().charAt(0);
                                                 System.out.println(input + " clicked.\n");
 
@@ -275,61 +276,110 @@ public class Main {
 
                                                         char inputPartRepair;
 
-                                                        System.out.println("""
-                                                                What would you like to repair?
-                                                                a - engine
-                                                                b - transmission
-                                                                c - body
-                                                                d - suspension
-                                                                e - brakes
-                                                                                                                                    
-                                                                x - get back""");
+                                                        double enginePrice = car.getEngineRepairPrice();
+                                                        double transmissionPrice = car.getTransmissionRepairPrice();
+                                                        double bodyPrice = car.getBodyRepairPrice();
+                                                        double suspensionPrice = car.getSuspensionRepairPrice();
+                                                        double brakesPrice = car.getBrakesRepairPrice();
 
-                                                        inputPartRepair = scanner.next().charAt(0);
-                                                        System.out.println("Debug: " + input2 + " clicked.\n");
+                                                        double playerCash = player.getCash();
 
-                                                        if (inputPartRepair == 'x') {
-                                                            System.out.println("Goin' back then.");
-                                                        } else if (inputPartRepair == 97) {
-                                                            if (partList[0])
-                                                                System.out.println("Engine doesn't need any repairs.");
-                                                            else {
+                                                        do {
+                                                            System.out.println("What would you like to repair?");
+                                                            System.out.println("a - engine " + Helper.moneyPretty(enginePrice));
+                                                            System.out.println("b - transmission " + Helper.moneyPretty(transmissionPrice));
+                                                            System.out.println("c - body " + Helper.moneyPretty(bodyPrice));
+                                                            System.out.println("d - suspension " + Helper.moneyPretty(suspensionPrice));
+                                                            System.out.println("e - brakes " + Helper.moneyPretty(brakesPrice));
+                                                            System.out.println();
+                                                            System.out.println("x - get back");
 
+                                                            inputPartRepair = scanner.next().charAt(0);
+                                                            System.out.println("Debug: " + inputPartRepair + " clicked.\n");
+
+                                                            if (inputPartRepair == 'x') {
+                                                                System.out.println("Goin' back then.");
+                                                            } else if (inputPartRepair == 97) {
+                                                                if (partList[0])
+                                                                    System.out.println("Engine doesn't need any repairs.");
+                                                                else {
+                                                                    if (playerCash <= enginePrice) {
+                                                                        System.out.println("You have not enough money for that.");
+                                                                    } else {
+                                                                        playerCash -= enginePrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
+                                                                        player.setCash(playerCash); // updating global player cash.
+                                                                        car.setEngine(true); // repairing!
+                                                                        calendar.nextDay();
+                                                                        System.out.println("Engine repaired (One day have passed).");
+                                                                    }
+                                                                }
+
+                                                            } else if (inputPartRepair == 98) {
+                                                                if (partList[1])
+                                                                    System.out.println("Transmission doesn't need any repairs.");
+                                                                else {
+                                                                    if (playerCash <= transmissionPrice) {
+                                                                        System.out.println("You have not enough money for that.");
+                                                                    } else {
+                                                                        playerCash -= transmissionPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
+                                                                        player.setCash(playerCash); // updating global player cash.
+                                                                        car.setTransmission(true); // repairing!
+                                                                        calendar.nextDay();
+                                                                        System.out.println("Transmission repaired (One day have passed).");
+                                                                    }
+                                                                }
+
+                                                            } else if (inputPartRepair == 99) {
+                                                                if (partList[2])
+                                                                    System.out.println("Body doesn't need any repairs.");
+                                                                else {
+                                                                    if (playerCash <= bodyPrice) {
+                                                                        System.out.println("You have not enough money for that.");
+                                                                    } else {
+                                                                        playerCash -= bodyPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
+                                                                        player.setCash(playerCash); // updating global player cash.
+                                                                        car.setBody(true); // repairing!
+                                                                        calendar.nextDay();
+                                                                        System.out.println("Body repaired (One day have passed).");
+                                                                    }
+                                                                }
+
+                                                            } else if (inputPartRepair == 100) {
+                                                                if (partList[3])
+                                                                    System.out.println("Suspension doesn't need any repairs.");
+                                                                else {
+                                                                    if (playerCash <= suspensionPrice) {
+                                                                        System.out.println("You have not enough money for that.");
+                                                                    } else {
+                                                                        playerCash -= suspensionPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
+                                                                        player.setCash(playerCash); // updating global player cash.
+                                                                        car.setSuspension(true); // repairing!
+                                                                        calendar.nextDay();
+                                                                        System.out.println("Suspension repaired (One day have passed).");
+                                                                    }
+                                                                }
+
+                                                            } else if (inputPartRepair == 101) {
+                                                                if (partList[4])
+                                                                    System.out.println("Brakes doesn't need any repairs.");
+                                                                else {
+                                                                    if (playerCash <= brakesPrice) {
+                                                                        System.out.println("You have not enough money for that.");
+                                                                    } else {
+                                                                        playerCash -= brakesPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
+                                                                        player.setCash(playerCash); // updating global player cash.
+                                                                        car.setBrakes(true); // repairing!
+                                                                        calendar.nextDay();
+                                                                        System.out.println("Brakes repaired (One day have passed).");
+                                                                    }
+                                                                }
+
+                                                            } else {
+                                                                System.out.println(">:(");
+                                                                inputPartRepair = '$';
                                                             }
-
-                                                        } else if (inputPartRepair == 98) {
-                                                            if (partList[1])
-                                                                System.out.println("Transmission doesn't need any repairs.");
-                                                            else {
-
-                                                            }
-
-                                                        } else if (inputPartRepair == 99) {
-                                                            if (partList[2])
-                                                                System.out.println("Body doesn't need any repairs.");
-                                                            else {
-
-                                                            }
-
-                                                        } else if (inputPartRepair == 100) {
-                                                            if (partList[3])
-                                                                System.out.println("Suspension doesn't need any repairs.");
-                                                            else {
-
-                                                            }
-
-                                                        } else if (inputPartRepair == 101) {
-                                                            if (partList[4])
-                                                                System.out.println("Brakes doesn't need any repairs.");
-                                                            else {
-
-                                                            }
-
-                                                        } else {
-                                                            System.out.println(">:(");
-                                                        }
+                                                        } while (inputPartRepair == '$');
                                                     }
-
                                                 } else
                                                     System.out.println(">:(");
                                             } while (input != 'x' && input != repairKey && input != washKey);
