@@ -70,6 +70,10 @@ public class Car {
         return mileage;
     }
 
+    public Double getValue() {
+        return value;
+    }
+
     public Double getPrice() {
         return price;
     }

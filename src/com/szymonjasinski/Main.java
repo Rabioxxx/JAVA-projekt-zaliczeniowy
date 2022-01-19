@@ -41,11 +41,14 @@ public class Main {
             Calendar calendar = new Calendar();
 
             //Debugging purposes.
-            player.setCash(50000.0);
+            player.setCash(5000000.0);
             System.out.println("Debug: Cash set! It is now: " + Helper.moneyPretty(player.getCash()));
 
             market.carsGenerator(21);
             System.out.println("Debug: Cars available to buy - ready!");
+
+            market.clientsGenerator(6);
+            System.out.println("Debug: Clientele list created.");
 
             do {
                 System.out.println("\n" + calendar.getDate());
@@ -217,7 +220,8 @@ public class Main {
                                 i = 97; // 97 represents lowercase a.
                                 for (int j = offset; j < max + offset - lastPageCorrection; j++) {
                                     Car car = cars.get(j);
-                                    System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " " + Helper.moneyPretty(car.getPrice()) + " " + car.getShape());
+                                    //System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " " + Helper.moneyPretty(car.getPrice()) + " " + car.getShape());
+                                    System.out.printf("%c - %s %s %s %s \n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape());
                                     i++;
 
                                     if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.
@@ -394,7 +398,213 @@ public class Main {
                         }
                     }
                     case 'c' -> {
+                        System.out.println(input + " clicked.\n");
 
+                        char input2 = 97;
+
+                        do {
+                            System.out.println("Your clientele below:");
+
+                            // get ArrayList of clients and then printing all clients in this Array to console. What exactly is printed is defined with toString().
+                            ArrayList<Client> clients = market.getClients();
+
+                            Boolean willBuyBrokenCar = false;
+                            Boolean willBuyDamagedCar = false;
+
+                            // TODO #014 - Restricting loops.
+                            // TODO #020
+                            int i; // it is here to make this first letter that shows what will happen when you click it.
+                            int clientsSize = clients.size();
+                            int clientsToPrint = 10; // how many rows containing clients names we want to print on one site.
+                            int offset = 0;
+                            int max = Math.min(clientsToPrint, clientsSize); // takes the lower value of these two which then we are using later as maximum in our for loop. Prevents java.lang.IndexOutOfBoundsException.
+                            int totalSites = (int) Math.ceil(clientsSize / (double) clientsToPrint); // total number of sites.
+                            int currentSite = 1;
+                            int lastPageCorrection = 0;
+
+                            do {
+                                i = 97; // 97 represents lowercase a.
+                                for (int j = offset; j < max + offset - lastPageCorrection; j++) {
+                                    Client client = clients.get(j);
+
+                                    willBuyBrokenCar = client.getWillBuyBrokenCar();
+                                    willBuyDamagedCar = client.getWillBuyDamagedCar();
+                                    String willBuyBrokenCarString = "";
+                                    String willBuyDamagedCarString = "";
+
+                                    if (willBuyBrokenCar && willBuyDamagedCar)
+                                        willBuyBrokenCarString = " Can buy broken car!";
+                                    else if (willBuyDamagedCar)
+                                        willBuyDamagedCarString = " Can buy without brakes and/or suspension!";
+
+
+                                    System.out.printf("%c - This client will buy %s and %s.%s%s\n", (char) i, client.getInterestedBrand(0), client.getInterestedBrand(1), willBuyBrokenCarString, willBuyDamagedCarString);
+                                    i++;
+
+                                    if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than clientsToPrint.
+                                        System.out.println("Site " + currentSite + "/" + totalSites);
+
+                                        // Which message will be displayed depends on current site (first, last, first and last at the same time).
+                                        if (currentSite == 1 && currentSite == totalSites) {
+                                            System.out.println("Choose a client or get back (x).");
+                                        } else if (currentSite == 1)
+                                            System.out.println("Choose a client, go to next site (>) or get back (x).");
+                                        else if (currentSite == totalSites)
+                                            System.out.println("Choose a client, go to previous site (<) or get back (x).");
+                                        else
+                                            System.out.println("Choose a client, go to next site (>), previous site (<) or get back (x).");
+
+                                        input2 = scanner.next().charAt(0);
+                                        System.out.println(input2 + " clicked.\n");
+
+                                        if (input2 == 60 && currentSite != 1) { // 60 is '<'
+                                            lastPageCorrection = 0;
+                                            offset -= clientsToPrint;
+                                            currentSite -= 1;
+                                            break;
+                                        } else if (input2 == 62 && currentSite != totalSites) { // 62 is '>'
+                                            lastPageCorrection = 0;
+                                            offset += clientsToPrint;
+                                            // This if is for correction on last page that can contain less than clientsSize values, so it is to prevent java.lang.IndexOutOfBoundsException.
+                                            if (offset + clientsToPrint > clientsSize) {
+                                                lastPageCorrection = offset + clientsToPrint - clientsSize;
+                                            }
+                                            currentSite += 1;
+                                            break;
+                                        } else if (input2 >= 97 && input2 < 97 + max - lastPageCorrection) {
+
+                                            client = clients.get(input2 - 97 + offset);
+                                            System.out.println("Which car would you like to sell to them?");
+
+                                            char sellInput = 97;
+
+                                            ArrayList<Car> cars = player.getCars();
+
+                                            if (cars == null) {
+                                                System.out.println("You have no cars in your parking lot.");
+
+                                            } else {
+                                                System.out.println("You have following cars in your parking lot:");
+                                                // It is a lambda expression.
+                                                // Honestly don't know how does that works, but it sorts cars by String producer and String Model.
+                                                cars.sort(Comparator.comparing(Car::getProducer).thenComparing(Car::getModel));
+
+                                                // TODO #014 - Restricting loops.
+                                                // TODO #020
+                                                int k; // it is here to make this first letter that shows what will happen when you click it.
+                                                int carsArraySize = cars.size();
+                                                int carsToPrint = 10; // how many rows containing cars names we want to print on one site.
+                                                int offset2 = 0;
+                                                int max2 = Math.min(carsToPrint, carsArraySize); // takes the lower value of these two which then we are using later as maximum in our for loop. Prevents java.lang.IndexOutOfBoundsException.
+                                                int totalSites2 = (int) Math.ceil(carsArraySize / (double) carsToPrint); // total number of sites.
+                                                int currentSite2 = 1;
+                                                int lastPageCorrection2 = 0;
+
+                                                do {
+                                                    k = 97; // 97 represents lowercase a.
+                                                    for (int l = offset2; l < max2 + offset2 - lastPageCorrection2; l++) {
+                                                        Car car = cars.get(l);
+                                                        //System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " " + Helper.moneyPretty(car.getPrice()) + " " + car.getShape());
+                                                        System.out.printf("%c - %s %s %s %s \n", (char) k, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape());
+                                                        k++;
+
+                                                        if (k == 97 + max2 - lastPageCorrection2) { // var max2 here, because it will then properly display first page if there is less objects to print than carsToPrint.
+                                                            System.out.println("Site " + currentSite2 + "/" + totalSites2);
+
+                                                            // Which message will be displayed depends on current site (first, last, first and last at the same time).
+                                                            if (currentSite2 == 1 && currentSite2 == totalSites2) {
+                                                                System.out.println("Choose a car or get back (x).");
+                                                            } else if (currentSite2 == 1)
+                                                                System.out.println("Choose a car, go to next site (>) or get back (x).");
+                                                            else if (currentSite2 == totalSites2)
+                                                                System.out.println("Choose a car, go to previous site (<) or get back (x).");
+                                                            else
+                                                                System.out.println("Choose a car, go to next site (>), previous site (<) or get back (x).");
+
+                                                            sellInput = scanner.next().charAt(0);
+                                                            System.out.println(sellInput + " clicked.\n");
+
+                                                            if (sellInput == 60 && currentSite2 != 1) { // 60 is '<'
+                                                                lastPageCorrection2 = 0;
+                                                                offset2 -= carsToPrint;
+                                                                currentSite2 -= 1;
+                                                                break;
+                                                            } else if (sellInput == 62 && currentSite2 != totalSites2) { // 62 is '>'
+                                                                lastPageCorrection2 = 0;
+                                                                offset2 += carsToPrint;
+                                                                // This if is for correction on last page that can contain less than carsArraySize values, so it is to prevent java.lang.IndexOutOfBoundsException.
+                                                                if (offset2 + carsToPrint > carsArraySize) {
+                                                                    lastPageCorrection2 = offset2 + carsToPrint - carsArraySize;
+                                                                }
+                                                                currentSite2 += 1;
+                                                                break;
+                                                            } else if (sellInput >= 97 && sellInput < 97 + max2 - lastPageCorrection2) {
+
+                                                                car = cars.get(sellInput - 97 + offset2);
+
+                                                                Double playerCash = player.getCash();
+
+                                                                clients.remove(input2 - 97 + offset);
+                                                                market.setClients(clients);
+                                                                System.out.println("Debug: client removed.");
+
+                                                                player.setCash(car.getValue() + playerCash);
+                                                                System.out.println("Debug: Cash added to player account.");
+
+                                                                cars.remove(sellInput - 97 + offset2);
+                                                                player.setCars(cars);
+                                                                System.out.println("Debug: Car removed from parking lot.");
+
+                                                                // When removing client we need to let the loop above know about it, as we first declare this variable outside the loop,
+                                                                // so if not updating it now, we never update it. It will try to print a client that is not in this list, so we will leave bounds of an array.
+                                                                clientsSize = clients.size();
+                                                                carsArraySize = cars.size();
+
+                                                                // Changing new max if on new first page will be less than clientsToPrint clients (ie 10).
+                                                                max = Math.min(clientsToPrint, clientsSize);
+                                                                max2 = Math.min(carsToPrint, carsArraySize);
+
+                                                                if (currentSite == totalSites && currentSite != 1) { //if this is last page, but if this is first and last page... Then TODO #020
+                                                                    totalSites -= 1;
+                                                                    currentSite -= 1;
+                                                                    lastPageCorrection = 0;
+                                                                    offset -= clientsToPrint;
+                                                                } else {
+                                                                    // Basically check if we now have fewer pages.
+                                                                    totalSites = (int) Math.ceil(clientsSize / (double) clientsToPrint); // This one also need to be updated if we are going to buy last client on the last page.
+                                                                }
+
+                                                                if (currentSite2 == totalSites2 && currentSite2 != 1) { //if this is last page, but if this is first and last page... Then TODO #020
+                                                                    totalSites2 -= 1;
+                                                                    currentSite2 -= 1;
+                                                                    lastPageCorrection2 = 0;
+                                                                    offset2 -= clientsToPrint;
+                                                                } else {
+                                                                    // Basically check if we now have fewer pages.
+                                                                    totalSites2 = (int) Math.ceil(carsArraySize / (double) carsToPrint); // This one also need to be updated if we are going to buy last client on the last page.
+                                                                }
+
+                                                                // Passing a day, because client was bought.
+                                                                calendar.nextDay();
+
+                                                                break;
+                                                            } else {
+                                                                if (sellInput != 'x') // simply because when I was clicking to get back my own program gave me a heckin' angry face. >:( god-damn it. But now its fixed smileyFace.
+                                                                    System.out.println(">:(");
+                                                            }
+                                                        }
+                                                    }
+                                                } while (sellInput == 62 || sellInput == 60 || (sellInput >= 97 && sellInput <= 97 + max2)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
+                                            }
+                                            break;
+                                        } else {
+                                            if (input2 != 'x') // simply because when I was clicking to get back my own program gave me a heckin' angry face. >:( god-damn it. But now its fixed smileyFace.
+                                                System.out.println(">:(");
+                                        }
+                                    }
+                                }
+                            } while (input2 == 62 || input2 == 60 || (input2 >= 97 && input2 <= 97 + max)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
+                        } while (input2 != 'x');
                     }
                     case 'e' -> {
                         System.out.println(input + " clicked.\n");

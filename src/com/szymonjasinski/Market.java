@@ -11,8 +11,16 @@ public class Market {
         return cars;
     }
 
+    public ArrayList<Client> getClients() {
+        return clients;
+    }
+
     public void setCars(ArrayList<Car> cars) {
         this.cars = cars;
+    }
+
+    public void setClients(ArrayList<Client> clients) {
+        this.clients = clients;
     }
 
     public void carsGenerator(Integer number) {
@@ -257,6 +265,52 @@ public class Market {
             }
         }
         return value;
+    }
+
+    public void clientsGenerator(Integer number) {
+        ArrayList<Client> clients = new ArrayList<>();
+
+        for (int i = 0; i < number; i++) {
+            // Random chance if client is interested in personal cars
+            double rDoubleNumber = Helper.RNG.nextDouble();
+            Boolean interestedPersonal = false;
+            Boolean interestedCargo = false;
+
+            if (rDoubleNumber < 0.1) { // 10%
+                interestedPersonal = true;
+                interestedCargo = true;
+            } else if (rDoubleNumber < 0.7) { // 60%
+                interestedPersonal = true;
+                interestedCargo = false;
+            } else { // 30%
+                interestedPersonal = false;
+                interestedCargo = true;
+            }
+
+            // Randomizing will to buy broken/damaged car
+            rDoubleNumber = Helper.RNG.nextDouble();
+            Boolean willBuyBrokenCar = false; // fully destroyed
+            Boolean willBuyDamagedCar = false; // brakes/suspension not working
+
+            if (rDoubleNumber < 0.05) {
+                willBuyBrokenCar = true;
+                willBuyDamagedCar = true;
+            } else if (rDoubleNumber < 0.15){
+                willBuyDamagedCar = true;
+            }
+
+            // Randomizing brands
+            ArrayList<Brand> brandList = new ArrayList<>();
+
+            for (int j = 0; j < 2; j++) {
+                Brand rBrand = Brand.randomBrand();
+                brandList.add(rBrand);
+            }
+
+            Client client = new Client(interestedCargo, interestedPersonal, brandList, willBuyBrokenCar, willBuyDamagedCar);
+            clients.add(client);
+        }
+        setClients(clients);
     }
 }
 
