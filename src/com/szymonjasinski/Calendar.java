@@ -56,6 +56,7 @@ public class Calendar {
         } else {
             System.out.println("ERROR/. Something went wrong with this calendar...");
         }
+        System.out.println("Day passed!");
     }
 
     public Integer getDay() {

@@ -6,7 +6,7 @@ public class Car {
     private Integer age;
     private Double mileage;
     private Double value; // of fully repaired car, should be hidden from player I guess.
-    private Double price; // price of this specific car
+    private Double price; // price of this specific car. What player see when wants to buy a car.
     private Color color;
 
     /*
@@ -205,6 +205,24 @@ public class Car {
         else System.out.println("Trying to assign negative repair price to this part.");
     }
 
+    public Boolean repairPart(Player player, Calendar calendar, Boolean part, double partPrice){
+        if (part)
+            System.out.println("This part doesn't need any repairs.");
+        else {
+            if (player.getCash() <= partPrice) {
+                System.out.println("You have not enough money for that.");
+            } else {
+                double playerCash = player.getCash() - partPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
+                player.setCash(playerCash); // updating global player cash.
+                calendar.nextDay();
+                System.out.println("Part repaired!");
+                return true; // repaired!
+                // System.out.println("Part repaired (One day have passed).");
+            }
+        }
+        return part;
+    }
+
     public String getShape() {
         String shape = "excellent shape";
 
@@ -232,8 +250,12 @@ public class Car {
         return shape;
     }
 
-    public String getCar() {
+    public String getCarStringPrice() {
         return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(price);
+    }
+
+    public String getCarStringValue(){
+        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(value);
     }
 
     @Override
