@@ -10,7 +10,6 @@ public class Main {
     static char input;
 
     public static void main(String[] args) {
-
         do {
             System.out.println(
                     """
@@ -70,10 +69,10 @@ public class Main {
                 // TODO #001
                 switch (input) {
                     case 'a' -> {
-                        PrintListOfCars(market, player, calendar, 10);
+                        printListOfCars(market, player, calendar, 10);
                     }
                     case 'b' -> {
-                        player.printGarage(scanner, calendar);
+                        player.printGarage(scanner, calendar, market);
                     }
                     case 'c' -> {
                         market.printClients(scanner, player, calendar);
@@ -101,7 +100,7 @@ public class Main {
         }
     }
 
-    public static void PrintListOfCars(Market market, Player player, Calendar calendar, int rowsToPrint) {
+    public static void printListOfCars(Market market, Player player, Calendar calendar, int rowsToPrint) {
 
         System.out.println("\nThese are the cars you are able to buy. If you have enough $$$ of course ;)");
 
@@ -131,7 +130,7 @@ public class Main {
                 i = 97; // 97 represents lowercase a.
                 for (int j = offset; j < max + offset - lastPageCorrection; j++) {
                     Car car = cars.get(j);
-                    System.out.printf("%c - %s %s %s %s \n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getPrice()), car.getShape());
+                    System.out.printf("%c - %s %s %s %s \n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getBuyingPrice()), car.getShape());
                     i++;
 
                     if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is fewer objects to print than rowsToPrint.
@@ -178,7 +177,7 @@ public class Main {
 
                                 if (buyInput == 'b') {
                                     Double playerCash = player.getCash();
-                                    Double carPrice = car.getPrice();
+                                    Double carPrice = car.getBuyingPrice();
 
                                     if (playerCash < carPrice) {
                                         System.out.println("You don't have enough cash for this transaction.");
@@ -210,7 +209,7 @@ public class Main {
                                         }
 
                                         // Passing a day, because car was bought.
-                                        calendar.nextDay();
+                                        calendar.nextDay(market);
                                     }
                                 } else {
                                     System.out.println(">:(");

@@ -1,11 +1,13 @@
 package com.szymonjasinski;
 
 public class Calendar {
+    private Integer turns = 0;
+
     private Integer day = 1;
     private Integer month = 1;
     private Integer year = 2021;
 
-    public void nextDay() {
+    public void nextDay(Market market) {
         if (this.month == 2) {
             // February
             if (this.day == 28) {
@@ -56,7 +58,23 @@ public class Calendar {
         } else {
             System.out.println("ERROR/. Something went wrong with this calendar...");
         }
+
         System.out.println("Day passed!");
+
+        setTurns(getTurns() + 1);
+
+        // Every 7 days/turns adding 3 car to buy.
+        if (getTurns() % 7 == 0) {
+            market.carsGenerator(3);
+        }
+    }
+
+    public Integer getTurns() {
+        return turns;
+    }
+
+    private void setTurns(Integer turns) {
+        this.turns = turns;
     }
 
     public Integer getDay() {

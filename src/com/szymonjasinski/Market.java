@@ -24,7 +24,12 @@ public class Market {
     }
 
     public void carsGenerator(Integer number) {
+
         ArrayList<Car> cars = new ArrayList<>();
+
+        if (getCars() != null){
+            cars.addAll(getCars());
+        }
 
         for (int i = 0; i < number; i++) {
             //Brand brandRandom = Brand.randomBrand(); // Takes one random enum constant and assigns it to brand variable. E.g. MERCEDES which has var name "Mercedes-Benz" and String[] of models.
@@ -208,6 +213,8 @@ public class Market {
 
             Color colorRandom = Color.getRandomColor();
 
+            value = Math.ceil(value * Helper.RNG.nextDouble(1.05, 1.15)); // adding 5-15% value to a car, so player can make some money actually
+
             Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, value, price, colorRandom, engine, transmission, body, suspension, brakes);
 
             // Assigning car part value.
@@ -283,7 +290,7 @@ public class Market {
             if (rDoubleNumber < 0.05) {
                 willBuyBrokenCar = true;
                 willBuyDamagedCar = true;
-            } else if (rDoubleNumber < 0.15){
+            } else if (rDoubleNumber < 0.15) {
                 willBuyDamagedCar = true;
             }
 
@@ -293,7 +300,7 @@ public class Market {
         setClients(clients);
     }
 
-    public void printClients(Scanner scanner, Player player, Calendar calendar){
+    public void printClients(Scanner scanner, Player player, Calendar calendar) {
         char input2 = 97;
 
         do {
@@ -397,7 +404,7 @@ public class Market {
                                     for (int l = offset2; l < max2 + offset2 - lastPageCorrection2; l++) {
                                         Car car = cars.get(l);
                                         //System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " " + Helper.moneyPretty(car.getPrice()) + " " + car.getShape());
-                                        System.out.printf("%c - %s %s %s %s \n", (char) k, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape());
+                                        System.out.printf("%c - %s %s %s %s \n", (char) k, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getSellingPrice()), car.getShape());
                                         k++;
 
                                         if (k == 97 + max2 - lastPageCorrection2) { // var max2 here, because it will then properly display first page if there is less objects to print than carsToPrint.
@@ -439,7 +446,7 @@ public class Market {
                                                 this.setClients(clients);
                                                 System.out.println("Debug: client removed.");
 
-                                                player.setCash(car.getValue() + playerCash);
+                                                player.setCash(car.getSellingPrice() + playerCash);
                                                 System.out.println("Debug: Cash added to player account.");
 
                                                 cars.remove(sellInput - 97 + offset2);
@@ -476,7 +483,7 @@ public class Market {
                                                 }
 
                                                 // Passing a day, because client was bought.
-                                                calendar.nextDay();
+                                                calendar.nextDay(this);
 
                                                 break;
                                             } else {
@@ -497,5 +504,25 @@ public class Market {
             } while (input2 == 62 || input2 == 60 || (input2 >= 97 && input2 <= 97 + max)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
         } while (input2 != 'x');
     }
+
+    // I want to do that, but so spaghetti... Not sure about it...
+    /*public void printCarsToBuy(int rowsToPrint, int offset, int lastPageCorrection, int currentSite) {
+
+        ArrayList<Car> cars = this.getCars();
+        cars.sort(Comparator.comparing(Car::getProducer).thenComparing(Car::getModel));
+
+        int totalSites = (int) Math.ceil(cars.size() / (double) rowsToPrint);
+        int max = Math.min(rowsToPrint, cars.size());
+
+        int interactiveLetter = 97; // the letter we want to start with - 'a' in this case
+
+        System.out.println("\nThese the cars you are able to buy. If you have enough $$$ of course ;)");
+
+        for (int i = offset; i < max + offset - lastPageCorrection; i++) {
+            Car car = cars.get(i);
+            System.out.printf("%c - %s %s %s %s \n", (char) interactiveLetter, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getBuyingPrice()), car.getShape());
+            interactiveLetter++;
+        }
+    }*/
 }
 

@@ -5,8 +5,8 @@ public class Car {
     private String model;
     private Integer age;
     private Double mileage;
-    private Double value; // of fully repaired car, should be hidden from player I guess.
-    private Double price; // price of this specific car. What player see when wants to buy a car.
+    private Double sellingPrice; // of fully repaired car, should be hidden from player I guess.
+    private Double buyingPrice; // price of this specific car. What player see when wants to buy a car.
     private Color color;
 
     /*
@@ -35,14 +35,14 @@ public class Car {
     private Double brakesRepairPrice = 0.0;
 
 
-    public Car(String producer, String model, Integer age, Double mileage, Double value, Double price, Color color, Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes) {
+    public Car(String producer, String model, Integer age, Double mileage, Double sellingPrice, Double buyingPrice, Color color, Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes) {
         if (age >= 0 && mileage >= 0 && engine != null && transmission != null && body != null && suspension != null && brakes != null) {
             this.producer = producer;
             this.model = model;
             this.age = age;
             this.mileage = mileage;
-            this.value = value;
-            this.price = price;
+            this.sellingPrice = sellingPrice;
+            this.buyingPrice = buyingPrice;
             this.color = color;
             this.engine = engine;
             this.transmission = transmission;
@@ -70,12 +70,12 @@ public class Car {
         return mileage;
     }
 
-    public Double getValue() {
-        return value;
+    public Double getSellingPrice() {
+        return sellingPrice;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getBuyingPrice() {
+        return buyingPrice;
     }
 
     public Boolean getEngine() {
@@ -205,7 +205,7 @@ public class Car {
         else System.out.println("Trying to assign negative repair price to this part.");
     }
 
-    public Boolean repairPart(Player player, Calendar calendar, Boolean part, double partPrice){
+    public Boolean repairPart(Player player, Calendar calendar, Market market, Boolean part, double partPrice){
         if (part)
             System.out.println("This part doesn't need any repairs.");
         else {
@@ -214,7 +214,7 @@ public class Car {
             } else {
                 double playerCash = player.getCash() - partPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
                 player.setCash(playerCash); // updating global player cash.
-                calendar.nextDay();
+                calendar.nextDay(market);
                 System.out.println("Part repaired!");
                 return true; // repaired!
                 // System.out.println("Part repaired (One day have passed).");
@@ -251,15 +251,15 @@ public class Car {
     }
 
     public String getCarStringPrice() {
-        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(price);
+        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(buyingPrice);
     }
 
     public String getCarStringValue(){
-        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(value);
+        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(sellingPrice);
     }
 
     @Override
     public String toString() {
-        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + Helper.moneyPretty(price);
+        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + Helper.moneyPretty(buyingPrice);
     }
 }

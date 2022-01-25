@@ -57,7 +57,7 @@ public class Player {
         this.clients = clients;
     }
 
-    public void printGarage(Scanner scanner, Calendar calendar) {
+    public void printGarage(Scanner scanner, Calendar calendar, Market market) {
 
         char input2 = 97;
 
@@ -87,7 +87,7 @@ public class Player {
                 i = 97; // 97 represents lowercase a.
                 for (int j = offset; j < max + offset - lastPageCorrection; j++) {
                     Car car = cars.get(j);
-                    System.out.printf("%c - %s %s %s %s \n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape());
+                    System.out.printf("%c - %s %s %s %s \n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getSellingPrice()), car.getShape());
                     i++;
 
                     if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.
@@ -158,15 +158,15 @@ public class Player {
                                             if (inputPartRepair == 'x') {
                                                 System.out.println("Goin' back then.");
                                             } else if (inputPartRepair == 97) {
-                                                car.setEngine(car.repairPart(this, calendar, car.getEngine(), car.getEngineRepairPrice()));
+                                                car.setEngine(car.repairPart(this, calendar, market, car.getEngine(), car.getEngineRepairPrice()));
                                             } else if (inputPartRepair == 98) {
-                                                car.setTransmission(car.repairPart(this, calendar, car.getTransmission(), car.getTransmissionRepairPrice()));
+                                                car.setTransmission(car.repairPart(this, calendar, market, car.getTransmission(), car.getTransmissionRepairPrice()));
                                             } else if (inputPartRepair == 99) {
-                                                car.setBody(car.repairPart(this, calendar, car.getBody(), car.getBodyRepairPrice()));
+                                                car.setBody(car.repairPart(this, calendar, market, car.getBody(), car.getBodyRepairPrice()));
                                             } else if (inputPartRepair == 100) {
-                                                car.setSuspension(car.repairPart(this, calendar, car.getSuspension(), car.getSuspensionRepairPrice()));
+                                                car.setSuspension(car.repairPart(this, calendar, market, car.getSuspension(), car.getSuspensionRepairPrice()));
                                             } else if (inputPartRepair == 101) {
-                                                car.setBrakes(car.repairPart(this, calendar, car.getBrakes(), car.getBrakesRepairPrice()));
+                                                car.setBrakes(car.repairPart(this, calendar, market, car.getBrakes(), car.getBrakesRepairPrice()));
                                             } else {
                                                 System.out.println(">:(");
                                             }
