@@ -4,8 +4,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.SecureRandom;
 import java.util.Map;
+import java.util.Scanner;
 
 public interface Helper {
+
+    Scanner scanner = new Scanner(System.in);
 
     // TODO #016
     // Functions for rounding values to specific number of decimal places.

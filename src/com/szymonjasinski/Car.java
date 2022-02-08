@@ -214,7 +214,7 @@ public class Car {
             } else {
                 double playerCash = player.getCash() - partPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
                 player.setCash(playerCash); // updating global player cash.
-                calendar.nextDay(market);
+                calendar.nextDay();
                 System.out.println("Part repaired!");
                 return true; // repaired!
                 // System.out.println("Part repaired (One day have passed).");

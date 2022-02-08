@@ -57,7 +57,7 @@ public class Player {
         this.clients = clients;
     }
 
-    public void printGarage(Scanner scanner, Calendar calendar, Market market) {
+    public void printGarage(Calendar calendar, Market market) {
 
         char input2 = 97;
 
@@ -103,7 +103,7 @@ public class Player {
                         else
                             System.out.println("Choose a car, go to next site (>), previous site (<) or get back (x).");
 
-                        input2 = scanner.next().charAt(0);
+                        input2 = Helper.scanner.next().charAt(0);
 
                         if (input2 == 60 && currentSite != 1) { // 60 is '<'
                             lastPageCorrection = 0;
@@ -133,7 +133,7 @@ public class Player {
                             do {
                                 System.out.printf("\nPress x to get back, %c to repair part or %c to wash car.\n", repairKey, washKey);
 
-                                input = scanner.next().charAt(0);
+                                input = Helper.scanner.next().charAt(0);
 
                                 if (input == repairKey) {
 
@@ -153,7 +153,7 @@ public class Player {
                                             System.out.println();
                                             System.out.println("x - get back");
 
-                                            inputPartRepair = scanner.next().charAt(0);
+                                            inputPartRepair = Helper.scanner.next().charAt(0);
 
                                             if (inputPartRepair == 'x') {
                                                 System.out.println("Goin' back then.");

@@ -7,7 +7,7 @@ public class Calendar {
     private Integer month = 1;
     private Integer year = 2021;
 
-    public void nextDay(Market market) {
+    public void nextDay() {
         if (this.month == 2) {
             // February
             if (this.day == 28) {
@@ -62,11 +62,6 @@ public class Calendar {
         System.out.println("Day passed!");
 
         setTurns(getTurns() + 1);
-
-        // Every 7 days/turns adding 3 car to buy.
-        if (getTurns() % 7 == 0) {
-            market.carsGenerator(3);
-        }
     }
 
     public Integer getTurns() {
