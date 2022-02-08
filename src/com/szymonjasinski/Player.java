@@ -2,7 +2,6 @@ package com.szymonjasinski;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Scanner;
 
 public class Player {
     private Double cash = 0.0;
@@ -87,7 +86,7 @@ public class Player {
                 i = 97; // 97 represents lowercase a.
                 for (int j = offset; j < max + offset - lastPageCorrection; j++) {
                     Car car = cars.get(j);
-                    System.out.printf("%c - %s %s %s %s \n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getSellingPrice()), car.getShape());
+                    System.out.printf("%c - %s %s %s %s \n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape());
                     i++;
 
                     if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.

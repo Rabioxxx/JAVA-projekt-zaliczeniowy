@@ -5,7 +5,8 @@ public class Car {
     private String model;
     private Integer age;
     private Double mileage;
-    private Double sellingPrice; // of fully repaired car, should be hidden from player I guess.
+    private Double valueFullyRepaired; // of fully repaired car, should be hidden from player I guess.
+    private Double value; // of not fully repaired car, should be visible in garage.
     private Double buyingPrice; // price of this specific car. What player see when wants to buy a car.
     private Color color;
 
@@ -35,13 +36,13 @@ public class Car {
     private Double brakesRepairPrice = 0.0;
 
 
-    public Car(String producer, String model, Integer age, Double mileage, Double sellingPrice, Double buyingPrice, Color color, Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes) {
+    public Car(String producer, String model, Integer age, Double mileage, Double valueFullyRepaired, Double buyingPrice, Color color, Boolean engine, Boolean transmission, Boolean body, Boolean suspension, Boolean brakes) {
         if (age >= 0 && mileage >= 0 && engine != null && transmission != null && body != null && suspension != null && brakes != null) {
             this.producer = producer;
             this.model = model;
             this.age = age;
             this.mileage = mileage;
-            this.sellingPrice = sellingPrice;
+            this.valueFullyRepaired = valueFullyRepaired;
             this.buyingPrice = buyingPrice;
             this.color = color;
             this.engine = engine;
@@ -50,7 +51,7 @@ public class Car {
             this.suspension = suspension;
             this.brakes = brakes;
         } else {
-            System.out.println("ERROR/. This car cannot have a negative value of age and/or mileage.");
+            System.out.println("ERROR/. This car cannot have a negative value of age and/or mileage and/or not have any parts.");
         }
     }
 
@@ -70,8 +71,20 @@ public class Car {
         return mileage;
     }
 
-    public Double getSellingPrice() {
-        return sellingPrice;
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
+
+    public Double getValueFullyRepaired() {
+        return valueFullyRepaired;
+    }
+
+    public void setValueFullyRepaired(Double valueFullyRepaired) {
+        this.valueFullyRepaired = valueFullyRepaired;
     }
 
     public Double getBuyingPrice() {
@@ -103,9 +116,9 @@ public class Car {
      * 5 Boolean values, where 0 - is broken part and
      * 1 - is cool, not need repair.
      *
-     * @return  Boolean Engine, Transmissin, Body, Suspension, Brakes.
+     * @return Boolean Engine, Transmissin, Body, Suspension, Brakes.
      */
-    public Boolean[] getAllParts(){
+    public Boolean[] getAllParts() {
         return new Boolean[]{getEngine(), getTransmission(), getBody(), getSuspension(), getBrakes()};
     }
 
@@ -153,26 +166,36 @@ public class Car {
     public void setEngine(Boolean engine) {
         if (engine != null)
             this.engine = engine;
+        this.value += getEngineRepairPrice();
+        updateValueIfFullyRepaired();
     }
 
     public void setTransmission(Boolean transmission) {
         if (transmission != null)
             this.transmission = transmission;
+        this.value += getTransmissionRepairPrice();
+        updateValueIfFullyRepaired();
     }
 
     public void setBody(Boolean body) {
         if (body != null)
             this.body = body;
+        this.value += getBodyRepairPrice();
+        updateValueIfFullyRepaired();
     }
 
     public void setSuspension(Boolean suspension) {
         if (suspension != null)
             this.suspension = suspension;
+        this.value += getSuspensionRepairPrice();
+        updateValueIfFullyRepaired();
     }
 
     public void setBrakes(Boolean brakes) {
         if (brakes != null)
             this.brakes = brakes;
+        this.value += getBrakesRepairPrice();
+        updateValueIfFullyRepaired();
     }
 
     public void setEngineRepairPrice(Double engineRepairPrice) {
@@ -205,24 +228,23 @@ public class Car {
         else System.out.println("Trying to assign negative repair price to this part.");
     }
 
-    public Boolean repairPart(Player player, Calendar calendar, Market market, Boolean part, double partPrice){
+    public Boolean repairPart(Player player, Calendar calendar, Market market, Boolean part, double partPrice) {
         if (part)
             System.out.println("This part doesn't need any repairs.");
-        else {
-            if (player.getCash() <= partPrice) {
-                System.out.println("You have not enough money for that.");
-            } else {
-                double playerCash = player.getCash() - partPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
-                player.setCash(playerCash); // updating global player cash.
-                calendar.nextDay();
-                market.checkDay(calendar.getTurns());
-                System.out.println("Part repaired!");
-                return true; // repaired!
-                // System.out.println("Part repaired (One day have passed).");
-            }
+        else if (player.getCash() <= partPrice) {
+            System.out.println("You have not enough money for that.");
+        } else {
+            double playerCash = player.getCash() - partPrice; // This is for local variable if we won't refresh it above. Problem would be then that it would have the old value.
+            player.setCash(playerCash); // updating global player cash.
+            calendar.nextDay();
+            market.checkDay(calendar.getTurns());
+            System.out.println("Part repaired!");
+            return true; // repaired!
+            // System.out.println("Part repaired (One day have passed).");
         }
         return part;
     }
+
 
     public String getShape() {
         String shape = "excellent shape";
@@ -235,13 +257,13 @@ public class Car {
         else if (!this.engine && !this.transmission && !this.body)
             shape = "almost ruined";
         */
-        // If 2 expensive parts are broken
+            // If 2 expensive parts are broken
         else if ((!this.engine && !this.transmission) || (!this.engine && !this.body) || (!this.transmission && !this.body))
             shape = "needs lot of work";
-        // If any of the expensive part is broken
+            // If any of the expensive part is broken
         else if (!this.engine || !this.transmission || !this.body)
             shape = "need repairs";
-        // If everything is okay...
+            // If everything is okay...
         else {
             // ... but not the sus or brakes.
             if (!this.suspension || !this.brakes)
@@ -251,12 +273,24 @@ public class Car {
         return shape;
     }
 
+    // XX% value increase. Created to go into i.e. setEngine() (etc.) method.
+    private void recalculateCarValue(double addToValue, double multiplier) {
+        this.value += addToValue;
+        this.value *= multiplier;
+    }
+
+    private void updateValueIfFullyRepaired(){
+        if (engine && transmission && body && suspension && brakes)
+            this.value = this.valueFullyRepaired;
+
+    }
+
     public String getCarStringPrice() {
         return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(buyingPrice);
     }
 
-    public String getCarStringValue(){
-        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(sellingPrice);
+    public String getCarStringValue() {
+        return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(value);
     }
 
     @Override

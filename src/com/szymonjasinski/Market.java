@@ -27,7 +27,7 @@ public class Market {
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        if (getCars() != null){
+        if (getCars() != null) {
             cars.addAll(getCars());
         }
 
@@ -119,17 +119,17 @@ public class Market {
             // Real, objective value of a car.
             // Based on a segment we are randomizing car value a little.
             // Taking value of a car and multiplying it by some multiplier. After that 'converting' it to thousands.
-            Double value;
+            Double valueFullyRepaired;
 
             if (segment == Segment.BUDGET) {
-                value = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
+                valueFullyRepaired = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else if (segment == Segment.STANDARD) {
-                value = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
+                valueFullyRepaired = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.9, 1.1)) * 1000;
             } else { // else means Segment.PREMIUM in that case
-                value = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.95, 1.2)) * 1000;
+                valueFullyRepaired = Math.ceil(defaultValue * Helper.RNG.nextDouble(0.95, 1.2)) * 1000;
             }
 
-            value = ageToValue(ageMin, ageRandom, value); // value of this car at current age.
+            valueFullyRepaired = ageToValue(ageMin, ageRandom, valueFullyRepaired); // value of this car at current age.
 
             boolean engine;
             boolean transmission;
@@ -162,21 +162,21 @@ public class Market {
             // Based on a segment we are randomizing car value a little.
             // Taking value of a car and multiplying it by some RNG and then rounding it to the nearest value set in roundingTo variable.
             int roundingTo = 1000;
-            if (value <= 1000.0)
+            if (valueFullyRepaired <= 1000.0)
                 roundingTo = 10;
-            else if (value <= 10000.0)
+            else if (valueFullyRepaired <= 10000.0)
                 roundingTo = 50;
-            else if (value <= 30000.0)
+            else if (valueFullyRepaired <= 30000.0)
                 roundingTo = 500;
-            else if (value > 125000.0)
+            else if (valueFullyRepaired > 125000.0)
                 roundingTo = 5000;
 
             if (segment == Segment.BUDGET) {
-                price = Math.round(value / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
+                price = Math.round(valueFullyRepaired / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
             } else if (segment == Segment.STANDARD) {
-                price = Math.round(value / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
+                price = Math.round(valueFullyRepaired / roundingTo * Helper.RNG.nextDouble(0.9, 1.1)) * roundingTo;
             } else { // else means Segment.PREMIUM in that case
-                price = Math.round(value / roundingTo * Helper.RNG.nextDouble(0.95, 1.2)) * roundingTo;
+                price = Math.round(valueFullyRepaired / roundingTo * Helper.RNG.nextDouble(0.95, 1.2)) * roundingTo;
             }
 
             /*
@@ -195,16 +195,28 @@ public class Market {
             double suspensionPrice = price * 0.08;
             double brakesPrice = price * 0.02;
 
-            if (!engine)
+            double valueCurrent = valueFullyRepaired;
+
+            if (!engine) {
                 price -= enginePrice;
-            if (!transmission)
+                valueCurrent -= enginePrice;
+            }
+            if (!transmission) {
                 price -= transmissionPrice;
-            if (!body)
+                valueCurrent -= transmissionPrice;
+            }
+            if (!body) {
                 price -= bodyPrice;
-            if (!suspension)
+                valueCurrent -= bodyPrice;
+            }
+            if (!suspension) {
                 price -= suspensionPrice;
-            if (!brakes)
+                valueCurrent -= suspensionPrice;
+            }
+            if (!brakes) {
                 price -= brakesPrice;
+                valueCurrent -= brakesPrice;
+            }
             /*
                 // debugging purposes.
             else
@@ -213,9 +225,13 @@ public class Market {
 
             Color colorRandom = Color.getRandomColor();
 
-            value = Math.ceil(value * Helper.RNG.nextDouble(1.05, 1.15)); // adding 5-15% value to a car, so player can make some money actually
+            valueFullyRepaired = Math.ceil(valueFullyRepaired / roundingTo * Helper.RNG.nextDouble(1.05, 1.15)) * roundingTo; // adding 5-15% value to a car, so player can make some money actually
 
-            Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, value, price, colorRandom, engine, transmission, body, suspension, brakes);
+            if (engine && transmission && body && suspension && brakes) {
+                valueCurrent = valueFullyRepaired;
+            }
+
+            Car carRandom = new Car(brandName, modelName, ageRandom, mileageRandom, valueFullyRepaired, price, colorRandom, engine, transmission, body, suspension, brakes);
 
             // Assigning car part value.
             double ageValue = ageToValue(ageMin, ageRandom, (double) defaultValue * 1000.0);
@@ -225,6 +241,42 @@ public class Market {
             carRandom.setBodyRepairPrice(ageValue * 0.25);
             carRandom.setSuspensionRepairPrice(ageValue * 0.08);
             carRandom.setBrakesRepairPrice(ageValue * 0.02);
+
+            carRandom.setValue(valueCurrent);
+
+            if (!engine || !transmission || !body || !suspension || !brakes) {
+                double engineMultiplier = 0.0;
+                double transmissinMultiplier = 0.0;
+                double bodyMultiplier = 0.0;
+                double suspensionMultiplier = 0.0;
+                double brakesMultiplier = 0.0;
+                if (!engine) {
+                    engineMultiplier = 1.0;
+                }
+                if (!transmission) {
+                    transmissinMultiplier = 1.0;
+                }
+                if (!body) {
+                    bodyMultiplier = 1.0;
+                }
+                if (!suspension) {
+                    suspensionMultiplier = 1.0;
+                }
+                if (!brakes) {
+                    brakesMultiplier = 1.0;
+                }
+
+                double wholeCost = carRandom.getBuyingPrice()
+                        + carRandom.getEngineRepairPrice() * engineMultiplier
+                        + carRandom.getTransmissionRepairPrice() * transmissinMultiplier
+                        + carRandom.getBodyRepairPrice() * bodyMultiplier
+                        + carRandom.getSuspensionRepairPrice() * suspensionMultiplier
+                        + carRandom.getBrakesRepairPrice() * brakesMultiplier;
+
+                if (carRandom.getValueFullyRepaired() + 1000 <= wholeCost) {
+                    carRandom.setValueFullyRepaired(wholeCost * 1.15);
+                }
+            }
 
             cars.add(carRandom);
         }
@@ -404,7 +456,7 @@ public class Market {
                                     for (int l = offset2; l < max2 + offset2 - lastPageCorrection2; l++) {
                                         Car car = cars.get(l);
                                         //System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " " + Helper.moneyPretty(car.getPrice()) + " " + car.getShape());
-                                        System.out.printf("%c - %s %s %s %s \n", (char) k, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getSellingPrice()), car.getShape());
+                                        System.out.printf("%c - %s %s %s %s \n", (char) k, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape());
                                         k++;
 
                                         if (k == 97 + max2 - lastPageCorrection2) { // var max2 here, because it will then properly display first page if there is less objects to print than carsToPrint.
@@ -446,7 +498,7 @@ public class Market {
                                                 this.setClients(clients);
                                                 System.out.println("Debug: client removed.");
 
-                                                player.setCash(car.getSellingPrice() + playerCash);
+                                                player.setCash(car.getValue() + playerCash);
                                                 System.out.println("Debug: Cash added to player account.");
 
                                                 cars.remove(sellInput - 97 + offset2);
@@ -505,8 +557,6 @@ public class Market {
             } while (input2 == 62 || input2 == 60 || (input2 >= 97 && input2 <= 97 + max)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
         } while (input2 != 'x');
     }
-
-
 
     public void printCarsAvailableToBuy(Player player, Calendar calendar, int rowsToPrint) {
 
@@ -635,7 +685,7 @@ public class Market {
         } while (input != 'x'); // x means "go back"
     }
 
-    public void checkDay(int turns){
+    public void checkDay(int turns) {
         // Every 7 days/turns adding 3 car to buy.
         if (turns % 7 == 0) {
             carsGenerator(3);
