@@ -484,6 +484,7 @@ public class Market {
 
                                                 // Passing a day, because client was bought.
                                                 calendar.nextDay();
+                                                checkDay(calendar.getTurns());
 
                                                 break;
                                             } else {
@@ -617,7 +618,7 @@ public class Market {
 
                                         // Passing a day, because car was bought.
                                         calendar.nextDay();
-                                        this.checkDay(calendar.getTurns());
+                                        checkDay(calendar.getTurns());
                                     }
                                 } else {
                                     System.out.println(">:(");
@@ -634,7 +635,7 @@ public class Market {
         } while (input != 'x'); // x means "go back"
     }
 
-    private void checkDay(int turns){
+    public void checkDay(int turns){
         // Every 7 days/turns adding 3 car to buy.
         if (turns % 7 == 0) {
             carsGenerator(3);
