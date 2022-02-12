@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Player {
+    private Double goal;
     private Double cash = 0.0;
     private ArrayList<Car> cars;
     private ArrayList<Client> clients;
@@ -188,5 +189,17 @@ public class Player {
                 }
             } while (input2 == 62 || input2 == 60 || (input2 >= 97 && input2 <= 97 + max)); // be careful to not exceed a 120 (x) as you will never leave from this loop.
         }
+    }
+
+    public Double getGoal() {
+        return goal;
+    }
+
+    public void setGoal(Double goal) {
+        this.goal = goal;
+    }
+
+    public Boolean checkGoal() {
+        return this.getCash() >= this.getGoal();
     }
 }

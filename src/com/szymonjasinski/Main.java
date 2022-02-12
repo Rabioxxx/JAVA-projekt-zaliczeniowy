@@ -39,6 +39,9 @@ public class Main {
             System.out.println("Cash set!");
             // System.out.println("Debug: It is now: " + Helper.moneyPretty(player.getCash()));
 
+            // Setting goal to player.
+            player.setGoal(player.getCash() * 2.0);
+
             market.carsGenerator(21);
             System.out.println("Cars on market set!");
 

@@ -9,6 +9,7 @@ public class Car {
     private Double value; // of not fully repaired car, should be visible in garage.
     private Double buyingPrice; // price of this specific car. What player see when wants to buy a car.
     private Color color;
+    private Boolean washed;
 
     /*
     Every car is build out of these things below.
