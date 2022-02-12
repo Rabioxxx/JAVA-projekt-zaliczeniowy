@@ -92,6 +92,8 @@ public class Main {
                                     player.setCash(player.getCash() - 5000.0);
                                     int generatedClients = Helper.RNG.nextInt(3,6);
                                     market.clientsGenerator(generatedClients);
+                                    calendar.nextDay();
+
                                     System.out.println(generatedClients + " new clients!");
                                 }
                             } else if (input == 'b') {
@@ -101,9 +103,10 @@ public class Main {
                                     player.setCash(player.getCash() - 2000.0);
                                     int generatedClients = Helper.RNG.nextInt(0, 2);
                                     market.clientsGenerator(generatedClients);
+                                    calendar.nextDay();
 
                                     if (generatedClients == 0)
-                                        System.out.println("Ad wasn't successful");
+                                        System.out.println("Ad wasn't successful - 0 new clients.");
                                     else
                                         System.out.println(generatedClients + " new clients!");
                                 }
