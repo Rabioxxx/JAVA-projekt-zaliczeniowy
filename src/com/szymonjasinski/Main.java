@@ -42,10 +42,10 @@ public class Main {
             // Setting goal to player.
             player.setGoal(player.getCash() * 2.0);
 
-            market.carsGenerator(21);
+            market.carsGenerator(13);
             System.out.println("Cars on market set!");
 
-            market.clientsGenerator(21);
+            market.clientsGenerator(7);
             System.out.println("Your first clients? Ready!");
             System.out.println("Looks like we're set and ready to go!");
 
@@ -74,6 +74,43 @@ public class Main {
                     }
                     case 'c' -> {
                         market.printClients(player, calendar);
+                    }
+                    case 'd' -> {
+
+                        char input = 'x';
+                        do {
+                            System.out.println("You can :");
+                            System.out.println("a - buy ad in local newspaper for $5000.00");
+                            System.out.println("b - buy ad in the internet for $2000.00");
+
+                            input = Helper.scanner.next().charAt(0);
+
+                            if (input == 'a') {
+                                if (player.getCash() < 1000.0){
+                                    System.out.println("You have not enough cash.");
+                                } else {
+                                    player.setCash(player.getCash() - 5000.0);
+                                    int generatedClients = Helper.RNG.nextInt(3,6);
+                                    market.clientsGenerator(generatedClients);
+                                    System.out.println(generatedClients + " new clients!");
+                                }
+                            } else if (input == 'b') {
+                                if (player.getCash() < 250.0){
+                                    System.out.println("You have not enough cash.");
+                                } else {
+                                    player.setCash(player.getCash() - 2000.0);
+                                    int generatedClients = Helper.RNG.nextInt(0, 2);
+                                    market.clientsGenerator(generatedClients);
+
+                                    if (generatedClients == 0)
+                                        System.out.println("Ad wasn't successful");
+                                    else
+                                        System.out.println(generatedClients + " new clients!");
+                                }
+                            } else {
+                                System.out.println(">:(");
+                            }
+                        } while (input != 'x');
                     }
                     case 'e' -> {
                         System.out.println("You have " + Helper.moneyPretty(player.getCash()) + ".");

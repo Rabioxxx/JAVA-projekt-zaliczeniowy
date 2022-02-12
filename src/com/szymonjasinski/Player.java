@@ -63,7 +63,7 @@ public class Player {
 
         ArrayList<Car> cars = this.getCars();
 
-        if (cars == null) {
+        if (cars == null || cars.size() == 0) {
             System.out.println("You have no cars in your parking lot.");
 
         } else {
@@ -173,7 +173,15 @@ public class Player {
                                         } while (inputPartRepair != 'x');
                                     }
                                 } else if (input == washKey) {
-                                    System.out.println("WIP washing car.");
+                                    if (car.getWashed())
+                                        System.out.println("It is already washed.");
+                                    else if (this.getCash() < 5.0) {
+                                        System.out.println("You don't have enough cash to wash your car! haha, a bankrupt! lol");
+                                    } else {
+                                        this.setCash(this.getCash() - 5.0);
+                                        car.setWashed(true);
+                                        System.out.println("Car washed. It costed you $5.00");
+                                    }
                                 } else {
                                     if (input != 'x') {
                                         System.out.println(">:(");

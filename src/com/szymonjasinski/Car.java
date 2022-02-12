@@ -286,6 +286,14 @@ public class Car {
 
     }
 
+    public Boolean getWashed() {
+        return washed;
+    }
+
+    public void setWashed(Boolean washed) {
+        this.washed = washed;
+    }
+
     public String getCarStringPrice() {
         return producer + " " + model + "\n" + age + " years old,\n" + Helper.roundMileage(mileage) + " km on odometer,\nPainted " + color.getName() + "\n" + getPartsBlock() + "\n" + Helper.moneyPretty(buyingPrice);
     }
