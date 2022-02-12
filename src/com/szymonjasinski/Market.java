@@ -463,7 +463,7 @@ public class Market {
                                     for (int l = offset2; l < max2 + offset2 - lastPageCorrection2; l++) {
                                         Car car = cars.get(l);
                                         //System.out.println((char) i + " - " + car.getProducer() + " " + car.getModel() + " " + Helper.moneyPretty(car.getPrice()) + " " + car.getShape());
-                                        System.out.printf("%c - %s %s %s %s \n", (char) k, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape());
+                                        System.out.printf("%c - %s %s %s %s, which you spent on %s\n", (char) k, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape(), Helper.moneyPretty(car.getSumCashSpent()));
                                         k++;
 
                                         if (k == 97 + max2 - lastPageCorrection2) { // var max2 here, because it will then properly display first page if there is less objects to print than carsToPrint.
@@ -757,6 +757,12 @@ public class Market {
 
                                         player.addCar(car);
                                         System.out.println("Debug: car added to player parking.");
+
+                                        ArrayList<String> newTransaction = new ArrayList<>(car.getTransactions());
+                                        newTransaction.add("Car was bought for " + Helper.moneyPretty(carPrice));
+                                        car.setTransactions(newTransaction);
+
+                                        car.setSumCashSpent(car.getSumCashSpent() + carPrice);
 
                                         // When removing car we need to let the loop above know about it, as we first declare this variable outside the loop,
                                         // so if not updating it now, we never update it. It will try to print a car that is not in this list, so we will leave bounds of an array.

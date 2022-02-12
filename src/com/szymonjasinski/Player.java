@@ -7,8 +7,7 @@ public class Player {
     private Double goal;
     private Double cash = 0.0;
     private ArrayList<Car> cars;
-    private ArrayList<Client> clients;
-    private ArrayList<String> transactions; // Maybe type will be changed.
+    private ArrayList<String> transactions = new ArrayList<>(); // Maybe type will be changed.
 
     public Double getCash() {
         return cash;
@@ -22,17 +21,33 @@ public class Player {
 
         cash = Helper.roundMoney(cash);
 
-        String cashDifferenceString;
+        String cashDifferenceString = "";
         double cashDifference = Helper.roundMoney(cash - this.cash);
 
         if (cashDifference > 0) // if new cash we want to set is bigger than cash we had now then it means that transactions is adding cash to our account. So we want to see '+' sign.
             cashDifferenceString = "+" + Helper.moneyPretty(cashDifference);
         else
-            cashDifferenceString = "" + Helper.moneyPretty(cashDifference);
+            cashDifferenceString = "-" + Helper.moneyPretty(cashDifference);
 
         transactions.add("Transaction ##### ---> " + cashDifferenceString);
 
         this.cash = cash;
+
+        if (checkGoal()) {
+            System.out.println("""
+                                        
+                                        
+                    !!!!CONGRATS!!!!
+                    You have won my game by doubling initial money you get on start of the game!
+                    Great job, m8!
+                                        
+                                        
+                    """);
+        }
+    }
+
+    public ArrayList<String> getTransactions() {
+        return transactions;
     }
 
     public ArrayList<Car> getCars() {
@@ -47,14 +62,6 @@ public class Player {
         if (this.cars == null)
             cars = new ArrayList<>();
         cars.add(car);
-    }
-
-    public ArrayList<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(ArrayList<Client> clients) {
-        this.clients = clients;
     }
 
     public void printGarage(Calendar calendar, Market market) {
@@ -87,7 +94,7 @@ public class Player {
                 i = 97; // 97 represents lowercase a.
                 for (int j = offset; j < max + offset - lastPageCorrection; j++) {
                     Car car = cars.get(j);
-                    System.out.printf("%c - %s %s %s %s \n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape());
+                    System.out.printf("%c - %s %s %s %s, which you spent on %s\n", (char) i, car.getProducer(), car.getModel(), Helper.moneyPretty(car.getValue()), car.getShape(), Helper.moneyPretty(car.getSumCashSpent()));
                     i++;
 
                     if (i == 97 + max - lastPageCorrection) { // var max here, because it will then properly display first page if there is less objects to print than carsToPrint.
@@ -127,11 +134,12 @@ public class Player {
                             // These variables change usable keys.
                             char repairKey = 'r';
                             char washKey = 'w';
+                            char carHistoryKey = 'h';
 
                             char input;
 
                             do {
-                                System.out.printf("\nPress x to get back, %c to repair part or %c to wash car.\n", repairKey, washKey);
+                                System.out.printf("\nPress x to get back, %c to repair part, %c to view transactions regarding this car or %c to wash car.\n", repairKey, carHistoryKey, washKey);
 
                                 input = Helper.scanner.next().charAt(0);
 
@@ -159,14 +167,34 @@ public class Player {
                                                 System.out.println("Goin' back then.");
                                             } else if (inputPartRepair == 97) {
                                                 car.setEngine(car.repairPart(this, calendar, market, car.getEngine(), car.getEngineRepairPrice()));
+                                                ArrayList<String> newTransaction = new ArrayList<>(car.getTransactions());
+                                                newTransaction.add("Enginge was repaired for " + Helper.moneyPretty(car.getEngineRepairPrice()));
+                                                car.setTransactions(newTransaction);
+                                                car.setSumCashSpent(car.getSumCashSpent() + car.getEngineRepairPrice());
                                             } else if (inputPartRepair == 98) {
                                                 car.setTransmission(car.repairPart(this, calendar, market, car.getTransmission(), car.getTransmissionRepairPrice()));
+                                                ArrayList<String> newTransaction = new ArrayList<>(car.getTransactions());
+                                                newTransaction.add("Transmission was repaired for " + Helper.moneyPretty(car.getTransmissionRepairPrice()));
+                                                car.setTransactions(newTransaction);
+                                                car.setSumCashSpent(car.getSumCashSpent() + car.getTransmissionRepairPrice());
                                             } else if (inputPartRepair == 99) {
                                                 car.setBody(car.repairPart(this, calendar, market, car.getBody(), car.getBodyRepairPrice()));
+                                                ArrayList<String> newTransaction = new ArrayList<>(car.getTransactions());
+                                                newTransaction.add("Body was repaired for " + Helper.moneyPretty(car.getBodyRepairPrice()));
+                                                car.setTransactions(newTransaction);
+                                                car.setSumCashSpent(car.getSumCashSpent() + car.getBodyRepairPrice());
                                             } else if (inputPartRepair == 100) {
                                                 car.setSuspension(car.repairPart(this, calendar, market, car.getSuspension(), car.getSuspensionRepairPrice()));
+                                                ArrayList<String> newTransaction = new ArrayList<>(car.getTransactions());
+                                                newTransaction.add("Suspension was repaired for " + Helper.moneyPretty(car.getSuspensionRepairPrice()));
+                                                car.setTransactions(newTransaction);
+                                                car.setSumCashSpent(car.getSumCashSpent() + car.getSuspensionRepairPrice());
                                             } else if (inputPartRepair == 101) {
                                                 car.setBrakes(car.repairPart(this, calendar, market, car.getBrakes(), car.getBrakesRepairPrice()));
+                                                ArrayList<String> newTransaction = new ArrayList<>(car.getTransactions());
+                                                newTransaction.add("Brakes were repaired for " + Helper.moneyPretty(car.getBrakesRepairPrice()));
+                                                car.setTransactions(newTransaction);
+                                                car.setSumCashSpent(car.getSumCashSpent() + car.getBrakesRepairPrice());
                                             } else {
                                                 System.out.println(">:(");
                                             }
@@ -180,14 +208,22 @@ public class Player {
                                     } else {
                                         this.setCash(this.getCash() - 5.0);
                                         car.setWashed(true);
-                                        System.out.println("Car washed. It costed you $5.00");
+                                        System.out.println("Car washed. It cost you $5.00");
                                     }
+                                } else if (input == carHistoryKey) {
+                                    if (car.getTransactions() != null && car.getTransactions().size() != 1) {
+                                        System.out.println("Last transactions:");
+                                        for (String transaction : car.getTransactions()) {
+                                            System.out.println(transaction);
+                                        }
+                                    } else
+                                        System.out.println("Last transaction:");
                                 } else {
                                     if (input != 'x') {
                                         System.out.println(">:(");
                                     }
                                 }
-                            } while (input != 'x' && input != repairKey && input != washKey);
+                            } while (input != 'x' && input != repairKey && input != washKey && input != carHistoryKey);
                             break;
                         } else {
                             if (input2 != 'x') // simply because when I was clicking to get back my own program gave me a heckin' angry face. >:( god-damn it. But now its fixed smileyFace.
@@ -208,6 +244,8 @@ public class Player {
     }
 
     public Boolean checkGoal() {
-        return this.getCash() >= this.getGoal();
+        if (this.getGoal() == null) {
+            return false;
+        } else return this.getCash() >= this.getGoal();
     }
 }

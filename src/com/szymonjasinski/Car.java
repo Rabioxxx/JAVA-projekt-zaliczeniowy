@@ -1,5 +1,7 @@
 package com.szymonjasinski;
 
+import java.util.ArrayList;
+
 public class Car {
     private String producer;
     private String model;
@@ -8,8 +10,10 @@ public class Car {
     private Double valueFullyRepaired; // of fully repaired car, should be hidden from player I guess.
     private Double value; // of not fully repaired car, should be visible in garage.
     private Double buyingPrice; // price of this specific car. What player see when wants to buy a car.
+    private ArrayList<String> transactions = new ArrayList<>();
+    private Double sumCashSpent = 0.0;
     private Color color;
-    private Boolean washed;
+    private Boolean washed = false;
 
     /*
     Every car is build out of these things below.
@@ -249,6 +253,10 @@ public class Car {
 
     public String getShape() {
         String shape = "excellent shape";
+        String washed = "";
+        if (this.getWashed()){
+            washed = " - washed";
+        }
 
         // If everything is broken then it is ruined (brakes can be ok, but it is still a ruin).
         if (!this.engine && !this.transmission && !this.body/* && !this.suspension*/)
@@ -271,7 +279,7 @@ public class Car {
                 shape = "good condition";
         }
 
-        return shape;
+        return shape + washed;
     }
 
     // XX% value increase. Created to go into i.e. setEngine() (etc.) method.
@@ -292,6 +300,22 @@ public class Car {
 
     public void setWashed(Boolean washed) {
         this.washed = washed;
+    }
+
+    public ArrayList<String> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(ArrayList<String> transactions) {
+        this.transactions = transactions;
+    }
+
+    public Double getSumCashSpent() {
+        return sumCashSpent;
+    }
+
+    public void setSumCashSpent(Double sumCashSpent) {
+        this.sumCashSpent = sumCashSpent;
     }
 
     public String getCarStringPrice() {

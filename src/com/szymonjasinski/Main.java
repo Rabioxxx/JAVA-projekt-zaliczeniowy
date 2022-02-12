@@ -4,7 +4,7 @@ public class Main {
 
     static char input;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         do {
             System.out.println(
                     """
@@ -86,18 +86,18 @@ public class Main {
                             input = Helper.scanner.next().charAt(0);
 
                             if (input == 'a') {
-                                if (player.getCash() < 1000.0){
+                                if (player.getCash() < 1000.0) {
                                     System.out.println("You have not enough cash.");
                                 } else {
                                     player.setCash(player.getCash() - 5000.0);
-                                    int generatedClients = Helper.RNG.nextInt(3,6);
+                                    int generatedClients = Helper.RNG.nextInt(3, 6);
                                     market.clientsGenerator(generatedClients);
                                     calendar.nextDay();
 
                                     System.out.println(generatedClients + " new clients!");
                                 }
                             } else if (input == 'b') {
-                                if (player.getCash() < 250.0){
+                                if (player.getCash() < 250.0) {
                                     System.out.println("You have not enough cash.");
                                 } else {
                                     player.setCash(player.getCash() - 2000.0);
@@ -124,12 +124,20 @@ public class Main {
                             input = Helper.scanner.next().charAt(0);
 
                             if (input == 'y') {
-                                System.out.println("These are your last transactions: ");
-                                // And here these transactions will be.
+                                int min = Math.min(player.getTransactions().size(), 10);
+                                if (min == 1){
+                                    System.out.println("This is your last transaction:");
+                                } else {
+                                    System.out.println("These are your last " + min + " transactions:");
+                                }
+                                for (int i = 0; i < min; i++) {
+                                    System.out.println(player.getTransactions().get(i));
+                                }
                             }
                         } while (input != 'y' && input != 'n');
                     }
                     case 'f' -> {
+                        throw new Exception("hehe, no działa, co nie? ;)");
                     }
                     default -> System.out.println(">:(");
                 }
